@@ -32,7 +32,7 @@ function Hero() {
             "Innovating the Future"
           </h1>
           <p className="mt-6 text-xl opacity-80">
-            Lorem ipsum dolor sit amet consectetur.
+            Clean Heat with smart Energy
           </p>
         </div>
 
