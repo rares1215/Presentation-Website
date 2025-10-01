@@ -1,4 +1,5 @@
 import heroImg from "../assets/placeholder.jpeg";
+import logo from "../assets/logo.jpg";
 
 function Hero() {
   return (
@@ -11,9 +12,9 @@ function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-purple-900/70 to-blue-900/80"></div>
 
       {/* Grid Content */}
-      <div className="relative z-10 container mx-auto px-6 py-24 grid md:grid-cols-3 gap-12 items-center text-white">
+      <div className="relative z-10 container mx-auto px-6 py-24  grid grid-cols-1 lg:grid-cols-3 gap-15 items-center text-white mt-10">
         {/* Left - Description */}
-        <div className="space-y-6 animate-fadeInUp">
+        <div className="space-y-6 animate-fadeInUp text-center md:text-left">
           <h2 className="text-3xl font-bold">Lorem Ipsum</h2>
           <p className="text-lg opacity-80">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -38,8 +39,13 @@ function Hero() {
 
         {/* Right - Image placeholder */}
         <div className="flex justify-center animate-fadeInUp delay-400">
-          <div className="w-64 h-64 bg-gradient-to-br from-purple-400 to-blue-500 rounded-2xl shadow-2xl flex items-center justify-center">
-            <span className="text-xl font-bold">[ IMG ]</span>
+          <div className="w-64 h-64 bg-gradient-to-br from-purple-400 to-blue-500 rounded-2xl shadow-2xl flex items-center justify-center ml-10">
+            <span className="text-xl font-bold">
+              <img 
+            src={logo}
+            alt="logo" 
+            className="rounded-full object-cover"
+            /></span>
           </div>
         </div>
       </div>

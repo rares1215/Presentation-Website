@@ -14,7 +14,7 @@ function Navbar() {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  const links = ["About", "Features", "Pricing", "FAQ"];
+  const links = ["About", "Features", "FAQ"];
 
   return (
     <nav
@@ -29,13 +29,13 @@ function Navbar() {
         <img
             src={logo} // pune aici calea către logo-ul vostru
             alt="Sonic Logo"
-            className="w-13 h-13 rounded-full object-cover"
+            className="w-13 h-13 rounded-full object-cover mr-2"
         />
 
         {/* Text SONIC TECHNOLOGY */}
         <a
             href="#hero"
-            className="text-2xl font-extrabold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
+            className="text-2xl font-extrabold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent hover:text-cyan-400 transition-colors duration-400"
         >
             SONIC TECHNOLOGY
         </a>
