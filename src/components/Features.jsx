@@ -79,7 +79,7 @@ import FeaturesDetail from "./Features.details";
           {/* Titlu + Intro */}
           <div
             ref={textRef}
-            className={`max-w-3xl mx-auto text-center transition-all duration-3000 ease-out ${
+            className={`max-w-3xl mx-auto text-center transition-all duration-1200 ease-out ${
               visibleText ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
             }`}
           >
