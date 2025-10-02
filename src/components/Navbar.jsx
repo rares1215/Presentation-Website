@@ -1,5 +1,4 @@
 
-import logo from "../assets/logo.jpg"
 import { useState, useEffect } from "react";
 
 function Navbar() {
@@ -25,12 +24,6 @@ function Navbar() {
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3">
-        {/* Logo mic rotund */}
-        <img
-            src={logo} // pune aici calea către logo-ul vostru
-            alt="Sonic Logo"
-            className="w-13 h-13 rounded-full object-cover mr-2"
-        />
 
         {/* Text SONIC TECHNOLOGY */}
         <a

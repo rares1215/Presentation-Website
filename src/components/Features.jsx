@@ -1,13 +1,13 @@
 // src/components/Features.jsx
 import { useEffect, useRef, useState } from "react";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import WaveSeparator from "./WaveSeparator";
 import stat1 from "../assets/placeholder.jpg";
 import stat2 from "../assets/placeholder.jpg";
 import stat3 from "../assets/placeholder.jpg";
 import FeaturesDetail from "./Features.details";
 
- function Features() {
+function Features() {
   const [visibleText, setVisibleText] = useState(false);
   const [visibleGrid, setVisibleGrid] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -41,26 +41,30 @@ import FeaturesDetail from "./Features.details";
 
   // Carousel auto-slide logic
   useEffect(() => {
-    if (isHovered) return; // dacă e hover, nu schimbăm slide-ul
+    if (isHovered) return; 
     const interval = setInterval(() => {
       setCurrentSlide((s) => (s + 1) % stats.length);
-    }, 3000); // la 3 secunde
+    }, 3000);
     return () => clearInterval(interval);
   }, [isHovered, stats.length]);
 
+  const handleNext = () => setCurrentSlide((prev) => (prev + 1) % stats.length);
+  const handlePrev = () =>
+    setCurrentSlide((prev) => (prev - 1 + stats.length) % stats.length);
+
   const advantages = [
     {
-      title: "Lorem Ipsum",
+      title: "Avantaj 1",
       desc:
         "Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.",
     },
     {
-      title: "Lorem Ipsum",
+      title: "Avantaj 2",
       desc:
         "Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.",
     },
     {
-      title: "Lorem Ipsum",
+      title: "Avantaj 3",
       desc:
         "Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.",
     },
@@ -87,19 +91,19 @@ import FeaturesDetail from "./Features.details";
               Beneficii Cheie
             </h2>
             <p className="text-base md:text-lg opacity-80 leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit. Ex sapien vitae pellentesque sem placerat in id. Pretium tellus duis convallis tempus leo eu aenean. Urna tempor pulvinar vivamus fringilla lacus nec metus. Iaculis massa nisl malesuada lacinia integer nunc posuere. Semper vel class aptent taciti sociosqu ad litora. Conubia nostra inceptos himenaeos orci varius natoque penatibus. Dis parturient montes nascetur ridiculus mus donec rhoncus. Nulla molestie mattis scelerisque maximus eget fermentum odio. Purus est efficitur laoreet mauris pharetra vestibulum fusce.
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
             </p>
           </div>
 
           {/* Grid 2 coloane */}
           <div
             ref={gridRef}
-            className={`grid md:grid-cols-2 gap-10 items-start transition-all duration-900 ease-out ${
+            className={`grid md:grid-cols-2 gap-16 items-start transition-all duration-900 ease-out ${
               visibleGrid ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
             {/* Left: Avantaje */}
-            <div className="space-y-6">
+            <div className=" mt-5 space-y-7">
               {advantages.map((adv, idx) => (
                 <div
                   key={idx}
@@ -118,14 +122,14 @@ import FeaturesDetail from "./Features.details";
               ))}
             </div>
 
-            {/* Right: Carousel */}
+            {/* Right: Carousel mare cu săgeți verticale */}
             <div
-              className="flex flex-col items-center"
+              className="flex flex-col items-center md:items-end"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <div className="relative w-full max-w-md">
-                {/* viewport */}
+              <div className="relative w-full max-w-lg">
+                {/* Images */}
                 <div className="overflow-hidden rounded-3xl shadow-2xl">
                   <div
                     className="flex transition-transform duration-700"
@@ -136,10 +140,30 @@ import FeaturesDetail from "./Features.details";
                         <img
                           src={img}
                           alt={`Stat ${idx + 1}`}
-                          className="w-full h-64 sm:h-72 md:h-80 object-cover"
+                          className="w-full h-96 sm:h-[28rem] md:h-[30rem] object-cover"
                         />
                       </div>
                     ))}
+                  </div>
+                </div>
+
+                {/* Săgeți verticale */}
+                <div className="absolute top-0  w-full h-full flex justify-between items-center">
+                  <div className="h-full flex items-center px-2">
+                    <button
+                      onClick={handlePrev}
+                      className="h-full w-12 hover:bg-white/30 flex justify-center items-center transition-all duration-300 rounded-l-3xl cursor-pointer"
+                    >
+                      <ChevronLeft className="w-6 h-6 text-white" />
+                    </button>
+                  </div>
+                  <div className="h-full  flex items-center px-2">
+                    <button
+                      onClick={handleNext}
+                      className="h-full w-12  hover:bg-white/30 flex justify-center items-center transition-all duration-300 rounded-r-3xl cursor-pointer"
+                    >
+                      <ChevronRight className="w-6 h-6 text-white" />
+                    </button>
                   </div>
                 </div>
 
@@ -165,10 +189,11 @@ import FeaturesDetail from "./Features.details";
         <div className="absolute -top-12 right-6 w-56 h-56 bg-cyan-500 opacity-20 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-6 left-6 w-50 h-50 bg-purple-600 opacity-25 rounded-full blur-3xl animate-pulse delay-700"></div>
       </section>
+
+      {/* Features Detail Section */}
       <FeaturesDetail />
     </>
   );
 }
-
 
 export default Features;

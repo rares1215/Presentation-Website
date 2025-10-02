@@ -120,7 +120,7 @@ function About() {
               </div>
 
               {/* Video suprapuse pentru fade smooth */}
-              <div className="relative max-w-lg mx-auto rounded-2xl overflow-hidden shadow-2xl h-56 sm:h-72 md:h-80 lg:h-96">
+              <div className="relative max-w-lg mx-auto rounded-3xl overflow-hidden shadow-2xl h-56 sm:h-72 md:h-80 lg:h-96">
                 <video
                   ref={videoRoRef}
                   src={videoRo}

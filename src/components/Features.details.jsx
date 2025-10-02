@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Zap, Cpu } from "lucide-react"; // iconițe simbolice
+import { ArrowRight, BrainCircuit, Cpu } from "lucide-react"; // iconițe simbolice
 
 function FeaturesDetail() {
   const [visible, setVisible] = useState(false);
@@ -17,7 +17,7 @@ function FeaturesDetail() {
 
   const steps = [
     {
-      icon: <Zap className="w-8 h-8 text-cyan-400" />,
+      icon: <BrainCircuit className="w-8 h-8 text-cyan-400" />,
       title: "Step 1: Ideea de baza",
       desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem. Sem placerat in id cursus mi pretium tellus.",
     },
@@ -56,7 +56,7 @@ function FeaturesDetail() {
         </div>
 
         {/* Pași */}
-        <div className="grid md:grid-cols-3 gap-8 items-start">
+        <div className="grid md:grid-cols-3 gap-10 items-start">
           {steps.map((step, idx) => (
             <div
               key={idx}
