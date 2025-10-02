@@ -5,6 +5,7 @@ import WaveSeparator from "./WaveSeparator";
 import stat1 from "../assets/placeholder.jpeg";
 import stat2 from "../assets/placeholder.jpeg";
 import stat3 from "../assets/placeholder.jpeg";
+import FeaturesDetail from "./Features.details";
 
  function Features() {
   const [visibleText, setVisibleText] = useState(false);
@@ -86,7 +87,7 @@ import stat3 from "../assets/placeholder.jpeg";
               Beneficii Cheie
             </h2>
             <p className="text-base md:text-lg opacity-80 leading-relaxed">
-              Descoperă cum funcționează în practică: avantaje demonstrate prin date, design și experiență.
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Ex sapien vitae pellentesque sem placerat in id. Pretium tellus duis convallis tempus leo eu aenean. Urna tempor pulvinar vivamus fringilla lacus nec metus. Iaculis massa nisl malesuada lacinia integer nunc posuere. Semper vel class aptent taciti sociosqu ad litora. Conubia nostra inceptos himenaeos orci varius natoque penatibus. Dis parturient montes nascetur ridiculus mus donec rhoncus. Nulla molestie mattis scelerisque maximus eget fermentum odio. Purus est efficitur laoreet mauris pharetra vestibulum fusce.
             </p>
           </div>
 
@@ -148,7 +149,7 @@ import stat3 from "../assets/placeholder.jpeg";
                     <button
                       key={i}
                       onClick={() => setCurrentSlide(i)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all ${
+                      className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer hover:bg-cyan-400 ${
                         i === currentSlide ? "bg-cyan-400 scale-110" : "bg-white/30"
                       }`}
                       aria-label={`Go to slide ${i + 1}`}
@@ -164,6 +165,7 @@ import stat3 from "../assets/placeholder.jpeg";
         <div className="absolute -top-12 right-6 w-56 h-56 bg-cyan-500 opacity-20 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-6 left-6 w-50 h-50 bg-purple-600 opacity-25 rounded-full blur-3xl animate-pulse delay-700"></div>
       </section>
+      <FeaturesDetail />
     </>
   );
 }

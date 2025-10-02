@@ -74,7 +74,7 @@ function About() {
             }`}
           >
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-              Lorem Ipsum Dolor Sit Amet
+              O descriere detaliata sau scruta despre Produsul nostru si cum am ajuns sa l facem + video de promovare.
             </h2>
             <p className="text-base sm:text-lg md:text-xl opacity-80 leading-relaxed">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
@@ -150,7 +150,7 @@ function About() {
           }`}
         >
           <p className="text-lg sm:text-xl md:text-2xl font-medium opacity-90 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.  
+             O mica concluzie: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.  
             <span className="block mt-4 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
               „Building the future of technology, today.”
             </span>
