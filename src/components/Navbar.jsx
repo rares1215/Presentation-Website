@@ -14,7 +14,7 @@ function Navbar() {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  const links = ["About", "Features", "FAQ"];
+  const links = ["About", "Features", "FAQ" , "Contacts"];
 
   return (
     <nav

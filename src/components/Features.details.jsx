@@ -1,4 +1,3 @@
-// src/components/FeaturesDetail.jsx
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Zap, Cpu } from "lucide-react"; // iconițe simbolice
 
@@ -20,18 +19,18 @@ function FeaturesDetail() {
     {
       icon: <Zap className="w-8 h-8 text-cyan-400" />,
       title: "Step 1: Ideea de baza",
-      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem. Sem placerat in id cursus mi pretium tellus. Tellus duis convallis tempus leo eu aenean sed. Sed diam urna tempor pulvinar vivamus fringilla lacus. Lacus nec metus bibendum egestas iaculis massa nisl. Nisl malesuada lacinia integer nunc posuere ut hendrerit."
+      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem. Sem placerat in id cursus mi pretium tellus.",
     },
     {
       icon: <Cpu className="w-8 h-8 text-purple-500" />,
       title: "Step 2: Construirea",
-      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem. Sem placerat in id cursus mi pretium tellus. Tellus duis convallis tempus leo eu aenean sed. Sed diam urna tempor pulvinar vivamus fringilla lacus. Lacus nec metus bibendum egestas iaculis massa nisl. Nisl malesuada lacinia integer nunc posuere ut hendrerit."
+      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem. Sed diam urna tempor pulvinar vivamus fringilla lacus.",
     },
     {
       icon: <ArrowRight className="w-8 h-8 text-cyan-400" />,
       title: "Step 3: Eficienta si Practica",
-      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem. Sem placerat in id cursus mi pretium tellus. Tellus duis convallis tempus leo eu aenean sed. Sed diam urna tempor pulvinar vivamus fringilla lacus. Lacus nec metus bibendum egestas iaculis massa nisl. Nisl malesuada lacinia integer nunc posuere ut hendrerit."
-    }
+      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem. Lacus nec metus bibendum egestas iaculis massa nisl.",
+    },
   ];
 
   return (
@@ -51,7 +50,8 @@ function FeaturesDetail() {
             Cum Funcționează Produsul Nostru
           </h2>
           <p className="text-base md:text-lg opacity-80 leading-relaxed">
-            Următorii pași descriu detaliat procesul prin care produsul nostru transformă ideile în rezultate reale.
+            Următorii pași descriu detaliat procesul prin care produsul nostru
+            transformă ideile în rezultate reale.
           </p>
         </div>
 
@@ -60,10 +60,18 @@ function FeaturesDetail() {
           {steps.map((step, idx) => (
             <div
               key={idx}
-              className={`flex flex-col items-center text-center p-6 bg-white/5 backdrop-blur-md rounded-3xl shadow-lg transition-all duration-700 hover:scale-105`}
-              style={{ transitionDelay: `${idx * 150}ms` }}
+              className={`flex flex-col items-center text-center p-6 bg-white/5 backdrop-blur-md rounded-3xl shadow-lg transform transition-all duration-500 hover:scale-105 ${
+                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${idx * 300}ms` }}
             >
-              <div className="mb-4">{step.icon}</div>
+              {/* Badge circular animat */}
+              <div className="mb-4">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 flex items-center justify-center shadow-[0_0_20px_rgba(0,255,255,0.7)] ">
+                  {step.icon}
+                </div>
+              </div>
+
               <h3 className="text-xl md:text-2xl font-semibold mb-2">
                 {step.title}
               </h3>

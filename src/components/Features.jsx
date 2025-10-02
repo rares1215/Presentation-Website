@@ -2,9 +2,9 @@
 import { useEffect, useRef, useState } from "react";
 import { CheckCircle } from "lucide-react";
 import WaveSeparator from "./WaveSeparator";
-import stat1 from "../assets/placeholder.jpeg";
-import stat2 from "../assets/placeholder.jpeg";
-import stat3 from "../assets/placeholder.jpeg";
+import stat1 from "../assets/placeholder.jpg";
+import stat2 from "../assets/placeholder.jpg";
+import stat3 from "../assets/placeholder.jpg";
 import FeaturesDetail from "./Features.details";
 
  function Features() {
@@ -79,7 +79,7 @@ import FeaturesDetail from "./Features.details";
           {/* Titlu + Intro */}
           <div
             ref={textRef}
-            className={`max-w-3xl mx-auto text-center transition-all duration-900 ease-out ${
+            className={`max-w-3xl mx-auto text-center transition-all duration-3000 ease-out ${
               visibleText ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
             }`}
           >
