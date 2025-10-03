@@ -3,7 +3,7 @@ export default function WaveSeparator() {
   return (
     <div className="relative w-full overflow-hidden leading-none object-cover bg-black">
       <svg
-        className="relative block w-full h-12 md:h-20"
+        className="relative block w-full h-8 md:h-10"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
         viewBox="0 0 1440 320"

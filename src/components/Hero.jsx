@@ -1,34 +1,72 @@
 // src/components/Hero.jsx
 import { useEffect, useRef, useState } from "react";
-import heroImg from "../assets/placeholder.jpg";
 import logo from "../assets/logo.png";
+import heroVideo from "../assets/Background1.mp4";
+import heroPoster from "../assets/placeholder.jpg"; // fallback static image
 
 function Hero() {
   const [visible, setVisible] = useState(false);
-  const ref = useRef(null);
+  const [loaded, setLoaded] = useState(false);
+  const sectionRef = useRef(null);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.2 }
+      ([entry]) => {
+        setVisible(entry.isIntersecting);
+
+        // Control video playback
+        if (videoRef.current) {
+          if (entry.isIntersecting) {
+            videoRef.current.play().catch(() => {}); // în caz că autoplay e blocat
+          } else {
+            videoRef.current.pause();
+          }
+        }
+      },
+      { threshold: 0.3 } // rulează când ~30% din secțiune e vizibilă
     );
-    if (ref.current) observer.observe(ref.current);
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
     <section
       id="hero"
-      ref={ref}
-      className="relative min-h-screen flex flex-col justify-between bg-cover bg-center text-white"
-      style={{ backgroundImage: `url(${heroImg})` }}
+      ref={sectionRef}
+      className="relative min-h-screen flex flex-col justify-between text-white overflow-hidden"
     >
+      {/* Poster (blurred fallback while video loads) */}
+      <img
+        src={heroPoster}
+        alt="Background placeholder"
+        className={`absolute inset-0 w-full h-full object-cover blur-xl scale-105 transition-opacity duration-700 ${
+          loaded ? "opacity-0" : "opacity-100"
+        }`}
+      />
+
+      {/* Video Background */}
+      <video
+        ref={videoRef}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+          loaded ? "opacity-100" : "opacity-0"
+        }`}
+        src={heroVideo}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        poster={heroPoster}
+        onCanPlayThrough={() => setLoaded(true)}
+      />
+
       {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-purple-900/80 to-blue-900/90"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-purple-900/70 to-blue-900/80"></div>
 
       {/* Content container */}
-      <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col items-center space-y-16">
-        
+      <div className="relative z-10 container mx-auto px-6 py-32 flex flex-col items-center space-y-24">
         {/* Logo centrat sus */}
         <div
           className={`transition-all duration-1000 ${
@@ -38,32 +76,23 @@ function Hero() {
           <img
             src={logo}
             alt="Logo"
-            className="max-w-[260px] mx-auto drop-shadow-[0_0_35px_rgba(165,180,252,0.8)]"
+            className="max-w-[380px] mx-auto drop-shadow-[0_0_40px_rgba(165,180,252,0.85)]"
           />
         </div>
 
-        {/* Grid cu motto și avantaje */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full items-start">
-          {/* Motto */}
-          <div
-            className={`text-center lg:text-left space-y-6 transition-all duration-1000 ${
-              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
-          >
-            <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
-              Innovating the Future
-            </h1>
-            <p className="mt-4 text-xl opacity-80">
-              Clean Heat with Smart Energy
-            </p>
-          </div>
+       {/* Motto + Avantaje sub el */}
+        <div
+          className={`text-center space-y-10 transition-all duration-1000 ${
+            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-x-6"
+          }`}
+        >
+          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
+            Innovating the Future
+          </h1>
+          <p className="text-xl opacity-80">Clean Heat with Smart Energy</p>
 
           {/* Avantaje pe verticală */}
-          <div
-            className={`flex flex-col space-y-6 transition-all duration-1000 delay-300 ${
-              visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
-          >
+          <div className="grid md:grid-cols-3 gap-8 mt-10">
             {["Advantage 1", "Advantage 2", "Advantage 3"].map((title, idx) => (
               <div
                 key={idx}
@@ -81,7 +110,7 @@ function Hero() {
 
         {/* Descriere + CTA jos */}
         <div
-          className={`mt-10 max-w-3xl text-center space-y-6 transition-all duration-1000 delay-500 ${
+          className={`max-w-3xl text-center space-y-6 transition-all duration-1000 delay-300 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
@@ -91,7 +120,7 @@ function Hero() {
           </p>
           <a
             href="#features"
-            className="inline-block px-8 py-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full font-semibold hover:scale-105 transition-transform duration-300 shadow-lg animate-pulse"
+            className="inline-block px-8 py-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full font-semibold hover:scale-105 transition-transform duration-300 shadow-lg"
           >
             Descoperă
           </a>
@@ -106,4 +135,3 @@ function Hero() {
 }
 
 export default Hero;
-
