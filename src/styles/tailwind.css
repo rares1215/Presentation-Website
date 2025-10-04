@@ -19,3 +19,8 @@ html {
 .animate-neon {
   animation: neonPulse 3s infinite ease-in-out;
 }
+
+
+button {
+  cursor: pointer;
+}

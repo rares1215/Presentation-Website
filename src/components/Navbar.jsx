@@ -1,5 +1,6 @@
-
+// src/components/Navbar.jsx
 import { useState, useEffect } from "react";
+import logoIcon from "../assets/logo-icon.png"; // ← doar simbolul logo-ului (placeholder)
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -12,8 +13,7 @@ function Navbar() {
   }, []);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
-
-  const links = ["About", "Features", "FAQ" , "Contacts"];
+  const links = ["About", "Features", "FAQ", "Contacts"];
 
   return (
     <nav
@@ -21,18 +21,18 @@ function Navbar() {
         scrolled ? "bg-black/70 backdrop-blur-lg shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-3">
-
-        {/* Text SONIC TECHNOLOGY */}
-        <a
-            href="#hero"
-            className="text-2xl font-extrabold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent hover:text-cyan-400 transition-colors duration-400"
-        >
+      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+        {/* Logo + Brand name */}
+        <a href="#hero" className="flex items-center gap-2 sm:gap-3">
+          <img
+            src={logoIcon}
+            alt="Sonic Logo"
+            className="w-10 h-10 sm:w-14 sm:h-14 drop-shadow-[0_0_12px_rgba(165,180,252,0.6)] hover:drop-shadow-[0_0_18px_rgba(34,211,238,0.8)] transition-all duration-500"
+          />
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 hover:text-cyan-400 transition-colors duration-300">
             SONIC TECHNOLOGY
+          </h2>
         </a>
-        </div>
 
         {/* Desktop Links */}
         <ul className="hidden md:flex gap-8 text-white font-medium">
@@ -72,11 +72,11 @@ function Navbar() {
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 -translate-y-6"
               }`}
-              style={{ transitionDelay: `${idx * 100}ms` }} // secvențial
+              style={{ transitionDelay: `${idx * 100}ms` }}
             >
               <a
                 href={`#${link.toLowerCase()}`}
-                className="hover:text-cyan-400 transition-colors duration-300 text-xl py-2"
+                className="hover:text-cyan-400 transition-colors duration-300 text-lg sm:text-xl py-2"
                 onClick={() => setMenuOpen(false)}
               >
                 {link}

@@ -1,8 +1,7 @@
 // src/components/Hero.jsx
 import { useEffect, useRef, useState } from "react";
-import logo from "../assets/logo.png";
 import heroVideo from "../assets/Background1.mp4";
-import heroPoster from "../assets/placeholder.jpg"; // fallback static image
+import heroPoster from "../assets/placeholder.jpg";
 
 function Hero() {
   const [visible, setVisible] = useState(false);
@@ -14,17 +13,15 @@ function Hero() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setVisible(entry.isIntersecting);
-
-        // Control video playback
         if (videoRef.current) {
           if (entry.isIntersecting) {
-            videoRef.current.play().catch(() => {}); // în caz că autoplay e blocat
+            videoRef.current.play().catch(() => {});
           } else {
             videoRef.current.pause();
           }
         }
       },
-      { threshold: 0.3 } // rulează când ~30% din secțiune e vizibilă
+      { threshold: 0.3 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -37,7 +34,7 @@ function Hero() {
       ref={sectionRef}
       className="relative min-h-screen flex flex-col justify-between text-white overflow-hidden"
     >
-      {/* Poster (blurred fallback while video loads) */}
+      {/* Poster fallback (blur) */}
       <img
         src={heroPoster}
         alt="Background placeholder"
@@ -46,7 +43,7 @@ function Hero() {
         }`}
       />
 
-      {/* Video Background */}
+      {/* Video background */}
       <video
         ref={videoRef}
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
@@ -63,73 +60,46 @@ function Hero() {
       />
 
       {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-purple-900/70 to-blue-900/80"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-purple-900/60 to-blue-900/70"></div>
 
-      {/* Content container */}
-      <div className="relative z-10 container mx-auto px-6 py-32 flex flex-col items-center ">
-        {/* Logo centrat sus */}
-        <div
-          className={`transition-all duration-1000 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-20"
-          }`}
-        >
-          <img
-            src={logo}
-            alt="Logo"
-            className="max-w-[380px]  drop-shadow-[0_0_40px_rgba(165,180,252,0.85)]"
-          />
-        </div>
-
-       {/* Motto + Avantaje sub el */}
-        <div
-          className={`text-center space-y-10 transition-all duration-1000 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-x-6"
-          }`}
-        >
-          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
+      {/* Brand + Titlu central */}
+      <div
+        className={`relative z-10 text-center mt-26 sm:mt-24 md:mt-28 lg:mt-24 px-4 transition-all duration-1000 ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        {/* Cardul cu titlul (mai mic acum) */}
+        <div className="max-w-2xl mx-auto bg-black/30 backdrop-blur-md rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.25)] border border-white/10 px-6 py-8 sm:px-8 sm:py-10">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
             Innovating the Future
           </h1>
-          <p className="text-xl opacity-80">Clean Heat with Smart Energy</p>
-
-          {/* Avantaje pe verticală */}
-          <div className="grid md:grid-cols-3 gap-8 mt-14 mb-24">
-            {["Advantage 1", "Advantage 2", "Advantage 3"].map((title, idx) => (
-              <div
-                key={idx}
-                className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-500"
-              >
-                <h3 className="text-xl font-bold mb-2">{title}</h3>
-                <p className="opacity-80 text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
-                  odio. Praesent libero.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Descriere + CTA jos */}
-        <div
-          className={`max-w-3xl text-center space-y-6 transition-all duration-1000 delay-300 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
-          <p className="text-lg opacity-80 leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit. Vitae pellentesque
-            sem placerat in id cursus mi. Tempus leo eu aenean sed diam urna tempor.
+          <p className="mt-3 text-base sm:text-lg opacity-90">
+            Clean Heat with Smart Energy
           </p>
-          <a
-            href="#features"
-            className="inline-block px-8 py-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full font-semibold hover:scale-105 transition-transform duration-300 shadow-lg"
-          >
-            Descoperă
-          </a>
         </div>
       </div>
 
+      {/* Text descriptiv + CTA (împins jos) */}
+      <div
+        className={`relative z-10 container mx-auto px-6 pb-10 sm:pb-12 md:pb-14 lg:pb-16 text-center space-y-6 transition-all duration-1000 delay-300 ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        }`}
+      >
+        <p className="text-sm sm:text-base md:text-base opacity-80 leading-relaxed max-w-2xl mx-auto">
+          Lorem ipsum dolor sit amet consectetur adipiscing elit. Vitae
+          pellentesque sem placerat in id cursus mi. Tempus leo eu aenean sed
+          diam urna tempor.
+        </p>
+        <a
+          href="#about"
+          className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full font-semibold text-sm sm:text-base md:text-sm hover:scale-105 transition-transform duration-300 shadow-lg animate-pulse"
+        >
+          Descoperă
+        </a>
+      </div>
+
       {/* Decorative blobs */}
-      <div className="absolute -top-10 -left-10 w-72 h-72 bg-purple-600 opacity-30 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-cyan-500 opacity-20 rounded-full blur-3xl animate-pulse delay-700"></div>
+      <div className="absolute bottom-0 right-0 w-40 sm:w-40 h-40 sm:h-40 bg-cyan-500 opacity-10 rounded-full blur-3xl animate-pulse delay-700"></div>
     </section>
   );
 }

@@ -10,7 +10,7 @@ function Footer() {
       <div className="absolute top-0 left-0 w-25 h-25 bg-cyan-500 opacity-20 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-0 right-0 w-25 h-25 bg-purple-500 opacity-25 rounded-full blur-3xl animate-pulse delay-700"></div>
 
-      <div className="container mx-auto px-6 grid  md:grid-cols-3 gap-12">
+      <div className="container mx-auto px-6 grid place-items-center text-center gap-15  md:grid-cols-3 gap-12">
         {/* Contact info */}
         <div className="space-y-4">
           <h3 className="text-xl font-bold mb-2">Contact</h3>
