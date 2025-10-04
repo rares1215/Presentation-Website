@@ -1,3 +1,4 @@
+// src/components/About.jsx
 import { useState, useEffect, useRef } from "react";
 import videoRo from "../assets/video_ro.mp4";
 import videoEn from "../assets/video_en.mp4";
@@ -6,161 +7,167 @@ import WaveSeparator from "./WaveSeparator";
 function About() {
   const [lang, setLang] = useState("RO"); // RO sau EN
 
-  const textRef = useRef(null);
-  const videoRef = useRef(null);
+  const cardRef = useRef(null);
   const endTextRef = useRef(null);
 
   const videoRoRef = useRef(null);
   const videoEnRef = useRef(null);
 
-  const [visibleText, setVisibleText] = useState(false);
-  const [visibleVideo, setVisibleVideo] = useState(false);
+  const [visibleCard, setVisibleCard] = useState(false);
   const [visibleEndText, setVisibleEndText] = useState(false);
 
-  // IntersectionObservers pentru fade-in la scroll
+  // Observers pentru fade-in
   useEffect(() => {
-    const options = { threshold: 0.2 };
+    const options = { threshold: 0.18 };
 
-    const observerText = new IntersectionObserver(([entry]) => {
-      setVisibleText(entry.isIntersecting);
+    const cardObserver = new IntersectionObserver(([entry]) => {
+      setVisibleCard(entry.isIntersecting);
     }, options);
 
-    const observerVideo = new IntersectionObserver(([entry]) => {
-      setVisibleVideo(entry.isIntersecting);
-    }, options);
-
-    const observerEndText = new IntersectionObserver(([entry]) => {
+    const endObserver = new IntersectionObserver(([entry]) => {
       setVisibleEndText(entry.isIntersecting);
     }, options);
 
-    if (textRef.current) observerText.observe(textRef.current);
-    if (videoRef.current) observerVideo.observe(videoRef.current);
-    if (endTextRef.current) observerEndText.observe(endTextRef.current);
+    if (cardRef.current) cardObserver.observe(cardRef.current);
+    if (endTextRef.current) endObserver.observe(endTextRef.current);
 
     return () => {
-      observerText.disconnect();
-      observerVideo.disconnect();
-      observerEndText.disconnect();
+      cardObserver.disconnect();
+      endObserver.disconnect();
     };
   }, []);
 
-  // Schimbare limbă video cu pauză automată pentru cel invizibil
+  // Schimbare limbă video cu pauză/play automată (încearcă să redea, dar prinde reject)
   const handleLangChange = (newLang) => {
+    if (newLang === lang) return;
     setLang(newLang);
+
     if (newLang === "RO") {
-      videoEnRef.current?.pause();
+      try { videoRoRef.current?.play?.(); } catch (err) {console.log(err);
+      }
+      videoEnRef.current?.pause?.();
     } else {
-      videoRoRef.current?.pause();
+      try { videoEnRef.current?.play?.(); } catch (err) {console.log(err);
+      }
+      videoRoRef.current?.pause?.();
     }
   };
 
   return (
     <>
-    <WaveSeparator />
-    <section
-      id="about"
-      className="relative py-24 bg-gradient-to-b from-black/80 via-purple-900/70 to-blue-900/80 text-white"
-    >
-      <div className="container mx-auto px-6 space-y-20">
+      <WaveSeparator />
 
-        {/* Text + Video Grid */}
-        <div className="grid md:grid-cols-2 gap-8 items-center text-center md:text-left mb-40">
-
-          {/* Text stânga */}
-          <div
-            ref={textRef}
-            className={`transition-all duration-1000 ${
-              visibleText ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
-            }`}
-          >
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-              O descriere detaliata sau scruta despre Produsul nostru si cum am ajuns sa l facem + video de promovare.
+      <section
+        id="about"
+        className="relative py-32 bg-gradient-to-b from-black/85 via-purple-900/70 to-blue-900/80 text-white"
+      >
+        <div className="container mx-auto px-6 space-y-20">
+          {/* TITLU */}
+          <div className="text-center mb-8 mb-40">
+            <h2
+              className="text-5xl md:text-6xl font-extrabold tracking-tight
+                         bg-clip-text text-transparent
+                         bg-gradient-to-r from-purple-400 via-cyan-600 to-purple-400
+                         drop-shadow-[0_0_25px_rgba(165,180,252,0.45)]"
+            >
+              About Us
             </h2>
-            <p className="text-base sm:text-lg md:text-xl opacity-80 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              ac leo nunc. Vestibulum et mauris vel ante. Lorem ipsum dolor sit
-              amet, consectetur adipiscing elit. Suspendisse varius enim in eros
-              elementum tristique. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Curabitur ac leo nunc. Vestibulum et mauris vel
-              ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              ac leo nunc. Vestibulum et mauris vel ante. Lorem ipsum dolor sit
-              amet, consectetur adipiscing elit. Suspendisse varius enim in eros
-              elementum tristique. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Curabitur ac leo nunc. Vestibulum et mauris vel
-              ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
+            <div className="mt-4 w-40 h-1 mx-auto bg-gradient-to-r from-purple-500 to-cyan-400 rounded-full" />
           </div>
 
-          {/* Video dreapta */}
+          {/* CARD: video sus, text jos */}
           <div
-            ref={videoRef}
-            className={`transition-all duration-1000 ${
-              visibleVideo ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            ref={cardRef}
+            className={`max-w-5xl mx-auto transition-all duration-1000 ${
+              visibleCard ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="text-center mb-4">
-              <div className="flex justify-center gap-2 sm:gap-4 mb-4">
-                <button
-                  className={`px-4 py-2 rounded-full font-semibold ${
-                    lang === "RO" ? "bg-purple-500 text-white" : "bg-white/20"
-                  } transition-all cursor-pointer hover:bg-purple-500 transition-colors duration-300`}
-                  onClick={() => handleLangChange("RO")}
-                >
-                  RO
-                </button>
-                <button
-                  className={`px-4 py-2 rounded-full font-semibold ${
-                    lang === "EN" ? "bg-purple-500 text-white" : "bg-white/20"
-                  } transition-all cursor-pointer hover:bg-purple-500 transition-colors duration-300`}
-                  onClick={() => handleLangChange("EN")}
-                >
-                  EN
-                </button>
+            <div className="bg-white/8 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden">
+              {/* VIDEO (sus) */}
+              <div className="relative">
+                {/* butoane overlay (peste video) */}
+                <div className="absolute top-4 right-4 z-20 flex gap-2">
+                  <button
+                    onClick={() => handleLangChange("RO")}
+                    className={`px-4 py-2 rounded-full font-semibold backdrop-blur-md transition-all duration-300 ${
+                      lang === "RO"
+                        ? "bg-purple-500/85 text-white"
+                        : "bg-white/20 text-white/90 hover:bg-white/30"
+                    }`}
+                  >
+                    RO
+                  </button>
+                  <button
+                    onClick={() => handleLangChange("EN")}
+                    className={`px-4 py-2 rounded-full font-semibold backdrop-blur-md transition-all duration-300 ${
+                      lang === "EN"
+                        ? "bg-purple-500/85 text-white"
+                        : "bg-white/20 text-white/90 hover:bg-white/30"
+                    }`}
+                  >
+                    EN
+                  </button>
+                </div>
+
+                <div className="w-full h-72 sm:h-80 md:h-[420px] lg:h-[480px] bg-black/10">
+                  <video
+                    ref={videoRoRef}
+                    src={videoRo}
+                    controls
+                    className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-700 ${
+                      lang === "RO" ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                    }`}
+                  />
+                  <video
+                    ref={videoEnRef}
+                    src={videoEn}
+                    controls
+                    className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-700 ${
+                      lang === "EN" ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                    }`}
+                  />
+                </div>
               </div>
 
-              {/* Video suprapuse pentru fade smooth */}
-              <div className="relative max-w-lg mx-auto rounded-3xl overflow-hidden shadow-2xl h-56 sm:h-72 md:h-80 lg:h-96">
-                <video
-                  ref={videoRoRef}
-                  src={videoRo}
-                  controls
-                  className={`w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
-                    lang === "RO" ? "opacity-100 z-10" : "opacity-0 z-0"
-                  }`}
-                />
-                <video
-                  ref={videoEnRef}
-                  src={videoEn}
-                  controls
-                  className={`w-full h-full absolute top-0 left-0 transition-opacity duration-700 ${
-                    lang === "EN" ? "opacity-100 z-10" : "opacity-0 z-0"
-                  }`}
-                />
+              {/* TEXT (jos) */}
+              <div className="p-8 md:p-12 lg:p-16 text-center md:text-left">
+                <h3 className="text-3xl md:text-4xl font-bold mb-4">Descriere Despre Noi</h3>
+                <p className="text-base sm:text-lg md:text-xl opacity-85 leading-relaxed">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac leo nunc.
+                  Vestibulum et mauris vel ante. Suspendisse varius enim in eros elementum tristique.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna,
+                  vel scelerisque nisl consectetur. Integer posuere erat a ante venenatis dapibus posuere
+                  velit aliquet.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac leo nunc.
+                  Vestibulum et mauris vel ante. Suspendisse varius enim in eros elementum tristique.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna,
+                  vel scelerisque nisl consectetur. Integer posuere erat a ante venenatis dapibus posuere
+                  velit aliquet.
+                </p>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Text de încheiere */}
-        <div
-          ref={endTextRef}
-          className={`text-center max-w-3xl mx-auto mt-16 transition-all duration-1000 ${
-            visibleEndText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
-        >
-          <p className="text-lg sm:text-xl md:text-2xl font-medium opacity-90 leading-relaxed">
-             O mica concluzie: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.  
-            <span className="block mt-4 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+          {/* CONCLUZIE - mai jos si mai subtila */}
+          <div
+            ref={endTextRef}
+            className={`text-center max-w-3xl mx-auto mt-40 transition-all duration-1000 ${
+              visibleEndText ? "opacity-60 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
+            <p className="text-lg sm:text-xl md:text-2xl font-medium leading-relaxed">
+              O mică concluzie: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+            </p>
+            <span className="block mt-6 font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 text-2xl">
               „Building the future of technology, today.”
             </span>
-          </p>
+          </div>
         </div>
-      </div>
 
-      {/* Blobs futurist */}
-      <div className="absolute -top-10 -left-10 w-72 h-72 bg-purple-600 opacity-30 rounded-full blur-3xl animate-pulse"></div>
-    </section>
+        {/* decorative subtle blob */}
+        <div className="absolute -top-10 -left-10 w-72 h-72 bg-purple-600 opacity-25 rounded-full blur-3xl animate-pulse" />
+      </section>
     </>
   );
 }

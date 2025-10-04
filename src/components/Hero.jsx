@@ -66,17 +66,17 @@ function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-purple-900/70 to-blue-900/80"></div>
 
       {/* Content container */}
-      <div className="relative z-10 container mx-auto px-6 py-32 flex flex-col items-center space-y-24">
+      <div className="relative z-10 container mx-auto px-6 py-32 flex flex-col items-center ">
         {/* Logo centrat sus */}
         <div
           className={`transition-all duration-1000 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
+            visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-20"
           }`}
         >
           <img
             src={logo}
             alt="Logo"
-            className="max-w-[380px] mx-auto drop-shadow-[0_0_40px_rgba(165,180,252,0.85)]"
+            className="max-w-[380px]  drop-shadow-[0_0_40px_rgba(165,180,252,0.85)]"
           />
         </div>
 
@@ -92,7 +92,7 @@ function Hero() {
           <p className="text-xl opacity-80">Clean Heat with Smart Energy</p>
 
           {/* Avantaje pe verticală */}
-          <div className="grid md:grid-cols-3 gap-8 mt-10">
+          <div className="grid md:grid-cols-3 gap-8 mt-14 mb-24">
             {["Advantage 1", "Advantage 2", "Advantage 3"].map((title, idx) => (
               <div
                 key={idx}
