@@ -1,7 +1,5 @@
 // src/components/Hero.jsx
 import { useEffect, useRef, useState } from "react";
-import heroVideo from "../assets/Background1.mp4";
-import heroPoster from "../assets/placeholder.jpg";
 
 function Hero() {
   const [visible, setVisible] = useState(false);
@@ -36,28 +34,33 @@ function Hero() {
     >
       {/* Poster fallback (blur) */}
       <img
-        src={heroPoster}
+        src="/placeholder.jpg"
         alt="Background placeholder"
         className={`absolute inset-0 w-full h-full object-cover blur-xl scale-105 transition-opacity duration-700 ${
           loaded ? "opacity-0" : "opacity-100"
         }`}
       />
 
-      {/* Video background */}
+      {/* Video background — optimizat */}
       <video
         ref={videoRef}
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
-        src={heroVideo}
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
-        poster={heroPoster}
+        poster="/placeholder.jpg"
         onCanPlayThrough={() => setLoaded(true)}
-      />
+      >
+        {/* Variante multiple pentru compatibilitate + performanță */}
+        <source src="/Background1.webm" type="video/webm" />
+        <source src="/Background1.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
 
       {/* Overlay gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-purple-900/60 to-blue-900/70"></div>
@@ -101,7 +104,7 @@ function Hero() {
       {/* Decorative blobs */}
       <div className="absolute bottom-0 right-0 w-40 sm:w-40 h-40 sm:h-40 bg-cyan-500 opacity-10 rounded-full blur-3xl animate-pulse delay-700"></div>
     </section>
-  );
+  );  
 }
 
 export default Hero;

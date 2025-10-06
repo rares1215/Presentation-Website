@@ -15,7 +15,7 @@ function Footer() {
         <div className="space-y-4">
           <h3 className="text-xl font-bold mb-2">Contact</h3>
           <a 
-            href="https://mail.google.com/mail/?view=cm&to=contact@myContact.com&su=Subiect&body=Salut"
+            href="https://mail.google.com/mail/?view=cm&to=contact@gmail.com&su=Subiect&body=Salut"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 opacity-80 hover:text-cyan-400 transition-colors">

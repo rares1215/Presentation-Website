@@ -12,6 +12,8 @@ function Features() {
   const [visibleGrid, setVisibleGrid] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
 
   const textRef = useRef(null);
   const gridRef = useRef(null);
@@ -41,7 +43,7 @@ function Features() {
 
   // Carousel auto-slide logic
   useEffect(() => {
-    if (isHovered) return; 
+    if (isHovered) return;
     const interval = setInterval(() => {
       setCurrentSlide((s) => (s + 1) % stats.length);
     }, 3000);
@@ -91,7 +93,13 @@ function Features() {
               Beneficii Cheie
             </h2>
             <p className="text-base md:text-lg opacity-80 leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+              ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+              duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+              vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+              malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+              aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+              himenaeos.
             </p>
           </div>
 
@@ -103,7 +111,7 @@ function Features() {
             }`}
           >
             {/* Left: Avantaje */}
-            <div className=" mt-5 space-y-7">
+            <div className="mt-5 space-y-7">
               {advantages.map((adv, idx) => (
                 <div
                   key={idx}
@@ -115,25 +123,39 @@ function Features() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl md:text-2xl font-semibold mb-1">{adv.title}</h3>
-                    <p className="text-sm md:text-base opacity-80 leading-relaxed">{adv.desc}</p>
+                    <h3 className="text-xl md:text-2xl font-semibold mb-1">
+                      {adv.title}
+                    </h3>
+                    <p className="text-sm md:text-base opacity-80 leading-relaxed">
+                      {adv.desc}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Right: Carousel mare cu săgeți verticale */}
+            {/* Right: Carousel mare cu swipe */}
             <div
-              className="flex flex-col items-center md:items-end"
+              className="flex flex-col items-center xl:ml-45"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
               <div className="relative w-full max-w-lg">
-                {/* Images */}
+                {/* Sliding images */}
                 <div className="overflow-hidden rounded-3xl shadow-2xl">
                   <div
                     className="flex transition-transform duration-700"
                     style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                    onTouchStart={(e) => setTouchStartX(e.targetTouches[0].clientX)}
+                    onTouchMove={(e) => setTouchEndX(e.targetTouches[0].clientX)}
+                    onTouchEnd={() => {
+                      const deltaX = touchStartX - touchEndX;
+                      const swipeThreshold = 50;
+                      if (deltaX > swipeThreshold) handleNext();
+                      else if (deltaX < -swipeThreshold) handlePrev();
+                      setTouchStartX(0);
+                      setTouchEndX(0);
+                    }}
                   >
                     {stats.map((img, idx) => (
                       <div key={idx} className="flex-shrink-0 w-full">
@@ -147,39 +169,38 @@ function Features() {
                   </div>
                 </div>
 
-                {/* Săgeți verticale */}
-                <div className="absolute top-0  w-full h-full flex justify-between items-center">
-                  <div className="h-full flex items-center px-2">
-                    <button
-                      onClick={handlePrev}
-                      className="h-full w-12 hover:bg-white/30 flex justify-center items-center transition-all duration-300 rounded-l-3xl cursor-pointer"
-                    >
-                      <ChevronLeft className="w-6 h-6 text-white" />
-                    </button>
-                  </div>
-                  <div className="h-full  flex items-center px-2">
-                    <button
-                      onClick={handleNext}
-                      className="h-full w-12  hover:bg-white/30 flex justify-center items-center transition-all duration-300 rounded-r-3xl cursor-pointer"
-                    >
-                      <ChevronRight className="w-6 h-6 text-white" />
-                    </button>
-                  </div>
-                </div>
+                {/* Arrows overlay (hidden on mobile) */}
+                <div className="absolute inset-0 hidden md:flex justify-between items-center pointer-events-none">
+                  {/* Left arrow */}
+                  <button
+                    onClick={handlePrev}
+                    className="pointer-events-auto h-full w-12 hover:bg-white/15 flex justify-center items-center transition-all duration-300 rounded-l-3xl"
+                  >
+                    <ChevronLeft className="w-6 h-6 text-white" />
+                  </button>
 
-                {/* Dots */}
-                <div className="flex gap-2 mt-4 justify-center">
-                  {stats.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setCurrentSlide(i)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer hover:bg-cyan-400 ${
-                        i === currentSlide ? "bg-cyan-400 scale-110" : "bg-white/30"
-                      }`}
-                      aria-label={`Go to slide ${i + 1}`}
-                    />
-                  ))}
+                  {/* Right arrow */}
+                  <button
+                    onClick={handleNext}
+                    className="pointer-events-auto h-full w-12 hover:bg-white/15 flex justify-center items-center transition-all duration-300 rounded-r-3xl"
+                  >
+                    <ChevronRight className="w-6 h-6 text-white" />
+                  </button>
                 </div>
+              </div>
+
+              {/* Dots */}
+              <div className="flex gap-2 mt-4 justify-center">
+                {stats.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentSlide(i)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer hover:bg-cyan-400 ${
+                      i === currentSlide ? "bg-cyan-400 scale-110" : "bg-white/30"
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>
