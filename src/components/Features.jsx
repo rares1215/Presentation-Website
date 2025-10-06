@@ -14,6 +14,7 @@ function Features() {
   const [isHovered, setIsHovered] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
+  const [isSmallScreen, setIsSmallScreen] = useState(false); 
 
   const textRef = useRef(null);
   const gridRef = useRef(null);
@@ -41,14 +42,21 @@ function Features() {
     };
   }, []);
 
+  useEffect(() =>{
+    const handleResize = () => setIsSmallScreen(window.innerWidth <768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return window.removeEventListener("resize", handleResize); 
+  }, []);
+
   // Carousel auto-slide logic
   useEffect(() => {
-    if (isHovered) return;
+    if (isHovered || isSmallScreen) return;
     const interval = setInterval(() => {
       setCurrentSlide((s) => (s + 1) % stats.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [isHovered, stats.length]);
+  }, [isHovered, isSmallScreen, stats.length]);
 
   const handleNext = () => setCurrentSlide((prev) => (prev + 1) % stats.length);
   const handlePrev = () =>

@@ -30,11 +30,11 @@ function Hero() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col justify-between text-white overflow-hidden"
+      className="relative min-h-240  flex flex-col justify-between text-white overflow-hidden"
     >
       {/* Poster fallback (blur) */}
       <img
-        src="/placeholder.jpg"
+        src="/heroimg.png"
         alt="Background placeholder"
         className={`absolute inset-0 w-full h-full object-cover blur-xl scale-105 transition-opacity duration-700 ${
           loaded ? "opacity-0" : "opacity-100"
@@ -52,7 +52,7 @@ function Hero() {
         muted
         playsInline
         preload="auto"
-        poster="/placeholder.jpg"
+        poster="/heroimg."
         onCanPlayThrough={() => setLoaded(true)}
       >
         {/* Variante multiple pentru compatibilitate + performanță */}
@@ -84,7 +84,7 @@ function Hero() {
 
       {/* Text descriptiv + CTA (împins jos) */}
       <div
-        className={`relative z-10 container mx-auto px-6 pb-10 sm:pb-12 md:pb-14 lg:pb-16 text-center space-y-6 transition-all duration-1000 delay-300 ${
+        className={`relative z-10 container mx-auto px-6 pb-10 sm:pb-12 md:pb-14 lg:pb-16 text-center  space-y-6 transition-all duration-1000 delay-300 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
         }`}
       >

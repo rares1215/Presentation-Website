@@ -13,7 +13,7 @@ function Navbar() {
   }, []);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
-  const links = ["About", "Features", "FAQ", "Contacts"];
+  const links = ["About", "Features", "Reasons", "Contacts"];
 
   return (
     <nav
@@ -23,16 +23,17 @@ function Navbar() {
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo + Brand name */}
-        <a href="#hero" className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <img
             src={logoIcon}
             alt="Sonic Logo"
             className="w-10 h-10 sm:w-14 sm:h-14 drop-shadow-[0_0_12px_rgba(165,180,252,0.6)] hover:drop-shadow-[0_0_18px_rgba(34,211,238,0.8)] transition-all duration-500"
           />
-          <h2 className="text-lg sm:text-xl md:text-2xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 hover:text-cyan-400 transition-colors duration-300">
+          <a href="#hero"><h2 className="text-lg sm:text-xl md:text-2xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 hover:text-cyan-400 transition-colors duration-300">
             SONIC TECHNOLOGY
           </h2>
-        </a>
+          </a>
+        </div>
 
         {/* Desktop Links */}
         <ul className="hidden md:flex gap-8 text-white font-medium">

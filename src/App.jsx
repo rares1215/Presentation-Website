@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar"
 import About from "./components/About"
 import Features from "./components/Features"
 import Footer from "./components/Footer"
+import WhyChooseUs from "./components/WhyUs"
 
 function App() {
     
@@ -14,6 +15,7 @@ function App() {
         <Hero />
         <About />
         <Features />
+        <WhyChooseUs />
         <Footer />
     </>
     )
