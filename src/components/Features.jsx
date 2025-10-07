@@ -97,7 +97,7 @@ function Features() {
               visibleText ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
             }`}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(0,255,255,0.25)] transition-all duration-700 ease-in-out">
               Beneficii Cheie
             </h2>
             <p className="text-base md:text-lg opacity-80 leading-relaxed">

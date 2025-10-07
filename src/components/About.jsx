@@ -45,7 +45,7 @@ function About() {
         <div className="container mx-auto px-6">
           {/* TITLE */}
           <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-500 to-purple-400 drop-shadow-[0_0_25px_rgba(165,180,252,0.45)]">
+            <h2 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(0,255,255,0.25)]">
               About Us
             </h2>
           </div>
