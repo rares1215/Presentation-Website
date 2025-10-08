@@ -1,6 +1,7 @@
-// src/components/Features.jsx
 import { useEffect, useRef, useState } from "react";
 import { CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
 import WaveSeparator from "./WaveSeparator";
 import stat1 from "../assets/placeholder.jpg";
 import stat2 from "../assets/placeholder.jpg";
@@ -8,59 +9,17 @@ import stat3 from "../assets/placeholder.jpg";
 import FeaturesDetail from "./Features.details";
 
 function Features() {
-  const [visibleText, setVisibleText] = useState(false);
-  const [visibleGrid, setVisibleGrid] = useState(false);
+  const [isSectionVisible, setIsSectionVisible] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
-  const [isSmallScreen, setIsSmallScreen] = useState(false); 
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  const textRef = useRef(null);
-  const gridRef = useRef(null);
+  const sectionRef = useRef(null);
 
   const stats = [stat1, stat2, stat3];
-
-  // Intersection Observer pentru fade-in la scroll
-  useEffect(() => {
-    const options = { threshold: 0.18 };
-
-    const observerText = new IntersectionObserver(([entry]) => {
-      setVisibleText(entry.isIntersecting);
-    }, options);
-
-    const observerGrid = new IntersectionObserver(([entry]) => {
-      setVisibleGrid(entry.isIntersecting);
-    }, options);
-
-    if (textRef.current) observerText.observe(textRef.current);
-    if (gridRef.current) observerGrid.observe(gridRef.current);
-
-    return () => {
-      observerText.disconnect();
-      observerGrid.disconnect();
-    };
-  }, []);
-
-  useEffect(() =>{
-    const handleResize = () => setIsSmallScreen(window.innerWidth <768);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return window.removeEventListener("resize", handleResize); 
-  }, []);
-
-  // Carousel auto-slide logic
-  useEffect(() => {
-    if (isHovered || isSmallScreen) return;
-    const interval = setInterval(() => {
-      setCurrentSlide((s) => (s + 1) % stats.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [isHovered, isSmallScreen, stats.length]);
-
-  const handleNext = () => setCurrentSlide((prev) => (prev + 1) % stats.length);
-  const handlePrev = () =>
-    setCurrentSlide((prev) => (prev - 1 + stats.length) % stats.length);
 
   const advantages = [
     {
@@ -80,146 +39,196 @@ function Features() {
     },
   ];
 
+  // Intersection Observer for entire section visibility
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsSectionVisible(entry.isIntersecting),
+      { threshold: 0.18 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Detect screen size
+  useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Auto-slide logic
+  useEffect(() => {
+    if (isHovered || isSmallScreen || isAnimating) return;
+    const interval = setInterval(() => {
+      setCurrentSlide((s) => (s + 1) % stats.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [isHovered, isSmallScreen, stats.length, isAnimating]);
+
+  const handleNext = () => {
+    if (isAnimating) return;
+    setCurrentSlide((prev) => (prev + 1) % stats.length);
+  };
+
+  const handlePrev = () => {
+    if (isAnimating) return;
+    setCurrentSlide((prev) => (prev - 1 + stats.length) % stats.length);
+  };
+
+  const handleDotClick = (index) => {
+    if (isAnimating || index === currentSlide) return;
+    setCurrentSlide(index);
+  };
+
+  // Animation variants for title and carousel
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
+  const carouselVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1, ease: "easeOut", delay: 0.4 },
+    },
+  };
+
   return (
     <>
-      {/* Wave separator */}
       <WaveSeparator />
 
       <section
         id="features"
-        className="relative py-20 bg-gradient-to-b from-blue-900/90 via-purple-900/80 to-black/95 text-white"
+        ref={sectionRef}
+        className="relative py-24 bg-gradient-to-b from-blue-900/90 via-purple-900/80 to-black/95 text-white"
       >
-        <div className="container mx-auto px-6 space-y-12">
-          {/* Titlu + Intro */}
-          <div
-            ref={textRef}
-            className={`max-w-3xl mx-auto text-center transition-all duration-1200 ease-out ${
-              visibleText ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
-            }`}
+        <div className="container mx-auto px-6 space-y-16">
+          {/* Title & Intro */}
+          <motion.div
+            initial="hidden"
+            animate={isSectionVisible ? "visible" : "hidden"}
+            variants={titleVariants}
+            className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(0,255,255,0.25)] transition-all duration-700 ease-in-out">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(0,255,255,0.25)]">
               Beneficii Cheie
             </h2>
-            <p className="text-base md:text-lg opacity-80 leading-relaxed">
+            <p className="text-lg opacity-80 leading-relaxed">
               Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
-              ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
-              duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
-              vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
-              malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
-              aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
-              himenaeos.
+              ex sapien vitae pellentesque sem placerat.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Grid 2 coloane */}
-          <div
-            ref={gridRef}
-            className={`grid md:grid-cols-2 gap-16 items-start transition-all duration-900 ease-out ${
-              visibleGrid ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
+          {/* Carousel */}
+          <motion.div
+            initial="hidden"
+            animate={isSectionVisible ? "visible" : "hidden"}
+            variants={carouselVariants}
+            className="flex flex-col items-center"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            {/* Left: Avantaje */}
-            <div className="mt-5 space-y-7">
-              {advantages.map((adv, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start gap-4 p-6 bg-white/6 rounded-2xl backdrop-blur-md hover:bg-white/10 transition-all duration-300"
-                >
-                  <div className="flex-shrink-0 mt-1">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 flex items-center justify-center shadow-md">
-                      <CheckCircle className="w-5 h-5 text-black/90" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-semibold mb-1">
-                      {adv.title}
-                    </h3>
-                    <p className="text-sm md:text-base opacity-80 leading-relaxed">
-                      {adv.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Right: Carousel mare cu swipe */}
-            <div
-              className="flex flex-col items-center xl:ml-45"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              <div className="relative w-full max-w-lg">
-                {/* Sliding images */}
-                <div className="overflow-hidden rounded-3xl shadow-2xl">
-                  <div
-                    className="flex transition-transform duration-700"
-                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                    onTouchStart={(e) => setTouchStartX(e.targetTouches[0].clientX)}
-                    onTouchMove={(e) => setTouchEndX(e.targetTouches[0].clientX)}
-                    onTouchEnd={() => {
-                      const deltaX = touchStartX - touchEndX;
-                      const swipeThreshold = 50;
-                      if (deltaX > swipeThreshold) handleNext();
-                      else if (deltaX < -swipeThreshold) handlePrev();
-                      setTouchStartX(0);
-                      setTouchEndX(0);
-                    }}
-                  >
-                    {stats.map((img, idx) => (
-                      <div key={idx} className="flex-shrink-0 w-full">
+            <div className="relative w-full max-w-7xl mx-auto">
+              <div className="overflow-hidden rounded-3xl shadow-2xl">
+                <div className="relative w-full h-auto">
+                  <AnimatePresence initial={false} mode="wait">
+                    <motion.div
+                      key={currentSlide}
+                      initial={{ x: 100, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: -100, opacity: 0 }}
+                      transition={{ duration: 0.6, ease: "easeInOut" }}
+                      onAnimationStart={() => setIsAnimating(true)}
+                      onAnimationComplete={() => setIsAnimating(false)}
+                      className="flex w-full flex-col md:flex-row items-center gap-12 px-6 py-10"
+                      onTouchStart={(e) =>
+                        setTouchStartX(e.targetTouches[0].clientX)
+                      }
+                      onTouchMove={(e) =>
+                        setTouchEndX(e.targetTouches[0].clientX)
+                      }
+                      onTouchEnd={() => {
+                        const deltaX = touchStartX - touchEndX;
+                        const swipeThreshold = 50;
+                        if (deltaX > swipeThreshold) handleNext();
+                        else if (deltaX < -swipeThreshold) handlePrev();
+                        setTouchStartX(0);
+                        setTouchEndX(0);
+                      }}
+                    >
+                      <div className="w-full md:w-[55%]">
                         <img
-                          src={img}
-                          alt={`Stat ${idx + 1}`}
-                          className="w-full h-96 sm:h-[28rem] md:h-[30rem] object-cover"
+                          src={stats[currentSlide]}
+                          alt={`Slide ${currentSlide + 1}`}
+                          className="rounded-2xl w-full h-[26rem] sm:h-[30rem] md:h-[34rem] object-cover shadow-xl"
                         />
                       </div>
-                    ))}
-                  </div>
-                </div>
 
-                {/* Arrows overlay (hidden on mobile) */}
-                <div className="absolute inset-0 hidden md:flex justify-between items-center pointer-events-none">
-                  {/* Left arrow */}
-                  <button
-                    onClick={handlePrev}
-                    className="pointer-events-auto h-full w-12 hover:bg-white/15 flex justify-center items-center transition-all duration-300 rounded-l-3xl"
-                  >
-                    <ChevronLeft className="w-6 h-6 text-white" />
-                  </button>
-
-                  {/* Right arrow */}
-                  <button
-                    onClick={handleNext}
-                    className="pointer-events-auto h-full w-12 hover:bg-white/15 flex justify-center items-center transition-all duration-300 rounded-r-3xl"
-                  >
-                    <ChevronRight className="w-6 h-6 text-white" />
-                  </button>
+                      <div className="w-full md:w-[45%] space-y-4 text-left">
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 flex items-center justify-center shadow-lg">
+                            <CheckCircle className="w-6 h-6 text-black/90" />
+                          </div>
+                          <h3 className="text-2xl md:text-3xl font-semibold">
+                            {advantages[currentSlide].title}
+                          </h3>
+                        </div>
+                        <p className="text-base md:text-lg opacity-80 leading-relaxed">
+                          {advantages[currentSlide].desc}
+                        </p>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               </div>
 
-              {/* Dots */}
-              <div className="flex gap-2 mt-4 justify-center">
-                {stats.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentSlide(i)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer hover:bg-cyan-400 ${
-                      i === currentSlide ? "bg-cyan-400 scale-110" : "bg-white/30"
-                    }`}
-                    aria-label={`Go to slide ${i + 1}`}
-                  />
-                ))}
+              <div className="absolute inset-0 hidden md:flex justify-between items-center pointer-events-none">
+                <button
+                  onClick={handlePrev}
+                  className="pointer-events-auto h-full w-12 hover:bg-white/15 flex justify-center items-center transition-all duration-300 rounded-l-3xl"
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft className="w-6 h-6 text-white" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="pointer-events-auto h-full w-12 hover:bg-white/15 flex justify-center items-center transition-all duration-300 rounded-r-3xl"
+                  aria-label="Next slide"
+                >
+                  <ChevronRight className="w-6 h-6 text-white" />
+                </button>
               </div>
             </div>
-          </div>
+
+            <div className="flex gap-2 mt-6 justify-center">
+              {stats.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => handleDotClick(i)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer hover:bg-cyan-400 ${
+                    i === currentSlide ? "bg-cyan-400 scale-110" : "bg-white/30"
+                  }`}
+                  aria-label={`Go to slide ${i + 1}`}
+                  disabled={isAnimating}
+                />
+              ))}
+            </div>
+          </motion.div>
         </div>
 
-        {/* Decorative blobs */}
         <div className="absolute -top-12 right-6 w-56 h-56 bg-cyan-500 opacity-20 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-6 left-6 w-50 h-50 bg-purple-600 opacity-25 rounded-full blur-3xl animate-pulse delay-700"></div>
       </section>
 
-      {/* Features Detail Section */}
       <FeaturesDetail />
     </>
   );
