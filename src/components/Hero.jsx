@@ -72,10 +72,10 @@ function Hero() {
 
         <div className="max-w-2xl mx-auto bg-black/30 backdrop-blur-md rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.25)] border border-white/10 px-6 py-8 sm:px-8 sm:py-10">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-            Innovating the Future
+            Sonic Technology
           </h1>
           <p className="mt-3 text-base sm:text-lg opacity-90">
-            Clean Heat with Smart Energy
+            Inovating the future of current energy standards with Clean Heat and Smart Energy
           </p>
         </div>
       </div>

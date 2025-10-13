@@ -1,6 +1,5 @@
 // src/components/Navbar.jsx
 import { useState, useEffect } from "react";
-import logoIcon from "../assets/logo-icon.png"; // ← doar simbolul logo-ului (placeholder)
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,7 +24,7 @@ function Navbar() {
         {/* Logo + Brand name */}
         <div className="flex items-center gap-2 sm:gap-3">
           <img
-            src={logoIcon}
+            src="/logo-icon.png"
             alt="Sonic Logo"
             className="w-10 h-10 sm:w-14 sm:h-14 drop-shadow-[0_0_12px_rgba(165,180,252,0.6)] hover:drop-shadow-[0_0_18px_rgba(34,211,238,0.8)] transition-all duration-500"
           />

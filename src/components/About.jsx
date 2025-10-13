@@ -67,7 +67,7 @@ function About() {
                 <h3 className="text-3xl  md:text-4xl font-bold mb-6">
                   Descriere Despre Noi
                 </h3>
-                <p className="text-base sm:text-lg md:text-xl opacity-85 leading-relaxed">
+                <p className="text-base sm:text-lg md:text-xl opacity-85 mb-10 md:mb-auto leading-relaxed">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac leo nunc.
                   Vestibulum et mauris vel ante. Suspendisse varius enim in eros elementum tristique.
                   Praesent commodo cursus magna, vel scelerisque nisl consectetur. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
