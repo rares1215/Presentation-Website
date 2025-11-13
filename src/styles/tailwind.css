@@ -24,3 +24,8 @@ html {
 button {
   cursor: pointer;
 }
+
+
+body{
+  background-color: black;
+}

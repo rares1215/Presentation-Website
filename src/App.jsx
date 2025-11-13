@@ -5,6 +5,7 @@ import About from "./components/About"
 import Features from "./components/Features"
 import Footer from "./components/Footer"
 import WhyChooseUs from "./components/WhyUs"
+import WaveSeparator from "./components/WaveSeparator"
 
 function App() {
     
@@ -13,6 +14,7 @@ function App() {
     <>
         <Navbar />
         <Hero />
+        <WaveSeparator />
         <About />
         <Features />
         <WhyChooseUs />

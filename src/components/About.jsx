@@ -3,8 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import videoRo from "../assets/video_ro.mp4";
 import videoEn from "../assets/video_en.mp4";
-
-
+import WaveSeparator from "./WaveSeparator";
 
 export default function About() {
   const [lang, setLang] = useState("RO");
@@ -37,14 +36,45 @@ export default function About() {
       ref={sectionRef}
       className="relative isolate overflow-hidden py-24 md:py-32 text-slate-100"
       aria-label="Despre Noi"
-      style={{
-        background: "linear-gradient(135deg, #0369a1 0%, #0c4a6e 50%, #082f49 100%)",
-      }}
     >
-      {/* Background overlay */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(70%_60%_at_50%_50%,rgba(255,255,255,0.05),transparent)]" />
+      {/* ==== NEW: RADAR BACKGROUND ==== */}
+      <div className=" md:absolute inset-0 -z-20 flex items-center justify-center pointer-events-none opacity-60">
+        <div className="relative w-[1200px] max-w-[55vw] max-h-[50vw] aspect-square">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute left-1/2 top-1/2 rounded-full border border-cyan-300/15"
+              style={{
+                height: `${40 + i * 22}%`,
+                width: `${40 + i * 22}%`,
+                transform: "translate(-50%, -50%)",
+                boxShadow: i === 0 ? "0 0 40px rgba(56,189,248,0.35) inset" : undefined,
+              }}
+            />
+          ))}
 
-      {/* Section Header */}
+          {/* Pulsing center */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0.8 }}
+            animate={{ scale: [0.9, 1.1, 0.9], opacity: [0.9, 0.4, 0.9] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300"
+          />
+        </div>
+      </div>
+
+      {/* Background Gradient (slightly darkened for contrast) */}
+      <div
+        className="absolute inset-0 -z-30"
+        style={{
+          background: "linear-gradient(150deg, #023552 0%, #062b42 50%, #041d2e 100%)",
+        }}
+      />
+
+      {/* Soft light overlay */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(65%_60%_at_50%_50%,rgba(255,255,255,0.07),transparent)]" />
+
+      {/* HEADER */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={visible ? { opacity: 1, y: 0 } : {}}
@@ -52,14 +82,14 @@ export default function About() {
         className="relative mx-auto mb-16 max-w-7xl px-6 text-center md:mb-20 md:px-10"
       >
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-          <span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-cyan-300 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-cyan-300 via-sky-400 to-cyan-200 bg-clip-text text-transparent">
             Despre Noi
           </span>
         </h2>
-        <div className="mx-auto mt-4 h-1 w-24 rounded-full bg-gradient-to-r from-cyan-500 to-sky-400" />
+        <div className="mx-auto mt-4 h-1 w-24 rounded-full bg-gradient-to-r from-cyan-400 to-sky-400" />
       </motion.div>
 
-      {/* Content Layout */}
+      {/* CONTENT */}
       <div className="relative mx-auto max-w-7xl px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 32 }}
@@ -67,7 +97,7 @@ export default function About() {
           transition={{ duration: 0.9, ease: "easeOut", delay: 0.05 }}
           className="grid grid-cols-1 items-center gap-12 md:grid-cols-12 lg:gap-16"
         >
-          {/* Text Column */}
+          {/* TEXT */}
           <div className="md:col-span-6 lg:col-span-6">
             <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-[0_10px_40px_rgba(14,165,233,0.15)] backdrop-blur-xl">
               <h3 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl">
@@ -88,16 +118,16 @@ export default function About() {
             </div>
           </div>
 
-          {/* Video Column */}
+          {/* VIDEO */}
           <div className="md:col-span-6 lg:col-span-6 flex flex-col items-center justify-center">
-            <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-cyan-400/30 bg-slate-900/40 shadow-[0_10px_50px_rgba(14,165,233,0.25)] backdrop-blur-xl">
-              {/* Language Buttons */}
+              <div className="relative w-full max-w-xl overflow-hidden rounded-3xl border border-cyan-400/30 bg-slate-900/40 shadow-[0_10px_50px_rgba(14,165,233,0.25)] backdrop-blur-xl">
+              {/* Language Switch */}
               <div className="absolute top-4 right-4 z-20 flex gap-2">
                 {["RO", "EN"].map((code) => (
                   <button
                     key={code}
                     onClick={() => handleLangChange(code)}
-                    className={`rounded-full px-4 py-2 text-xs font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 ${
+                    className={`rounded-full px-4 py-2 text-xs font-semibold transition-all ${
                       lang === code
                         ? "bg-cyan-400 text-slate-900 shadow-lg"
                         : "bg-slate-800/60 text-slate-200 hover:bg-slate-700"
@@ -108,7 +138,7 @@ export default function About() {
                 ))}
               </div>
 
-              {/* Videos with fixed height + poster fallback */}
+              {/* Videos */}
               <div className="relative aspect-video w-full">
                 <video
                   ref={videoRoRef}
@@ -136,7 +166,6 @@ export default function About() {
                 />
               </div>
 
-              {/* Overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
             </div>
 
@@ -147,7 +176,7 @@ export default function About() {
         </motion.div>
       </div>
 
-      {/* Decorative bottom line */}
+      {/* Bottom line */}
       <div className="pointer-events-none mx-auto mt-16 w-[85%] max-w-7xl">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
       </div>

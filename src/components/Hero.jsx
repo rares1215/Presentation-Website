@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
+
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
   const videoRef = useRef(null);
