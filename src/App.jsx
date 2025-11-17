@@ -6,6 +6,7 @@ import Features from "./components/Features"
 import Footer from "./components/Footer"
 import WhyChooseUs from "./components/WhyUs"
 import WaveSeparator from "./components/WaveSeparator"
+import FeaturesDetail from "./components/FeaturesDetails"
 
 function App() {
     
@@ -16,7 +17,10 @@ function App() {
         <Hero />
         <WaveSeparator />
         <About />
+        <WaveSeparator />
         <Features />
+        <WaveSeparator />
+        <FeaturesDetail />
         <WhyChooseUs />
         <Footer />
     </>

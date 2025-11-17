@@ -1,235 +1,197 @@
 import { useEffect, useRef, useState } from "react";
-import { CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
-// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import WaveSeparator from "./WaveSeparator";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import stat1 from "../assets/placeholder.jpg";
 import stat2 from "../assets/placeholder.jpg";
 import stat3 from "../assets/placeholder.jpg";
-import FeaturesDetail from "./Features.details";
 
 function Features() {
-  const [isSectionVisible, setIsSectionVisible] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [touchStartX, setTouchStartX] = useState(0);
-  const [touchEndX, setTouchEndX] = useState(0);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [current, setCurrent] = useState(0);
+  const [anim, setAnim] = useState(false);
+  const [hover, setHover] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   const sectionRef = useRef(null);
 
-  const stats = [stat1, stat2, stat3];
+  const slides = [stat1, stat2, stat3];
 
-  const advantages = [
-    {
-      title: "Avantaj 1",
-      desc:
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.",
-    },
-    {
-      title: "Avantaj 2",
-      desc:
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.",
-    },
-    {
-      title: "Avantaj 3",
-      desc:
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.",
-    },
-  ];
-
-  // Intersection Observer for entire section visibility
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsSectionVisible(entry.isIntersecting),
-      { threshold: 0.18 }
+    const obs = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.2 }
     );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-
-    return () => observer.disconnect();
+    if (sectionRef.current) obs.observe(sectionRef.current);
+    return () => obs.disconnect();
   }, []);
 
-  // Detect screen size
   useEffect(() => {
-    const handleResize = () => setIsSmallScreen(window.innerWidth < 768);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Auto-slide logic
-  useEffect(() => {
-    if (isHovered || isSmallScreen || isAnimating) return;
-    const interval = setInterval(() => {
-      setCurrentSlide((s) => (s + 1) % stats.length);
-    }, 6000);
+    if (hover || anim) return;
+    const interval = setInterval(
+      () => setCurrent((s) => (s + 1) % slides.length),
+      6500
+    );
     return () => clearInterval(interval);
-  }, [isHovered, isSmallScreen, stats.length, isAnimating]);
+  }, [hover, anim, slides.length]);
 
-  const handleNext = () => {
-    if (isAnimating) return;
-    setCurrentSlide((prev) => (prev + 1) % stats.length);
+  const next = () => {
+    if (!anim) setCurrent((s) => (s + 1) % slides.length);
   };
 
-  const handlePrev = () => {
-    if (isAnimating) return;
-    setCurrentSlide((prev) => (prev - 1 + stats.length) % stats.length);
-  };
-
-  const handleDotClick = (index) => {
-    if (isAnimating || index === currentSlide) return;
-    setCurrentSlide(index);
-  };
-
-  // Animation variants for title and carousel
-  const titleVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
-  const carouselVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 1, ease: "easeOut", delay: 0.4 },
-    },
+  const prev = () => {
+    if (!anim) setCurrent((s) => (s - 1 + slides.length) % slides.length);
   };
 
   return (
     <>
-      <WaveSeparator />
-
       <section
         id="features"
         ref={sectionRef}
-        className="relative py-24 bg-gradient-to-b from-blue-900/90 via-purple-900/80 to-black/95 text-white"
+        className="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-950/98 to-slate-900 py-32 text-slate-100"
       >
-        <div className="container mx-auto px-6 space-y-16">
-          {/* Title & Intro */}
-          <motion.div
-            initial="hidden"
-            animate={isSectionVisible ? "visible" : "hidden"}
-            variants={titleVariants}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(0,255,255,0.25)]">
-              Beneficii Cheie
-            </h2>
-            <p className="text-lg opacity-80 leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
-              ex sapien vitae pellentesque sem placerat.
-            </p>
-          </motion.div>
+        {/* Sonic rings background – option A, more energetic */}
+        <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center opacity-[0.55]">
+          <div className="relative aspect-square w-[95rem] max-w-[90vw]">
+            {[0, 1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="absolute left-1/2 top-1/2 rounded-full border border-sky-400/15"
+                style={{
+                  width: `${55 + i * 22}%`,
+                  height: `${55 + i * 22}%`,
+                  transform: "translate(-50%, -50%)",
+                  boxShadow:
+                    i === 0
+                      ? "0 0 60px rgba(56,189,248,0.35) inset, 0 0 80px rgba(56,189,248,0.15)"
+                      : "0 0 40px rgba(56,189,248,0.08)",
+                }}
+              />
+            ))}
 
-          {/* Carousel */}
-          <motion.div
-            initial="hidden"
-            animate={isSectionVisible ? "visible" : "hidden"}
-            variants={carouselVariants}
-            className="flex flex-col items-center"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <div className="relative w-full max-w-7xl mx-auto">
-              <div className="overflow-hidden rounded-3xl shadow-2xl">
-                <div className="relative w-full h-auto">
-                  <AnimatePresence initial={false} mode="wait">
-                    <motion.div
-                      key={currentSlide}
-                      initial={{ x: 100, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      exit={{ x: -100, opacity: 0 }}
-                      transition={{ duration: 0.6, ease: "easeInOut" }}
-                      onAnimationStart={() => setIsAnimating(true)}
-                      onAnimationComplete={() => setIsAnimating(false)}
-                      className="flex w-full flex-col md:flex-row items-center gap-12 px-6 py-10"
-                      onTouchStart={(e) =>
-                        setTouchStartX(e.targetTouches[0].clientX)
-                      }
-                      onTouchMove={(e) =>
-                        setTouchEndX(e.targetTouches[0].clientX)
-                      }
-                      onTouchEnd={() => {
-                        const deltaX = touchStartX - touchEndX;
-                        const swipeThreshold = 50;
-                        if (deltaX > swipeThreshold) handleNext();
-                        else if (deltaX < -swipeThreshold) handlePrev();
-                        setTouchStartX(0);
-                        setTouchEndX(0);
-                      }}
-                    >
-                      <div className="w-full md:w-[55%]">
-                        <img
-                          src={stats[currentSlide]}
-                          alt={`Slide ${currentSlide + 1}`}
-                          className="rounded-2xl w-full h-[26rem] sm:h-[30rem] md:h-[34rem] object-cover shadow-xl"
-                        />
-                      </div>
-
-                      <div className="w-full md:w-[45%] space-y-4 text-left">
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-cyan-400 flex items-center justify-center shadow-lg">
-                            <CheckCircle className="w-6 h-6 text-black/90" />
-                          </div>
-                          <h3 className="text-2xl md:text-3xl font-semibold">
-                            {advantages[currentSlide].title}
-                          </h3>
-                        </div>
-                        <p className="text-base md:text-lg opacity-80 leading-relaxed">
-                          {advantages[currentSlide].desc}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </div>
-
-              <div className="absolute inset-0 hidden md:flex justify-between items-center pointer-events-none">
-                <button
-                  onClick={handlePrev}
-                  className="pointer-events-auto h-full w-12 hover:bg-white/15 flex justify-center items-center transition-all duration-300 rounded-l-3xl"
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeft className="w-6 h-6 text-white" />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="pointer-events-auto h-full w-12 hover:bg-white/15 flex justify-center items-center transition-all duration-300 rounded-r-3xl"
-                  aria-label="Next slide"
-                >
-                  <ChevronRight className="w-6 h-6 text-white" />
-                </button>
-              </div>
-            </div>
-
-            <div className="flex gap-2 mt-6 justify-center">
-              {stats.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => handleDotClick(i)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer hover:bg-cyan-400 ${
-                    i === currentSlide ? "bg-cyan-400 scale-110" : "bg-white/30"
-                  }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                  disabled={isAnimating}
-                />
-              ))}
-            </div>
-          </motion.div>
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0.85 }}
+              animate={{
+                scale: [0.85, 1.15, 0.85],
+                opacity: [0.85, 0.4, 0.85],
+              }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300 shadow-[0_0_45px_rgba(56,189,248,0.55)]"
+            />
+          </div>
         </div>
 
-        <div className="absolute -top-12 right-6 w-56 h-56 bg-cyan-500 opacity-20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-6 left-6 w-50 h-50 bg-purple-600 opacity-25 rounded-full blur-3xl animate-pulse delay-700"></div>
-      </section>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="relative mx-auto mb-20 max-w-4xl px-6 text-center"
+        >
+          <p className="text-xs uppercase tracking-[0.3em] text-sky-300/70">
+            Beneficii
+          </p>
+          <h2 className="mt-4 bg-gradient-to-r from-sky-400 via-sky-300 to-cyan-300 bg-clip-text text-4xl font-extrabold text-transparent drop-shadow-[0_0_20px_rgba(56,189,248,0.45)] md:text-5xl">
+            Beneficii Cheie ale Tehnologiei
+          </h2>
+          <div className="mx-auto mt-4 h-px w-28 bg-gradient-to-r from-transparent via-sky-400/60 to-transparent" />
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300">
+            Vizualizări statistice ce vor demonstra performanța și eficiența
+            tehnologiei în aplicații reale.
+          </p>
+        </motion.div>
 
-      <FeaturesDetail />
+        {/* Carousel */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative mx-auto max-w-7xl px-6"
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
+          <div className="relative overflow-hidden rounded-2xl border border-sky-400/20 bg-slate-900/40 shadow-[0_0_60px_rgba(56,189,248,0.25)] backdrop-blur-xl">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.55, ease: "easeInOut" }}
+                onAnimationStart={() => setAnim(true)}
+                onAnimationComplete={() => setAnim(false)}
+                className="flex flex-col items-center gap-12 p-10 md:flex-row md:p-12"
+                onTouchStart={(e) => setTouchStart(e.targetTouches[0].clientX)}
+                onTouchMove={(e) => setTouchEnd(e.targetTouches[0].clientX)}
+                onTouchEnd={() => {
+                  const dx = touchStart - touchEnd;
+                  if (dx > 55) next();
+                  if (dx < -55) prev();
+                  setTouchStart(0);
+                  setTouchEnd(0);
+                }}
+              >
+                {/* Image */}
+                <div className="relative w-full md:w-1/2">
+                  <img
+                    src={slides[current]}
+                    alt={`Statistică ${current + 1}`}
+                    className="h-[28rem] w-full rounded-2xl border border-sky-400/20 object-cover shadow-[0_0_35px_rgba(56,189,248,0.35)] md:h-[34rem]"
+                  />
+                  <div className="pointer-events-none absolute inset-5 border border-dashed border-sky-300/20" />
+                </div>
+
+                {/* Text */}
+                <div className="w-full space-y-5 md:w-1/2">
+                  <h3 className="text-3xl font-semibold text-sky-300 drop-shadow-[0_0_25px_rgba(56,189,248,0.45)]">
+                    Statistică #{current + 1}
+                  </h3>
+                  <p className="text-lg leading-relaxed text-slate-200">
+                    Vizualizarea finală va afișa performanța și eficiența
+                    sonic-tehnologiei în diferite scenarii reale, pe baza
+                    datelor măsurate și analizate.
+                  </p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Arrows */}
+          <div className="pointer-events-none absolute inset-0 hidden items-center justify-between md:flex">
+            <button
+              onClick={prev}
+              className="pointer-events-auto rounded-full border border-sky-400/30 bg-slate-900/60 p-4 shadow-[0_0_25px_rgba(56,189,248,0.35)] transition hover:bg-slate-800"
+              aria-label="Slide anterior"
+            >
+              <ChevronLeft className="h-6 w-6 text-sky-300" />
+            </button>
+
+            <button
+              onClick={next}
+              className="pointer-events-auto rounded-full border border-sky-400/30 bg-slate-900/60 p-4 shadow-[0_0_25px_rgba(56,189,248,0.35)] transition hover:bg-slate-800"
+              aria-label="Slide următor"
+            >
+              <ChevronRight className="h-6 w-6 text-sky-300" />
+            </button>
+          </div>
+
+          {/* Dots */}
+          <div className="mt-8 flex justify-center gap-3">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => !anim && setCurrent(i)}
+                className={`h-2.5 w-2.5 rounded-full border border-sky-400/40 transition-transform duration-200 ${
+                  current === i
+                    ? "scale-110 bg-sky-400 shadow-[0_0_18px_rgba(56,189,248,0.6)]"
+                    : "bg-slate-900/70 hover:bg-sky-400/50"
+                }`}
+                aria-label={`Mergi la statistica ${i + 1}`}
+              />
+            ))}
+          </div>
+        </motion.div>
+      </section>
     </>
   );
 }
