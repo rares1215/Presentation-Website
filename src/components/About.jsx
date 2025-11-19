@@ -95,14 +95,14 @@ export default function About() {
 
         <h2 className="mt-4 text-balance text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl">
           <span className="bg-gradient-to-r from-sky-400 via-sky-300 to-violet-400 bg-clip-text text-transparent">
-            Fundamentul științific al Sonic Technology
+            Povestea din spatele Sonic Technology
           </span>
         </h2>
 
         <div className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-sky-400/70 to-transparent" />
 
         <p className="mx-auto mt-5 max-w-2xl text-sm text-slate-400 sm:text-base">
-          O companie construită pe cercetare, experiment și responsabilitate –
+          O companie construită pe cercetare, experiment și responsabilitate ,
           cu ambiția clară de a transforma o teorie veche într-o soluție energetică nouă.
         </p>
       </motion.div>
@@ -139,6 +139,16 @@ export default function About() {
                 merge mai departe.
               </p>
 
+              {/* CTA */}
+              <p className="mt-8 text-slate-400 text-sm max-w-md">Află cum funcționează produsul nostru și ce beneficii reale oferă.</p>
+
+
+              <a
+                href="#features"
+                className="inline-flex items-center mt-4 rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-8 py-3 text-sm font-semibold text-slate-900 shadow-lg transition-transform hover:-translate-y-0.5"
+                >
+                Explorează Funcționarea
+              </a>
               <div className="mt-7 flex flex-wrap gap-3">
                 {["Inovație", "Știință", "Sustenabilitate"].map((label) => (
                   <div

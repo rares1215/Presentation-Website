@@ -21,7 +21,9 @@ function App() {
         <Features />
         <WaveSeparator />
         <FeaturesDetail />
+        <WaveSeparator />
         <WhyChooseUs />
+        <WaveSeparator/>
         <Footer />
     </>
     )

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -154,6 +155,21 @@ function Features() {
                 </div>
               </motion.div>
             </AnimatePresence>
+          </div>
+
+          {/* CTA #2*/}
+          <div className="flex flex-col items-center mt-12">
+            <p className="text-slate-400 text-sm mb-3 max-w-md text-center">
+              Descoperă etapele tehnologiei și procesul din spatele produsului nostru.
+            </p>
+
+
+            <a
+              href="#features-detail"
+              className="inline-flex items-center rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-8 py-3 text-sm font-semibold text-slate-900 shadow-lg transition-transform hover:-translate-y-0.5"
+              >
+              Explorează Procesul
+            </a>
           </div>
 
           {/* Arrows */}
