@@ -14,27 +14,27 @@ export default function Navbar() {
 
   const links = [
     { label: "About", href: "#about" },
-    { label: "Features", href: "#features" },
     { label: "Reasons", href: "#reasons" },
+    { label: "Features", href: "#features-detail" },
     { label: "Contacts", href: "#contacts" },
+    { label: "Homage", href: "#gogu-tribute" },
+
+
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 backdrop-blur-lg ${
-        scrolled
-          ? "bg-black/70 shadow-[0_0_25px_rgba(56,189,248,0.25)]"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 backdrop-blur-lg ${scrolled
+        ? "bg-black/70 shadow-[0_0_25px_rgba(56,189,248,0.25)]"
+        : "bg-transparent"
+        }`}
     >
       {/* Holographic grid under navbar */}
-      <div className={`absolute inset-0 -z-10 transition-opacity duration-500 ${
-          scrolled ? "opacity-40" : "opacity-0"
+      <div className={`absolute inset-0 -z-10 transition-opacity duration-500 ${scrolled ? "opacity-40" : "opacity-0"
         } bg-[linear-gradient(to_right,rgba(56,189,248,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(56,189,248,0.12)_1px,transparent_1px)] bg-[size:40px_40px]`} />
 
       {/* Scanline overlay */}
-      <div className={`absolute inset-0 -z-10 transition-opacity duration-500 ${
-          scrolled ? "opacity-30" : "opacity-0"
+      <div className={`absolute inset-0 -z-10 transition-opacity duration-500 ${scrolled ? "opacity-30" : "opacity-0"
         } bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:100%_3px]`} />
 
       <div className="container mx-auto px-4 py-3 flex items-center justify-between relative">
@@ -110,9 +110,8 @@ export default function Navbar() {
 
       {/* Bottom neon border */}
       <div
-        className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-sky-400/70 to-transparent transition-all duration-500 ${
-          scrolled ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-sky-400/70 to-transparent transition-all duration-500 ${scrolled ? "opacity-100" : "opacity-0"
+          }`}
       />
     </nav>
   );
