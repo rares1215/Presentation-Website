@@ -7,25 +7,26 @@ import Footer from "./components/Footer"
 import WhyChooseUs from "./components/WhyUs"
 import WaveSeparator from "./components/WaveSeparator"
 import FeaturesDetail from "./components/FeaturesDetails"
+import HomagePage from "./components/HomagePage"
 
 function App() {
-    
 
-    return(
-    <>
-        <Navbar />
-        <Hero />
-        <WaveSeparator />
-        <About />
-        <WaveSeparator />
-        <Features />
-        <WaveSeparator />
-        <FeaturesDetail />
-        <WaveSeparator />
-        <WhyChooseUs />
-        <WaveSeparator/>
-        <Footer />
-    </>
+
+    return (
+        <>
+            <Navbar />
+            <Hero />
+            <WaveSeparator />
+            <About />
+            <WaveSeparator />
+            <FeaturesDetail />
+            <WaveSeparator />
+            <WhyChooseUs />
+            <WaveSeparator />
+            <HomagePage />
+            <WaveSeparator />
+            <Footer />
+        </>
     )
 }
 
