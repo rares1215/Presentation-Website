@@ -46,15 +46,15 @@ export default function HomagePage() {
                         className="p-10 rounded-3xl bg-slate-900/40 backdrop-blur-xl border border-cyan-400/40 shadow-[0_0_55px_rgba(56,189,248,0.35)]"
                     >
                         <p className="text-lg leading-relaxed text-slate-200">
-                            Nimic din ce am realizat pana acum,sau din ce vom realiza in viitor nu ar fi fost posibil fără George (Gogu) Constantinescu.A fost un mare om de știință despre care s-a vorbit prea putin si care ca si alții asemenea lui,a fost cu mult înaintea vremurilor in care a trăit.
+                            "In realitate sunetele nu sunt decat o formă de energie si transmiterea sunetului este un caz particular al transmisiei de energie.
                         </p>
 
                         <p className="text-lg leading-relaxed text-slate-200 mt-6">
-                            A lăsat moștenire,o știință nouă, sonicitatea,din care au ieșit la lumina cateva inventii,mult prea puține, consideram noi,in comparație cu potențialul acesteia.
+                            Această transmisie se face prin unde sonore si atunci mi-am pus problema: oare daca energii in cantități foarte mici cum e de exemplu energia unei trompete,se pot transmite la distanță prin vibrații, nu cumva s-ar putea transforma aceste vibrații in energie mecanică?"
                         </p>
 
-                        <p className="text-lg leading-relaxed text-slate-200 mt-6">
-                            Si din acest motiv,ca un omagiu adus la peste un secol de la apariția sonicitatii, vom incerca sa o readucem in lumină deoarece mai are multe de oferit lumii.
+                        <p className="text-lg leading-relaxed text-slate-200 mt-6 opacity-50">
+                            -George "Gogu" Constantinescu
                         </p>
 
                         {/* CTA BUTTON */}
@@ -74,7 +74,8 @@ export default function HomagePage() {
                         className="p-8 rounded-3xl bg-black/40 border border-cyan-400/10 shadow-[0_0_25px_rgba(56,189,248,0.12)] text-slate-300"
                     >
                         <p className="text-xl italic leading-relaxed">
-                            In realitate sunetele nu sunt decat o formă de energie si transmiterea sunetului este un caz particular al transmisiei de energie.Această transmisie se face prin unde sonore si atunci mi-am pus problema: oare daca energii in cantități foarte mici cum e de exemplu energia unei trompete,se pot transmite la distanță prin vibrații, nu cumva s-ar putea transforma aceste vibrații in energie mecanică?"
+                            Nimic din ce am realizat pana acum,sau din ce vom realiza in viitor nu ar fi fost posibil fără George (Gogu) Constantinescu.A fost un mare om de știință despre care s-a vorbit prea putin si care ca si alții asemenea lui,a fost cu mult înaintea vremurilor in care a trăit.
+                            A lăsat moștenire,o știință nouă, sonicitatea,din care au ieșit la lumina cateva inventii,mult prea puține, consideram noi,in comparație cu potențialul acesteia.                            Si din acest motiv,ca un omagiu adus la peste un secol de la apariția sonicitatii, vom incerca sa o readucem in lumină deoarece mai are multe de oferit lumii.
                         </p>
                     </motion.div>
                 </div>
