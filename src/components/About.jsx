@@ -39,8 +39,9 @@ export default function About() {
         <div className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-sky-400/70 to-transparent" />
 
         <p className="mx-auto mt-6 max-w-2xl text-sm sm:text-base text-slate-400">
-          O companie construită pe cercetare, experiment și responsabilitate,
-          cu ambiția clară de a transforma o teorie veche într-o soluție energetică nouă.
+          Fundamentată pe principii științifice vechi de un secol, reinterpretate
+          prin cercetare modernă și pasiune. O poveste despre inovație și energia
+          ascunsă în vibrațiile materiei.
         </p>
       </motion.div>
 
@@ -103,106 +104,33 @@ export default function About() {
         {/* RIGHT – SONIC RINGS + CENTER CARD */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
-          className="relative md:col-span-6 flex items-start justify-center pt-4"
+          className="order-2 mt-18 w-full md:order-none md:col-span-6 lg:col-span-6 flex items-center justify-center"
         >
-          <div className="relative w-[80%] max-w-md aspect-square md:mt-20 lg:mt-25">
-
-            {[...Array(5)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute left-1/2 top-1/2 rounded-full border border-sky-400/30"
-                style={{
-                  height: `${45 + i * 30}%`,
-                  width: `${45 + i * 30}%`,
-                  transform: "translate(-50%, -50%)",
-                  boxShadow:
-                    i === 0
-                      ? "0 0 55px rgba(56,189,248,0.55), 0 0 25px rgba(56,189,248,0.35) inset"
-                      : "0 0 35px rgba(56,189,248,0.15)",
-                }}
+          <div className=" mt-20 mb-10 md:mb-auto relative w-[60%] max-w-sm sm:w-[40%] md:w-[50%] lg:w-[60%]">
+            {/* Concentric sonic rings */}
+            <div className="relative aspect-square">
+              {[...Array(5)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute left-1/2 top-1/2 rounded-full border border-sky-500/20"
+                  style={{
+                    height: `${60 + i * 35}%`,
+                    width: `${60 + i * 35}%`,
+                    transform: "translate(-50%, -50%)",
+                    boxShadow: i === 0 ? "0 0 25px rgba(56,189,248,0.4) inset" : undefined,
+                  }}
+                />
+              ))}
+              {/* Central pulse */}
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0.8 }}
+                animate={{ scale: [0.9, 1.05, 0.9], opacity: [0.8, 0.4, 0.8] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-400"
               />
-            ))}
-
-            {/* CARD IN CENTER */}
-            {/* CARD IN CENTER */}
-            <div className="absolute left-1/2 top-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
-
-              {/* CURVED SONIC TECHNOLOGY — placed on 2nd big ring */}
-              <svg
-                className="absolute inset-0"
-                width="100%"
-                height="100%"
-                viewBox="0 0 300 300"
-              >
-                <defs>
-                  {/* Path positioned on 2nd biggest circle */}
-                  <path
-                    id="topCurve"
-                    d="
-                    M 40 140
-                    A 110 110 1 0 1 260 140
-                  "
-                    fill="transparent"
-                  />
-                </defs>
-
-                <text
-                  fill="url(#grad)"
-                  fontSize="26"
-                  fontWeight="900"
-                  letterSpacing="3px"
-                  style={{ filter: "drop-shadow(0 0 10px rgba(56,189,248,0.55))" }}
-                >
-                  <textPath
-                    href="#topCurve"
-                    startOffset="50%"
-                    textAnchor="middle"
-                  >
-                    SONIC TECHNOLOGY
-                  </textPath>
-                </text>
-
-                {/* Gradient */}
-                <defs>
-                  <linearGradient id="grad" gradientTransform="rotate(20)">
-                    <stop offset="0%" stopColor="#38bdf8" />
-                    <stop offset="100%" stopColor="#8b5cf6" />
-                  </linearGradient>
-                </defs>
-              </svg>
-
-              {/* CENTER PULSE POINT */}
-              <div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-400 shadow-[0_0_14px_rgba(56,189,248,0.85)]"></div>
-
-              {/* LOWER TEXT — now inside a clean glowing card */}
-              <div
-                className="absolute left-1/2 text-center"
-                style={{
-                  top: "75%",                           // slightly lower inside 2nd bottom ring
-                  transform: "translateX(-50%)",
-                }}
-              >
-                <div className="
-                              rounded-xl 
-                              border border-sky-400/20 
-                              bg-slate-900/60 
-                              px-5 py-4 
-                              backdrop-blur 
-                              shadow-[0_0_20px_rgba(56,189,248,0.25)]
-                              max-w-[100%] mx-auto
-                            ">
-                  <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
-                    Fundamentată pe principii științifice vechi de un secol, reinterpretate
-                    prin cercetare modernă și pasiune. O poveste despre inovație și energia
-                    ascunsă în vibrațiile materiei.
-                  </p>
-                </div>
-              </div>
-
             </div>
-
           </div>
         </motion.div>
       </div >

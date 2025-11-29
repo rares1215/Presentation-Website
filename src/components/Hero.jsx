@@ -17,7 +17,7 @@ export default function Hero() {
 
   useEffect(() => {
     if (!videoRef.current) return;
-    if (inView) videoRef.current.play().catch(() => {});
+    if (inView) videoRef.current.play().catch(() => { });
     else videoRef.current.pause();
   }, [inView]);
 
@@ -96,10 +96,6 @@ export default function Hero() {
               Descoperă
             </a>
           </div>
-
-          <p className="mt-5 text-sm text-slate-400">
-            Tehnologie sonică pentru energie — elegantă, eficientă și sustenabilă.
-          </p>
         </motion.div>
 
         {/* RIGHT: Visual (smaller & responsive) */}
