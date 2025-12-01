@@ -78,14 +78,14 @@ export default function About() {
             </p>
 
             <p className="mt-8 text-slate-400 text-sm max-w-md">
-              Află cum funcționează produsul nostru și ce beneficii reale oferă.
+              Află Mai multe despre sursa noastra de inspiratie si motivul pentru care am ales sa facem acest proiect.
             </p>
 
             <a
-              href="#features-detail"
+              href="#gogu-tribute"
               className="inline-flex items-center mt-4 rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-8 py-3 text-sm font-semibold text-slate-900 shadow-lg transition-transform hover:-translate-y-0.5"
             >
-              Explorează Funcționarea
+              Despre Gogu Constantinescu
             </a>
 
             <div className="mt-7 flex flex-wrap gap-3">

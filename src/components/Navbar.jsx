@@ -14,11 +14,10 @@ export default function Navbar() {
 
   const links = [
     { label: "About", href: "#about" },
+    { label: "Homage", href: "#gogu-tribute" },
     { label: "Reasons", href: "#reasons" },
     { label: "Features", href: "#features-detail" },
     { label: "Contacts", href: "#contacts" },
-    { label: "Homage", href: "#gogu-tribute" },
-
 
   ];
 

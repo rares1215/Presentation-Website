@@ -19,11 +19,11 @@ function App() {
             <WaveSeparator />
             <About />
             <WaveSeparator />
+            <HomagePage />
+            <WaveSeparator />
             <FeaturesDetail />
             <WaveSeparator />
             <WhyChooseUs />
-            <WaveSeparator />
-            <HomagePage />
             <WaveSeparator />
             <Footer />
         </>

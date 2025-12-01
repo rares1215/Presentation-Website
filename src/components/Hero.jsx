@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
   const videoRef = useRef(null);
@@ -65,6 +64,7 @@ export default function Hero() {
 
       {/* Responsive Content Layout */}
       <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-10 px-6 py-20 text-center md:grid md:grid-cols-12 md:gap-8 md:px-10 lg:gap-12 lg:text-left">
+
         {/* LEFT: Text */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -83,29 +83,19 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl leading-relaxed text-slate-200 text-base sm:text-lg md:text-xl">
-            „Cunoscutul este finit, necunoscutul este infinit; din punct de vedere intelectual ne aflăm pe o mică insulă în mijlocul unui ocean ilimitabil al inexplicabilității. Sarcina noastră, în fiecare generație, este de a revendica ceva mai mult pământ.”
-            <br />
+            „Cunoscutul este finit, necunoscutul este infinit; din punct de vedere intelectual ne aflăm pe o mică insulă în mijlocul unui ocean ilimitabil al inexplicabilității. Sarcina noastră, în fiecare generație, este de a revendica ceva mai mult pământ.”            <br />
             <span className="mt-3 block text-sm text-slate-400">— T.H. Huxley, 1887</span>
           </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-4 md:justify-start">
-            <a
-              href="#about"
-              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-7 py-3 text-sm font-semibold text-slate-950 shadow-lg transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
-            >
-              Descoperă
-            </a>
-          </div>
         </motion.div>
 
-        {/* RIGHT: Visual (smaller & responsive) */}
+        {/* RIGHT: Visual with Neon CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
-          className="order-2 w-full md:order-none md:col-span-6 lg:col-span-6 flex items-center justify-center"
+          className="order-2 w-full md:order-none md:col-span-6 lg:col-span-6 flex items-center justify-center "
         >
-          <div className=" mt-20 mb-10 md:mb-auto relative w-[60%] max-w-sm sm:w-[40%] md:w-[50%] lg:w-[60%]">
+          <div className="mt-20 mb-10 md:mb-auto relative w-[60%] max-w-sm sm:w-[40%] md:w-[50%] lg:w-[60%]">
             {/* Concentric sonic rings */}
             <div className="relative aspect-square">
               {[...Array(5)].map((_, i) => (
@@ -116,20 +106,45 @@ export default function Hero() {
                     height: `${60 + i * 35}%`,
                     width: `${60 + i * 35}%`,
                     transform: "translate(-50%, -50%)",
-                    boxShadow: i === 0 ? "0 0 25px rgba(56,189,248,0.4) inset" : undefined,
+                    boxShadow: i === 0 ? "0 0 25px rgba(56,189,248,0.45) inset" : undefined,
                   }}
                 />
               ))}
+
               {/* Central pulse */}
               <motion.div
-                initial={{ scale: 0.9, opacity: 0.8 }}
-                animate={{ scale: [0.9, 1.05, 0.9], opacity: [0.8, 0.4, 0.8] }}
+                initial={{ scale: 0.85, opacity: 0.9 }}
+                animate={{ scale: [0.85, 1.05, 0.85], opacity: [0.9, 0.4, 0.9] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-400"
+                className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300 shadow-[0_0_15px_rgba(56,189,248,0.9)]"
               />
+
+              {/* ⭐ NEON RING CTA IN CENTER ⭐ */}
+              <a
+                href="#about"
+                className="
+                  absolute left-1/2 top-1/2
+                  -translate-x-1/2 -translate-y-1/2
+                  flex items-center justify-center
+                  h-20 w-20 sm:h-24 sm:w-24
+                  rounded-full
+                  text-xs sm:text-sm font-semibold
+                  bg-slate-900/40 backdrop-blur
+                  border border-cyan-300/60
+                  shadow-[0_0_22px_rgba(56,189,248,0.55),0_0_10px_rgba(139,92,246,0.45)]
+                  hover:shadow-[0_0_35px_rgba(56,189,248,0.9),0_0_15px_rgba(139,92,246,0.7)]
+                  hover:scale-[1.05]
+                  transition-all
+                  text-cyan-300
+                "
+              >
+                Descoperă
+              </a>
+
             </div>
           </div>
         </motion.div>
+
       </div>
 
       {/* Decorative lines */}

@@ -59,7 +59,9 @@ export default function HomagePage() {
 
                         {/* CTA BUTTON */}
                         <a
-                            href="#biography"
+                            target="blank"
+                            rel="noopener noreferrer"
+                            href="https://ro.wikipedia.org/wiki/George_Constantinescu"
                             className="inline-flex items-center mt-8 rounded-full bg-gradient-to-r from-sky-400 to-cyan-300 px-8 py-3 text-sm font-semibold text-slate-900 shadow-lg hover:-translate-y-0.5 transition-transform"
                         >
                             Citește biografia completă
@@ -76,7 +78,15 @@ export default function HomagePage() {
                         <p className="text-xl italic leading-relaxed">
                             Nimic din ce am realizat pana acum,sau din ce vom realiza in viitor nu ar fi fost posibil fără George (Gogu) Constantinescu.A fost un mare om de știință despre care s-a vorbit prea putin si care ca si alții asemenea lui,a fost cu mult înaintea vremurilor in care a trăit.
                             A lăsat moștenire,o știință nouă, sonicitatea,din care au ieșit la lumina cateva inventii,mult prea puține, consideram noi,in comparație cu potențialul acesteia.                            Si din acest motiv,ca un omagiu adus la peste un secol de la apariția sonicitatii, vom incerca sa o readucem in lumină deoarece mai are multe de oferit lumii.
+                            <br />
                         </p>
+                        <p className="opacity-50 mt-10"> Afla mai multe despre cum am implementat si cum functioneaza produsul nostru</p>
+                        <a
+                            href="#features-detail"
+                            className="inline-flex items-center mt-6 rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-8 py-3 text-sm font-semibold text-slate-900 shadow-[0_0_22px_rgba(56,189,248,0.45)] hover:-translate-y-0.5 transition-transform"
+                        >
+                            Vezi Procesul Tehnologic
+                        </a>
                     </motion.div>
                 </div>
             </div>
