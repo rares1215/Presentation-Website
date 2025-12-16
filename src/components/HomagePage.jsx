@@ -5,13 +5,15 @@ export default function HomagePage() {
         <section
             id="gogu-tribute"
             className="relative isolate overflow-hidden py-32 bg-gradient-to-b from-slate-950 via-slate-900 to-black text-slate-100"        >
-            {/* BACKGROUND SOUND-WAVE ANIMATION */}
             <div className="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950 via-slate-900 to-black opacity-90" />
             {/* HEADER */}
             <div className="relative mx-auto max-w-5xl text-center px-6 mb-20">
-                <h2 className="text-4xl md:text-6xl font-extrabold pb-5 bg-gradient-to-r from-cyan-300 via-sky-400 to-cyan-300 bg-clip-text text-transparent drop-shadow-[0_0_26px_rgba(56,189,248,0.45)]">
+                <h2
+                    className="text-4xl md:text-6xl font-extrabold pb-5 text-white bg-gradient-to-r from-cyan-300 via-sky-400 to-cyan-300 drop-shadow-[0_0_26px_rgba(56,189,248,0.45)] supports-[(-webkit-text-fill-color:transparent)]:text-transparent supports-[(-webkit-background-clip:text)]:bg-clip-text supports-[background-clip:text]:bg-clip-text"
+                >
                     Despre Gogu Constantinescu
                 </h2>
+
                 <p className="text-slate-300 text-lg mt-4 max-w-3xl mx-auto">
                     Insiparatia si Motivul pentru care ne aflam astazi aici.
                 </p>
@@ -30,9 +32,10 @@ export default function HomagePage() {
                     <div className="rounded-3xl overflow-hidden border border-cyan-400/20 shadow-[0_0_45px_rgba(56,189,248,0.25)]">
                         <img
                             src={GoguImage}
-                            alt="Gogu Constantinescu"
+                            alt="Portret al lui George «Gogu» Constantinescu, inginer și om de știință român, fondatorul teoriei sonicității"
                             className="w-full h-full object-cover"
                         />
+
                     </div>
                 </motion.div>
 
@@ -53,19 +56,21 @@ export default function HomagePage() {
                             Această transmisie se face prin unde sonore si atunci mi-am pus problema: oare daca energii in cantități foarte mici cum e de exemplu energia unei trompete,se pot transmite la distanță prin vibrații, nu cumva s-ar putea transforma aceste vibrații in energie mecanică?"
                         </p>
 
-                        <p className="text-lg leading-relaxed text-slate-200 mt-6 opacity-50">
+                        <p className="text-lg leading-relaxed text-slate-200 mt-6 opacity-85">
                             -George "Gogu" Constantinescu
                         </p>
 
                         {/* CTA BUTTON */}
                         <a
-                            target="blank"
+                            target="_blank"
                             rel="noopener noreferrer"
                             href="https://ro.wikipedia.org/wiki/George_Constantinescu"
-                            className="inline-flex items-center mt-8 rounded-full bg-gradient-to-r from-sky-400 to-cyan-300 px-8 py-3 text-sm font-semibold text-slate-900 shadow-lg hover:-translate-y-0.5 transition-transform"
-                        >
+                            aria-label="Deschide biografia lui George Gogu Constantinescu pe Wikipedia"
+                            className="inline-flex items-center justify-center mt-8 rounded-full bg-gradient-to-r from-sky-400 to-cyan-300 px-8 py-3 min-h-[44px] min-w-[44px] text-sm font-semibold text-slate-900 shadow-lg hover:-translate-y-0.5 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 .focus-visible:ring-offset-slate-950">
+
                             Citește biografia completă
                         </a>
+
                     </motion.div>
 
                     {/* LEFT QUOTE BLOCK */}
@@ -80,17 +85,20 @@ export default function HomagePage() {
                             A lăsat moștenire,o știință nouă, sonicitatea,din care au ieșit la lumina cateva inventii,mult prea puține, consideram noi,in comparație cu potențialul acesteia.                            Si din acest motiv,ca un omagiu adus la peste un secol de la apariția sonicitatii, vom incerca sa o readucem in lumină deoarece mai are multe de oferit lumii.
                             <br />
                         </p>
-                        <p className="opacity-50 mt-10"> Afla mai multe despre cum am implementat si cum functioneaza produsul nostru</p>
+                        <p className="opacity-90 mt-10"> Afla mai multe despre cum am implementat si cum functioneaza produsul nostru</p>
                         <a
                             href="#features-detail"
-                            className="inline-flex items-center mt-6 rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-8 py-3 text-sm font-semibold text-slate-900 shadow-[0_0_22px_rgba(56,189,248,0.45)] hover:-translate-y-0.5 transition-transform"
+                            aria-label="Navighează către secțiunea cu procesul tehnologic"
+                            className="inline-flex items-center justify-center mt-6 rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-8 py-3 min-h-[44px] min-w-[44px] text-sm font-semibold text-slate-900 shadow-[0_0_22px_rgba(56,189,248,0.45)] hover:-translate-y-0.5 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+
                         >
                             Vezi Procesul Tehnologic
                         </a>
+
                     </motion.div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }
 
