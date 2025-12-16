@@ -1,15 +1,19 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
   const [inView, setInView] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const obs = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.25 });
+    const obs = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.25 }
+    );
     if (sectionRef.current) obs.observe(sectionRef.current);
     return () => obs.disconnect();
   }, []);
@@ -25,22 +29,14 @@ export default function Hero() {
       id="hero"
       ref={sectionRef}
       className="relative isolate min-h-screen overflow-hidden"
-      aria-label="Sonic Technology — Hero"
-      style={{
-        "--bg": "#0B1220",
-        "--surface": "rgba(13,18,31,0.6)",
-        "--line": "rgba(120,144,180,0.25)",
-        "--text": "#E6F3FF",
-        "--muted": "#A6B3C6",
-        "--accent": "#22D3EE",
-        "--accent-2": "#8B5CF6",
-        "--glow": "rgba(34,211,238,0.25)",
-      }}
+      aria-label="Sonic Technology – prezentare principală"
     >
-      {/* Background video */}
+      {/* Decorative background video */}
       <video
         ref={videoRef}
-        className={`absolute inset-0 -z-30 h-full w-full object-cover transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}
+        aria-hidden="true"
+        className={`absolute inset-0 -z-30 h-full w-full object-cover transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"
+          }`}
         playsInline
         muted
         loop
@@ -54,102 +50,120 @@ export default function Hero() {
 
       <img
         src="/heroimg.png"
-        alt="Background preview"
-        className={`absolute inset-0 -z-40 h-full w-full object-cover transition-opacity duration-700 ${loaded ? "opacity-0" : "opacity-100"}`}
+        alt=""
+        aria-hidden="true"
+        className={`absolute inset-0 -z-40 h-full w-full object-cover transition-opacity duration-700 ${loaded ? "opacity-0" : "opacity-100"
+          }`}
       />
 
-      {/* Overlays */}
-      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-slate-950/80 via-slate-950/70 to-slate-900/85" />
-      <div className="absolute inset-0 -z-10 mix-blend-overlay bg-[radial-gradient(60%_40%_at_30%_40%,rgba(255,255,255,0.08),transparent)]" />
+      {/* High-contrast overlays */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-20 bg-gradient-to-b from-slate-950/90 via-slate-950/85 to-slate-900/90"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-black/20"
+      />
 
-      {/* Responsive Content Layout */}
-      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-10 px-6 py-20 text-center md:grid md:grid-cols-12 md:gap-8 md:px-10 lg:gap-12 lg:text-left">
-
-        {/* LEFT: Text */}
+      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-12 px-6 py-24 text-center md:grid md:grid-cols-12 md:px-10 lg:text-left">
+        {/* LEFT TEXT */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="order-1 md:order-none md:col-span-6 lg:col-span-6"
+          className="md:col-span-6"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/40 bg-sky-400/10 px-3 py-1 text-xs text-sky-300">
-            <span className="h-1.5 w-1.5 rounded-full bg-sky-400" /> Sonicitate aplicată pentru energie
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/60 bg-sky-400/15 px-3 py-1 text-xs text-sky-200">
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-sky-400" />
+            Sonicitate aplicată pentru energie
           </div>
 
+          {/* Gradient text WITH readable fallback */}
           <h1 className="mt-4 font-black tracking-tight text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-violet-500">
-              Sonic Technology
+            <span className="relative">
+              <span
+                aria-hidden="true"
+                className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-violet-500"
+              >
+                Sonic Technology
+              </span>
+              <span className="sr-only">Sonic Technology</span>
             </span>
           </h1>
 
-          <p className="mt-6 max-w-xl leading-relaxed text-slate-200 text-base sm:text-lg md:text-xl">
-            „Cunoscutul este finit, necunoscutul este infinit; din punct de vedere intelectual ne aflăm pe o mică insulă în mijlocul unui ocean ilimitabil al inexplicabilității. Sarcina noastră, în fiecare generație, este de a revendica ceva mai mult pământ.”            <br />
-            <span className="mt-3 block text-sm text-slate-400">— T.H. Huxley, 1887</span>
+          <p className="mt-6 max-w-xl leading-relaxed text-slate-100 text-base sm:text-lg md:text-xl">
+            „Cunoscutul este finit, necunoscutul este infinit; din punct de vedere
+            intelectual ne aflăm pe o mică insulă în mijlocul unui ocean ilimitabil
+            al inexplicabilității.”
+            <br />
+            <span className="mt-3 block text-sm text-slate-300">
+              — T.H. Huxley, 1887
+            </span>
           </p>
         </motion.div>
 
-        {/* RIGHT: Visual with Neon CTA */}
+        {/* RIGHT – CTA RING */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
-          className="order-2 w-full md:order-none md:col-span-6 lg:col-span-6 flex items-center justify-center "
+          className="md:col-span-6 flex items-center justify-center"
         >
-          <div className="mt-20 mb-10 md:mb-auto relative w-[60%] max-w-sm sm:w-[40%] md:w-[50%] lg:w-[60%]">
-            {/* Concentric sonic rings */}
-            <div className="relative aspect-square">
-              {[...Array(5)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute left-1/2 top-1/2 rounded-full border border-sky-500/20"
-                  style={{
-                    height: `${60 + i * 35}%`,
-                    width: `${60 + i * 35}%`,
-                    transform: "translate(-50%, -50%)",
-                    boxShadow: i === 0 ? "0 0 25px rgba(56,189,248,0.45) inset" : undefined,
-                  }}
-                />
-              ))}
-
-              {/* Central pulse */}
-              <motion.div
-                initial={{ scale: 0.85, opacity: 0.9 }}
-                animate={{ scale: [0.85, 1.05, 0.85], opacity: [0.9, 0.4, 0.9] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300 shadow-[0_0_15px_rgba(56,189,248,0.9)]"
+          <div className="relative aspect-square w-[60%] max-w-sm">
+            {[...Array(5)].map((_, i) => (
+              <div
+                key={i}
+                aria-hidden="true"
+                className="absolute left-1/2 top-1/2 rounded-full border border-sky-400/30"
+                style={{
+                  height: `${45 + i * 35}%`,
+                  width: `${45 + i * 35}%`,
+                  transform: "translate(-50%, -50%)",
+                }}
               />
+            ))}
 
-              {/* ⭐ NEON RING CTA IN CENTER ⭐ */}
-              <a
-                href="#about"
-                className="
+            {/* Accessible CTA */}
+            <a
+              href="#about"
+              aria-label="Navighează către secțiunea Despre noi"
+              className="
                   absolute left-1/2 top-1/2
                   -translate-x-1/2 -translate-y-1/2
+
                   flex items-center justify-center
-                  h-20 w-20 sm:h-24 sm:w-24
                   rounded-full
-                  text-xs sm:text-sm font-semibold
+
+                  h-24 w-24
+                  min-h-[44px] min-w-[44px]
+
+                  text-sm sm:text-base font-semibold
+                  text-cyan-300
+
                   bg-slate-900/40 backdrop-blur
                   border border-cyan-300/60
-                  shadow-[0_0_22px_rgba(56,189,248,0.55),0_0_10px_rgba(139,92,246,0.45)]
-                  hover:shadow-[0_0_35px_rgba(56,189,248,0.9),0_0_15px_rgba(139,92,246,0.7)]
-                  hover:scale-[1.05]
-                  transition-all
-                  text-cyan-300
-                "
-              >
-                Descoperă
-              </a>
 
-            </div>
+                  shadow-[0_0_22px_rgba(56,189,248,0.55)]
+                  hover:shadow-[0_0_35px_rgba(56,189,248,0.9)]
+                  hover:scale-105
+
+                  transition-all
+
+                  focus-visible:outline-none
+                  focus-visible:ring-4
+                  focus-visible:ring-cyan-300/80
+                  focus-visible:ring-offset-4
+                  focus-visible:ring-offset-slate-950
+                "
+            >
+              Descoperă
+            </a>
+
           </div>
         </motion.div>
-
       </div>
-
-      {/* Decorative lines */}
-      <div className="pointer-events-none absolute left-1/2 top-20 h-px w-[70%] -translate-x-1/2 bg-gradient-to-r from-transparent via-sky-400/30 to-transparent" />
-      <div className="pointer-events-none absolute bottom-10 left-1/2 h-px w-[80%] -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-400/30 to-transparent" />
     </section>
   );
 }
+
