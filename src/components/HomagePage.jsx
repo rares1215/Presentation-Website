@@ -1,15 +1,20 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import GoguImage from '../assets/GoguImage.jpeg'
 export default function HomagePage() {
+
+    const prefersReducedMotion = useReducedMotion();
     return (
         <section
             id="gogu-tribute"
-            className="relative isolate overflow-hidden py-32 bg-gradient-to-b from-slate-950 via-slate-900 to-black text-slate-100"        >
+            aria-labelledby="gogu-tribute-title"
+            className="relative isolate overflow-hidden py-32 bg-gradient-to-b from-slate-950 via-slate-900 to-black text-slate-100"
+        >
             <div className="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950 via-slate-900 to-black opacity-90" />
             {/* HEADER */}
             <div className="relative mx-auto max-w-5xl text-center px-6 mb-20">
                 <h2
-                    className="text-4xl md:text-6xl font-extrabold pb-5 text-white bg-gradient-to-r from-cyan-300 via-sky-400 to-cyan-300 drop-shadow-[0_0_26px_rgba(56,189,248,0.45)] supports-[(-webkit-text-fill-color:transparent)]:text-transparent supports-[(-webkit-background-clip:text)]:bg-clip-text supports-[background-clip:text]:bg-clip-text"
+                    id="gogu-tribute-title"
+                    className="text-4xl md:text-5xl font-extrabold pb-5 text-white bg-gradient-to-r from-cyan-300 via-sky-400 to-cyan-300 drop-shadow-[0_0_26px_rgba(56,189,248,0.45)] supports-[(-webkit-text-fill-color:transparent)]:text-transparent supports-[(-webkit-background-clip:text)]:bg-clip-text supports-[background-clip:text]:bg-clip-text"
                 >
                     Despre Gogu Constantinescu
                 </h2>
@@ -24,10 +29,9 @@ export default function HomagePage() {
 
                 {/* IMAGE SECTION */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
+                    whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="relative"
                 >
                     <div className="rounded-3xl overflow-hidden border border-cyan-400/20 shadow-[0_0_45px_rgba(56,189,248,0.25)]">
                         <img
