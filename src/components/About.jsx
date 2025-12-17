@@ -20,7 +20,7 @@ export default function About() {
       id="about"
       ref={sectionRef}
       aria-labelledby="about-heading"
-      className="relative isolate overflow-hidden py-32 bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-900 text-slate-100"
+      className="relative isolate overflow-hidden py-32 bg-[#EBF0F5] text-[#1B263B]"
     >
       {/* HEADER */}
       <motion.div
@@ -29,27 +29,27 @@ export default function About() {
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="relative mx-auto mb-28 max-w-6xl px-6 text-center md:px-8"
       >
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#576574]">
           Despre noi
         </p>
 
+        {/* MODIFICARE: Titlul are acum culoarea CTA-ului (#0056B3) */}
         <h2
           id="about-heading"
-          className="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-sky-400 via-sky-300 to-violet-400 bg-clip-text text-transparent"
+          className="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0056B3]"
         >
           Povestea din spatele Sonic Technology
         </h2>
 
-        <div className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-sky-400/70 to-transparent" />
+        <div className="mx-auto mt-4 h-px w-24 bg-[#0056B3]/40" />
 
-        <p className="mx-auto mt-6 max-w-2xl text-sm sm:text-base text-slate-300">
+        <p className="mx-auto mt-6 max-w-2xl text-sm sm:text-base text-[#576574]">
           Fundamentată pe principii științifice vechi de un secol, reinterpretate
           prin cercetare modernă și pasiune. O poveste despre inovație și energia
           ascunsă în vibrațiile materiei.
         </p>
       </motion.div>
 
-      {/* MAIN 2-COLUMN LAYOUT */}
       <div className="relative mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-12 gap-30 items-start">
         {/* LEFT – TEXT CARD */}
         <motion.div
@@ -58,12 +58,12 @@ export default function About() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="md:col-span-6"
         >
-          <div className="rounded-2xl border border-slate-700/60 bg-slate-900/70 p-8 shadow-xl shadow-slate-950/60 backdrop-blur-lg">
-            <h3 className="text-2xl sm:text-3xl md:text-[1.85rem] font-semibold text-white">
+          <div className="rounded-2xl border border-[#D1D9E0] bg-white/60 p-8 shadow-xl shadow-blue-900/5 backdrop-blur-lg">
+            <h3 className="text-2xl sm:text-3xl md:text-[1.85rem] font-semibold text-[#1B263B]">
               Descriere Despre Noi
             </h3>
 
-            <p className="mt-6 text-base sm:text-lg leading-relaxed sm:leading-loose text-slate-100">
+            <p className="mt-6 text-base sm:text-lg leading-relaxed sm:leading-loose text-[#1B263B]/90">
               Suntem o companie fondată din pasiune și din dorința de a lăsa
               după noi o lume mai bună decât cea în care ne-am născut. Totul a
               început de la o carte, care ne prezenta o teorie surprinzătoare
@@ -80,38 +80,37 @@ export default function About() {
               merge mai departe.
             </p>
 
-            <p className="mt-8 text-slate-300 text-sm max-w-md">
+            <p className="mt-8 text-[#576574] text-sm max-w-md">
               Află Mai multe despre sursa noastra de inspiratie si motivul pentru care am ales sa facem acest proiect.
             </p>
 
+            {/* CTA BUTTON - Mentinem culoarea #0056B3 */}
             <a
               href="#gogu-tribute"
               className="
-                inline-flex items-center justify-center mt-4 rounded-full
-                bg-gradient-to-r from-sky-400 to-violet-500
-                px-8 py-3
-                min-h-[44px] min-w-[44px]
-                text-sm sm:text-base font-semibold
-                text-slate-900
-                shadow-lg transition-transform
-                hover:-translate-y-0.5
-
-                focus-visible:outline-none
-                focus-visible:ring-2
-                focus-visible:ring-sky-400
-                focus-visible:ring-offset-2
-                focus-visible:ring-offset-slate-950
-              "
+                  inline-flex items-center justify-center mt-8 rounded-full
+                  min-h-[44px] min-w-[44px]
+                  bg-[#0056B3] px-8 py-3
+                  text-sm sm:text-base font-semibold text-white
+                  shadow-lg transition-all
+                  hover:bg-[#004494] hover:-translate-y-0.5
+                  
+                  /* FOCUS ACCESIBIL */
+                  focus-visible:outline-none 
+                  focus-visible:ring-2 
+                  focus-visible:ring-[#002D5E] 
+                  focus-visible:ring-offset-2 
+                  focus-visible:ring-offset-[#EBF0F5]
+                "
             >
               Despre Gogu Constantinescu
             </a>
-
 
             <div className="mt-7 flex flex-wrap gap-3">
               {["Inovație", "Știință", "Sustenabilitate"].map((label) => (
                 <div
                   key={label}
-                  className="rounded-full border border-sky-400/30 bg-slate-900/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-sky-300"
+                  className="rounded-full border border-[#0056B3]/30 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-[#0056B3]"
                 >
                   {label}
                 </div>
@@ -122,26 +121,24 @@ export default function About() {
 
         {/* RIGHT – SONIC RINGS (decorative) */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
-          className="order-2 mt-18 w-full md:order-none md:col-span-6 lg:col-span-6 flex items-center justify-center"
+          className="order-2 mt-18 w-full md:order-none md:col-span-6 flex items-center justify-center"
         >
-          <div className="mt-20 mb-10 md:mb-auto relative w-[60%] max-w-sm sm:w-[40%] md:w-[50%] lg:w-[60%]">
+          <div className="mt-20 mb-10 relative w-[60%] max-w-sm">
             <div className="relative aspect-square" aria-hidden="true">
               {[...Array(5)].map((_, i) => (
                 <div
                   key={i}
                   aria-hidden="true"
-                  className="absolute left-1/2 top-1/2 rounded-full border border-sky-500/20"
+                  /* MODIFICARE: Cresterea opacitatii inelelor (de la /10 la /25) pentru vizibilitate sporita */
+                  className="absolute left-1/2 top-1/2 rounded-full border-2 border-[#0056B3]/25"
                   style={{
                     height: `${60 + i * 35}%`,
                     width: `${60 + i * 35}%`,
                     transform: "translate(-50%, -50%)",
                     boxShadow:
                       i === 0
-                        ? "0 0 25px rgba(56,189,248,0.4) inset"
-                        : undefined,
+                        ? "0 0 30px rgba(0, 86, 179, 0.15) inset"
+                        : "0 0 10px rgba(0, 86, 179, 0.05)",
                   }}
                 />
               ))}
@@ -149,9 +146,9 @@ export default function About() {
               <motion.div
                 aria-hidden="true"
                 initial={{ scale: 0.9, opacity: 0.8 }}
-                animate={{ scale: [0.9, 1.05, 0.9], opacity: [0.8, 0.4, 0.8] }}
+                animate={{ scale: [0.9, 1.1, 0.9], opacity: [1, 0.6, 1] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-400"
+                className="absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0056B3] shadow-lg shadow-[#0056B3]/40"
               />
             </div>
           </div>
@@ -160,7 +157,7 @@ export default function About() {
 
       {/* BOTTOM DIVIDER */}
       <div className="pointer-events-none mx-auto mt-24 w-[85%] max-w-6xl">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-sky-400/35 to-transparent" />
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-[#0056B3]/30 to-transparent" />
       </div>
     </section>
   );
