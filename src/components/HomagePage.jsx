@@ -1,26 +1,31 @@
 import { motion, useReducedMotion } from "framer-motion";
 import GoguImage from '../assets/GoguImage.jpeg'
-export default function HomagePage() {
 
+export default function HomagePage() {
     const prefersReducedMotion = useReducedMotion();
+
     return (
         <section
             id="gogu-tribute"
             aria-labelledby="gogu-tribute-title"
-            className="relative isolate overflow-hidden py-32 bg-gradient-to-b from-slate-950 via-slate-900 to-black text-slate-100"
+            /* MODIFICARE: Fundal Ice Blue și text închis */
+            className="relative isolate overflow-hidden py-32 bg-[#EBF0F5] text-[#1B263B]"
         >
-            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950 via-slate-900 to-black opacity-90" />
+            {/* Overlay subtil pentru textură */}
+            <div className="absolute inset-0 -z-10 bg-[#0056B3]/5 opacity-50" />
+
             {/* HEADER */}
             <div className="relative mx-auto max-w-5xl text-center px-6 mb-20">
                 <h2
                     id="gogu-tribute-title"
-                    className="text-4xl md:text-5xl font-extrabold pb-5 text-white bg-gradient-to-r from-cyan-300 via-sky-400 to-cyan-300 drop-shadow-[0_0_26px_rgba(56,189,248,0.45)] supports-[(-webkit-text-fill-color:transparent)]:text-transparent supports-[(-webkit-background-clip:text)]:bg-clip-text supports-[background-clip:text]:bg-clip-text"
+                    /* MODIFICARE: Culoare unitară cu CTA-ul */
+                    className="text-4xl md:text-5xl font-extrabold pb-5 text-[#0056B3]"
                 >
                     Despre Gogu Constantinescu
                 </h2>
 
-                <p className="text-slate-300 text-lg mt-4 max-w-3xl mx-auto">
-                    Insiparatia si Motivul pentru care ne aflam astazi aici.
+                <p className="text-[#576574] text-lg mt-4 max-w-3xl mx-auto">
+                    Inspirația și motivul pentru care ne aflăm astăzi aici.
                 </p>
             </div>
 
@@ -33,76 +38,80 @@ export default function HomagePage() {
                     whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <div className="rounded-3xl overflow-hidden border border-cyan-400/20 shadow-[0_0_45px_rgba(56,189,248,0.25)]">
+                    {/* MODIFICARE: Border discret și umbră soft */}
+                    <div className="rounded-3xl overflow-hidden border border-[#D1D9E0] shadow-2xl shadow-blue-900/10">
                         <img
                             src={GoguImage}
-                            alt="Portret al lui George «Gogu» Constantinescu, inginer și om de știință român, fondatorul teoriei sonicității"
-                            className="w-full h-full object-cover"
+                            alt="Portret al lui George «Gogu» Constantinescu"
+                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                         />
-
                     </div>
                 </motion.div>
 
                 {/* TEXT BLOCKS */}
                 <div className="space-y-10">
-                    {/* MAIN TEXT ABOUT HIM */}
+                    {/* MAIN TEXT CARD */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.1 }}
-                        className="p-10 rounded-3xl bg-slate-900/40 backdrop-blur-xl border border-cyan-400/40 shadow-[0_0_55px_rgba(56,189,248,0.35)]"
+                        /* MODIFICARE: Glassmorphism alb pentru contrast */
+                        className="p-10 rounded-3xl bg-white/70 backdrop-blur-xl border border-[#D1D9E0] shadow-lg shadow-blue-900/5"
                     >
-                        <p className="text-lg leading-relaxed text-slate-200">
-                            "In realitate sunetele nu sunt decat o formă de energie si transmiterea sunetului este un caz particular al transmisiei de energie.
+                        <p className="text-lg leading-relaxed text-[#1B263B]">
+                            "În realitate sunetele nu sunt decât o formă de energie și transmiterea sunetului este un caz particular al transmisiei de energie."
                         </p>
 
-                        <p className="text-lg leading-relaxed text-slate-200 mt-6">
-                            Această transmisie se face prin unde sonore si atunci mi-am pus problema: oare daca energii in cantități foarte mici cum e de exemplu energia unei trompete,se pot transmite la distanță prin vibrații, nu cumva s-ar putea transforma aceste vibrații in energie mecanică?"
+                        <p className="text-lg leading-relaxed text-[#1B263B] mt-6">
+                            "Această transmisie se face prin unde sonore și atunci mi-am pus problema: oare dacă energii în cantități foarte mici se pot transmite la distanță prin vibrații, nu cumva s-ar putea transforma aceste vibrații în energie mecanică?"
                         </p>
 
-                        <p className="text-lg leading-relaxed text-slate-200 mt-6 opacity-85">
-                            -George "Gogu" Constantinescu
+                        <p className="text-lg font-semibold text-[#576574] mt-6">
+                            — George "Gogu" Constantinescu
                         </p>
 
-                        {/* CTA BUTTON */}
+                        {/* CTA BUTTON 1 */}
                         <a
                             target="_blank"
                             rel="noopener noreferrer"
                             href="https://ro.wikipedia.org/wiki/George_Constantinescu"
-                            aria-label="Deschide biografia lui George Gogu Constantinescu pe Wikipedia"
-                            className="inline-flex items-center justify-center mt-8 rounded-full bg-gradient-to-r from-sky-400 to-cyan-300 px-8 py-3 min-h-[44px] min-w-[44px] text-sm font-semibold text-slate-900 shadow-lg hover:-translate-y-0.5 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 .focus-visible:ring-offset-slate-950">
-
+                            className="inline-flex min-h-[44px] 
+                            min-w-[44px] items-center justify-center mt-8 rounded-full bg-[#0056B3] px-8 py-3 text-sm font-semibold text-white shadow-md hover:bg-[#004494]
+                            hover:-translate-y-0.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#002D5E] focus-visible:ring-offset-2 focus-visible:ring-offset-[#EBF0F5]"
+                        >
                             Citește biografia completă
                         </a>
-
                     </motion.div>
 
-                    {/* LEFT QUOTE BLOCK */}
+                    {/* SECONDARY QUOTE BLOCK */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="p-8 rounded-3xl bg-black/40 border border-cyan-400/10 shadow-[0_0_25px_rgba(56,189,248,0.12)] text-slate-300"
+                        /* MODIFICARE: Fundal foarte deschis pentru diferențiere */
+                        className="p-8 rounded-3xl bg-[#0056B3]/5 border border-[#0056B3]/10 text-[#576574]"
                     >
                         <p className="text-xl italic leading-relaxed">
                             Nimic din ce am realizat pana acum,sau din ce vom realiza in viitor nu ar fi fost posibil fără George (Gogu) Constantinescu.A fost un mare om de știință despre care s-a vorbit prea putin si care ca si alții asemenea lui,a fost cu mult înaintea vremurilor in care a trăit.
+
                             A lăsat moștenire,o știință nouă, sonicitatea,din care au ieșit la lumina cateva inventii,mult prea puține, consideram noi,in comparație cu potențialul acesteia.                            Si din acest motiv,ca un omagiu adus la peste un secol de la apariția sonicitatii, vom incerca sa o readucem in lumină deoarece mai are multe de oferit lumii.
+
                             <br />
                         </p>
-                        <p className="opacity-90 mt-10"> Afla mai multe despre cum am implementat si cum functioneaza produsul nostru</p>
+                        <p className="text-sm mt-10 text-[#1B263B]/70"> Află mai multe despre cum am implementat și cum funcționează produsul nostru</p>
+
+                        {/* CTA BUTTON 2 */}
                         <a
                             href="#features-detail"
-                            aria-label="Navighează către secțiunea cu procesul tehnologic"
-                            className="inline-flex items-center justify-center mt-6 rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-8 py-3 min-h-[44px] min-w-[44px] text-sm font-semibold text-slate-900 shadow-[0_0_22px_rgba(56,189,248,0.45)] hover:-translate-y-0.5 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-
+                            /* MODIFICARE: Varianta Outline/Solid adaptată */
+                            className="inline-flex min-h-[44px] 
+                            min-w-[44px] items-center justify-center mt-6 rounded-full bg-white border border-[#0056B3] px-8 py-3 text-sm font-semibold text-[#0056B3] shadow-sm hover:bg-[#0056B3] hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#002D5E] focus-visible:ring-offset-2 focus-visible:ring-offset-[#EBF0F5]"
                         >
                             Vezi Procesul Tehnologic
                         </a>
-
                     </motion.div>
                 </div>
             </div>
-        </section >
+        </section>
     );
 }
-
