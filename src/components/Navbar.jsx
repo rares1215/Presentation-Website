@@ -18,23 +18,16 @@ export default function Navbar() {
     { label: "Reasons", href: "#reasons" },
     { label: "Features", href: "#features-detail" },
     { label: "Contacts", href: "#contacts" },
-
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 backdrop-blur-lg ${scrolled
-        ? "bg-black/70 shadow-[0_0_25px_rgba(56,189,248,0.25)]"
-        : "bg-transparent"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 backdrop-blur-md ${scrolled
+          ? "bg-white/80 shadow-md shadow-blue-900/5"
+          : "bg-transparent"
         }`}
     >
-      {/* Holographic grid under navbar */}
-      <div className={`absolute inset-0 -z-10 transition-opacity duration-500 ${scrolled ? "opacity-40" : "opacity-0"
-        } bg-[linear-gradient(to_right,rgba(56,189,248,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(56,189,248,0.12)_1px,transparent_1px)] bg-[size:40px_40px]`} />
-
-      {/* Scanline overlay */}
-      <div className={`absolute inset-0 -z-10 transition-opacity duration-500 ${scrolled ? "opacity-30" : "opacity-0"
-        } bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:100%_3px]`} />
+      {/* Am eliminat Grid-ul Holografic și Scanlines care erau specifice stilului dark */}
 
       <div className="container mx-auto px-4 py-3 flex items-center justify-between relative">
         {/* LOGO */}
@@ -43,13 +36,15 @@ export default function Navbar() {
             <img
               src="/logo-icon.png"
               alt="Sonic Logo"
-              className="w-14 h-14 drop-shadow-[0_0_12px_rgba(56,189,248,0.45)] transition-all duration-500 group-hover:drop-shadow-[0_0_22px_rgba(56,189,248,0.8)]"
+              /* MODIFICARE: Umbră discretă în loc de neon glow */
+              className="w-14 h-14 drop-shadow-sm transition-all duration-500 group-hover:scale-105"
             />
-            {/* Glow ring */}
-            <div className="absolute inset-0 rounded-full border border-sky-400/40 group-hover:border-sky-300/80 transition-all duration-500"></div>
+            {/* MODIFICARE: Inel discret în culoarea CTA */}
+            <div className="absolute inset-0 rounded-full border border-[#0056B3]/20 group-hover:border-[#0056B3]/50 transition-all duration-500"></div>
           </div>
 
-          <h1 className="text-xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-sky-400">
+          {/* MODIFICARE: Text Logo în Deep Navy (fără gradient multicolor) */}
+          <h1 className="text-xl font-bold tracking-wide text-[#1B263B]">
             SONIC TECHNOLOGY
           </h1>
         </a>
@@ -60,20 +55,22 @@ export default function Navbar() {
             <li key={i} className="relative group">
               <a
                 href={link.href}
-                className="text-slate-200 hover:text-sky-300 transition-colors duration-300"
+                /* MODIFICARE: Text Navy, hover în albastru CTA */
+                className="text-[#1B263B] hover:text-[#0056B3] transition-colors duration-300"
               >
                 {link.label}
               </a>
 
-              {/* Active hover underline */}
-              <span className="absolute left-1/2 bottom-0 h-px w-0 bg-gradient-to-r from-sky-400 to-cyan-300 group-hover:w-full group-hover:left-0 transition-all duration-300"></span>
+              {/* MODIFICARE: Underline în culoarea CTA */}
+              <span className="absolute left-1/2 bottom-0 h-[2px] w-0 bg-[#0056B3] group-hover:w-full group-hover:left-0 transition-all duration-300"></span>
             </li>
           ))}
         </ul>
 
         {/* MOBILE MENU BUTTON */}
         <button
-          className="md:hidden text-slate-200 text-3xl"
+          /* MODIFICARE: Buton burger în culoarea Navy */
+          className="md:hidden text-[#1B263B] text-3xl"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? "✕" : "☰"}
@@ -85,9 +82,10 @@ export default function Navbar() {
         initial={{ height: 0, opacity: 0 }}
         animate={menuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
         transition={{ duration: 0.4 }}
-        className="md:hidden bg-black/90 backdrop-blur-xl shadow-lg overflow-hidden"
+        /* MODIFICARE: Background alb/blue-ish pentru meniul mobil */
+        className="md:hidden bg-white/95 backdrop-blur-xl shadow-lg overflow-hidden border-b border-[#D1D9E0]"
       >
-        <ul className="flex flex-col items-center py-6 gap-4 text-slate-200 font-medium">
+        <ul className="flex flex-col items-center py-6 gap-4 text-[#1B263B] font-medium">
           {links.map((link, i) => (
             <motion.li
               key={i}
@@ -97,7 +95,7 @@ export default function Navbar() {
             >
               <a
                 href={link.href}
-                className="text-lg hover:text-sky-300 transition-colors duration-300"
+                className="text-lg hover:text-[#0056B3] transition-colors duration-300"
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}
@@ -107,9 +105,9 @@ export default function Navbar() {
         </ul>
       </motion.div>
 
-      {/* Bottom neon border */}
+      {/* MODIFICARE: Divider-ul de jos devine o linie solidă foarte fină */}
       <div
-        className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-sky-400/70 to-transparent transition-all duration-500 ${scrolled ? "opacity-100" : "opacity-0"
+        className={`absolute bottom-0 left-0 h-[1px] w-full bg-[#0056B3]/10 transition-all duration-500 ${scrolled ? "opacity-100" : "opacity-0"
           }`}
       />
     </nav>

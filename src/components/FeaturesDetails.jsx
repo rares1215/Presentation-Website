@@ -18,19 +18,22 @@ export default function FeaturesDetail() {
 
   const steps = [
     {
-      icon: <BrainCircuit className="w-7 h-7 text-sky-300" aria-hidden="true" />,
+      icon: <BrainCircuit className="w-8 h-8" />,
       title: "Step 1: Ideea de bază",
-      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem.",
+      desc: "Analizăm fundamentul științific și modul în care vibrațiile pot fi convertite eficient.",
+      hoverAnimation: { rotate: [0, 15, -15, 0] } // Animație de "gândire"
     },
     {
-      icon: <Cpu className="w-7 h-7 text-sky-300" aria-hidden="true" />,
+      icon: <Cpu className="w-8 h-8" />,
       title: "Step 2: Construirea",
-      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed urna tempor pulvinar vivamus fringilla lacus.",
+      desc: "Implementăm circuite de înaltă precizie pentru a controla fluxul energetic sonic.",
+      hoverAnimation: { scale: [1, 1.2, 1] } // Animație de "puls"
     },
     {
-      icon: <ArrowRight className="w-7 h-7 text-sky-300" aria-hidden="true" />,
+      icon: <ArrowRight className="w-8 h-8" />,
       title: "Step 3: Eficiență & Practică",
-      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Lacus nec metus bibendum egestas iaculis massa.",
+      desc: "Rezultatul final este un sistem sustenabil, optimizat pentru performanță maximă.",
+      hoverAnimation: { x: [0, 5, 0] } // Animație de "direcție"
     },
   ];
 
@@ -38,131 +41,90 @@ export default function FeaturesDetail() {
     <section
       id="features-detail"
       ref={ref}
-      aria-labelledby="features-detail-title"
-      className="relative isolate overflow-hidden py-32 bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-900 text-slate-100"
+      className="relative py-32 bg-[#EBF0F5] text-[#1B263B] overflow-hidden"
     >
-      {/* Sonic background – decorative */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center opacity-[0.4]"
-      >
-        <div className="relative aspect-square w-[80rem]">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="absolute left-1/2 top-1/2 rounded-full border border-sky-400/10"
-              style={{
-                width: `${60 + i * 28}%`,
-                height: `${60 + i * 28}%`,
-                transform: "translate(-50%, -50%)",
-                boxShadow:
-                  i === 0
-                    ? "0 0 40px rgba(56,189,248,0.25) inset"
-                    : "none",
-              }}
-            />
-          ))}
+      {/* Background Decorativ */}
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl" />
+      </div>
 
-          {!prefersReducedMotion && (
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0.7 }}
-              animate={{ scale: [0.9, 1.08, 0.9], opacity: [0.7, 0.35, 0.7] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300 shadow-[0_0_22px_rgba(56,189,248,0.55)]"
-            />
-          )}
+      <div className="relative mx-auto max-w-5xl px-6">
+        {/* Header */}
+        <div className="text-center mb-24">
+          <p className="text-xs font-bold uppercase tracking-[0.4em] text-[#576574] mb-4">
+            Tehnologie
+          </p>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#1B263B]">
+            Procesul Nostru <span className="text-[#0056B3]">Tehnic</span>
+          </h2>
+          <div className="mx-auto mt-6 h-1 w-20 bg-[#0056B3] rounded-full" />
         </div>
-      </div>
 
-      {/* Header */}
-      <div
-        className={`relative mx-auto max-w-3xl px-6 text-center transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-      >
-        <p className="text-xs uppercase tracking-[0.3em] text-sky-300/70">
-          Proces
-        </p>
-
-        <h2
-          id="features-detail-title"
-          className="relative mt-4 font-extrabold tracking-tight
-             text-3xl sm:text-4xl md:text-5xl"
-        >
-          {/* Fallback solid – vizibil în high-contrast / forced colors */}
-          <span className="absolute inset-0 text-sky-300 opacity-0 forced-colors:opacity-100">
-            Cum Funcționează Produsul Nostru
-          </span>
-
-          {/* Gradient version */}
-          <span
-            aria-hidden="true"
-            className="bg-gradient-to-r from-sky-400 via-sky-300 to-cyan-300
-               bg-clip-text text-transparent
-               drop-shadow-[0_0_18px_rgba(56,189,248,0.45)]"
-          >
-            Cum Funcționează Produsul Nostru
-          </span>
-        </h2>
-
-        <div className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-sky-400/60 to-transparent" />
-
-        <p className="mt-6 text-slate-300 text-lg leading-relaxed">
-          Procesul tehnologic explicat în trei pași esențiali.
-        </p>
-      </div>
-
-      {/* Steps */}
-      <div className="relative mx-auto mt-20 max-w-6xl px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-10 relative">
+        {/* Carduri Stilizate Orizontal */}
+        <div className="flex flex-col gap-8 max-w-5xl mx-auto">
           {steps.map((step, i) => (
             <motion.div
               key={i}
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: i * 0.2 }}
-              className="relative flex flex-col items-center text-center p-8 rounded-2xl border border-sky-400/20 bg-slate-900/40 shadow-[0_0_35px_rgba(56,189,248,0.15)] backdrop-blur-xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: i * 0.2 }}
+              /* CARD: Umbre foarte lungi și difuze (60px-100px) pentru aspectul lăptos */
+              className="relative flex items-center p-8 md:p-10 
+                 bg-[#EBF0F5] rounded-[3.5rem]
+                 shadow-[20px_20px_60px_#bebebe,-20px_-20px_60px_#ffffff]
+                 group transition-all duration-500 hover:shadow-[10px_10px_40px_#bebebe,-10px_-10px_40px_#ffffff]"
             >
-              <div
-                aria-hidden="true"
-                className="mb-5 flex items-center justify-center h-20 w-20 rounded-full border border-sky-400/40 bg-slate-900/80 shadow-[0_0_25px_rgba(56,189,248,0.45)]"
-              >
-                {step.icon}
+              {/* ICON CONTAINER: Adâncitură fină, aproape imperceptibilă */}
+              <div className="flex-shrink-0 mr-8">
+                <div className="flex items-center justify-center w-24 h-24 rounded-full
+                        bg-[#EBF0F5]
+                        shadow-[inset_6px_6px_12px_#cacfd4,inset_-6px_-6px_12px_#ffffff]
+                        relative">
+                  {/* Iconița cu micro-animație */}
+                  <motion.div
+                    className="text-[#0056B3]/70"
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    {step.icon}
+                  </motion.div>
+                </div>
               </div>
 
-              <h3 className="text-2xl font-semibold text-sky-300">
-                {step.title}
-              </h3>
+              {/* TEXT: Aliniat curat ca în poză */}
+              <div className="flex-1">
+                <h3 className="text-xl md:text-2xl font-bold text-[#1B263B] mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-[#576574] text-base md:text-lg leading-relaxed opacity-80">
+                  {step.desc}
+                </p>
+              </div>
 
-              <p className="mt-4 text-slate-300 leading-relaxed text-base max-w-sm">
-                {step.desc}
-              </p>
+              {/* NUMĂRUL DIN FUNDAL: Foarte discret (01, 02, 03) */}
+              <span className="absolute right-12 text-6xl font-black text-[#1B263B]/5 select-none hidden md:block">
+                0{i + 1}
+              </span>
             </motion.div>
           ))}
         </div>
-      </div>
-      <div className="mt-20 flex justify-center">
-        <a
-          href="#reasons"
-          className="
-              inline-flex items-center justify-center
-              min-h-[44px] min-w-[44px]
-              rounded-full
-              bg-gradient-to-r from-sky-400 to-violet-500
-              px-8 py-3
-              text-sm font-semibold text-slate-900
-              shadow-lg
 
-              focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-sky-400
-              focus-visible:ring-offset-2
-              focus-visible:ring-offset-slate-950
-            "
-        >
-          De ce sa ne alegi?
-        </a>
+        {/* CTA Button */}
+        <div className="mt-20 flex justify-center">
+          <a
+            href="#reasons"
+            className="group relative inline-flex items-center justify-center px-10 py-4 
+                       bg-[#0056B3] text-white font-bold rounded-full overflow-hidden
+                       shadow-[0_10px_20px_rgba(0,86,179,0.3)] 
+                       hover:shadow-[0_15px_30px_rgba(0,86,179,0.4)]
+                       transition-all duration-300 hover:-translate-y-1"
+          >
+            <span className="relative z-10">De ce să ne alegi?</span>
+            <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+          </a>
+        </div>
       </div>
-
     </section>
   );
 }
