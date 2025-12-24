@@ -29,11 +29,11 @@ export default function About() {
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="relative mx-auto mb-28 max-w-6xl px-6 text-center md:px-8"
       >
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#576574]">
+        {/* MODIFICARE: text-sm pentru lizibilitate și culoare #455361 pentru contrast minim 4.5:1 */}
+        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#455361]">
           Despre noi
         </p>
 
-        {/* MODIFICARE: Titlul are acum culoarea CTA-ului (#0056B3) */}
         <h2
           id="about-heading"
           className="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0056B3]"
@@ -43,7 +43,8 @@ export default function About() {
 
         <div className="mx-auto mt-4 h-px w-24 bg-[#0056B3]/40" />
 
-        <p className="mx-auto mt-6 max-w-2xl text-sm sm:text-base text-[#576574]">
+        {/* MODIFICARE: Culoare text #455361 pentru contrast conform WCAG AA */}
+        <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-[#455361]">
           Fundamentată pe principii științifice vechi de un secol, reinterpretate
           prin cercetare modernă și pasiune. O poveste despre inovație și energia
           ascunsă în vibrațiile materiei.
@@ -63,7 +64,7 @@ export default function About() {
               Descriere Despre Noi
             </h3>
 
-            <p className="mt-6 text-base sm:text-lg leading-relaxed sm:leading-loose text-[#1B263B]/90">
+            <p className="mt-6 text-base sm:text-lg leading-relaxed sm:leading-loose text-[#1B263B]">
               Suntem o companie fondată din pasiune și din dorința de a lăsa
               după noi o lume mai bună decât cea în care ne-am născut. Totul a
               început de la o carte, care ne prezenta o teorie surprinzătoare
@@ -80,25 +81,25 @@ export default function About() {
               merge mai departe.
             </p>
 
-            <p className="mt-8 text-[#576574] text-sm max-w-md">
-              Află Mai multe despre sursa noastra de inspiratie si motivul pentru care am ales sa facem acest proiect.
+            <p className="mt-8 text-[#455361] text-sm font-medium max-w-md">
+              Află mai multe despre sursa noastră de inspirație și motivul pentru care am ales să facem acest proiect.
             </p>
 
-            {/* CTA BUTTON - Mentinem culoarea #0056B3 */}
+            {/* CTA BUTTON - MODIFICAT: min-h-[48px] pentru accesibilitate motorie (touch targets) */}
             <a
               href="#gogu-tribute"
               className="
                   inline-flex items-center justify-center mt-8 rounded-full
-                  min-h-[44px] min-w-[44px]
+                  min-h-[48px] min-w-[48px]
                   bg-[#0056B3] px-8 py-3
-                  text-sm sm:text-base font-semibold text-white
+                  text-base font-semibold text-white
                   shadow-lg transition-all
                   hover:bg-[#004494] hover:-translate-y-0.5
                   
-                  /* FOCUS ACCESIBIL */
+                  /* FOCUS ACCESIBIL ÎMBUNĂTĂȚIT */
                   focus-visible:outline-none 
-                  focus-visible:ring-2 
-                  focus-visible:ring-[#002D5E] 
+                  focus-visible:ring-4 
+                  focus-visible:ring-[#0056B3]/50 
                   focus-visible:ring-offset-2 
                   focus-visible:ring-offset-[#EBF0F5]
                 "
@@ -110,7 +111,7 @@ export default function About() {
               {["Inovație", "Știință", "Sustenabilitate"].map((label) => (
                 <div
                   key={label}
-                  className="rounded-full border border-[#0056B3]/30 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-[#0056B3]"
+                  className="rounded-full border border-[#0056B3]/40 bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-[#0056B3]"
                 >
                   {label}
                 </div>
@@ -124,13 +125,14 @@ export default function About() {
           className="order-2 mt-18 w-full md:order-none md:col-span-6 flex items-center justify-center"
         >
           <div className="mt-20 mb-10 relative w-[60%] max-w-sm">
-            <div className="relative aspect-square" aria-hidden="true">
+            {/* Adăugat role="presentation" pentru a confirma că este pur decorativ pentru Screen Readers */}
+            <div className="relative aspect-square" role="presentation" aria-hidden="true">
               {[...Array(5)].map((_, i) => (
                 <div
                   key={i}
                   aria-hidden="true"
-                  /* MODIFICARE: Cresterea opacitatii inelelor (de la /10 la /25) pentru vizibilitate sporita */
-                  className="absolute left-1/2 top-1/2 rounded-full border-2 border-[#0056B3]/25"
+                  /* MODIFICARE: Opacitate crescută pentru contrast minim vizual pe inelele decorative */
+                  className="absolute left-1/2 top-1/2 rounded-full border-2 border-[#0056B3]/30"
                   style={{
                     height: `${60 + i * 35}%`,
                     width: `${60 + i * 35}%`,
@@ -156,7 +158,7 @@ export default function About() {
       </div>
 
       {/* BOTTOM DIVIDER */}
-      <div className="pointer-events-none mx-auto mt-24 w-[85%] max-w-6xl">
+      <div className="pointer-events-none mx-auto mt-24 w-[85%] max-w-6xl" aria-hidden="true">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-[#0056B3]/30 to-transparent" />
       </div>
     </section>

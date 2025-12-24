@@ -19,24 +19,24 @@ export default function WhyChooseUs() {
 
   const reasons = [
     {
-      icon: <Shield className="w-8 h-8 text-sky-300" aria-hidden="true" />,
+      icon: <Shield className="w-8 h-8 text-[#0056B3]" />,
       title: "Reliability and Trust",
-      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque.",
+      desc: "Construim soluții bazate pe principii demonstrate, oferind siguranța unei tehnologii verificate în timp.",
     },
     {
-      icon: <Star className="w-8 h-8 text-sky-300" aria-hidden="true" />,
+      icon: <Star className="w-8 h-8 text-[#0056B3]" />,
       title: "Innovation at Core",
-      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque.",
+      desc: "Reinterpretăm sonicitatea prin prisma nevoilor moderne, aducând inovația în fiecare componentă.",
     },
     {
-      icon: <Users className="w-8 h-8 text-sky-300" aria-hidden="true" />,
+      icon: <Users className="w-8 h-8 text-[#0056B3]" />,
       title: "Dedicated Team",
-      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque.",
+      desc: "O echipă de experți pasionați de fizică și inginerie, gata să transforme imposibilul în realitate.",
     },
     {
-      icon: <Heart className="w-8 h-8 text-sky-300" aria-hidden="true" />,
+      icon: <Heart className="w-8 h-8 text-[#0056B3]" />,
       title: "Sustainability Focus",
-      desc: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque.",
+      desc: "Eficiența energetică nu este doar un obiectiv, ci fundamentul pe care dezvoltăm fiecare produs.",
     },
   ];
 
@@ -45,44 +45,29 @@ export default function WhyChooseUs() {
       id="reasons"
       ref={ref}
       aria-labelledby="why-choose-us-title"
-      className="relative isolate overflow-hidden py-32 bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-900 text-slate-100"
+      /* MODIFICARE: Fundal Ice Blue unitar */
+      className="relative isolate overflow-hidden py-32 bg-[#EBF0F5] text-[#1B263B]"
     >
-      {/* Sonic Background – decorative */}
+      {/* Sonic Background – Adaptat pentru fundal deschis */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.45] mt-65"
+        className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.4] mt-32"
       >
         <div className="relative aspect-square w-[90rem] max-w-[90vw]">
           {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className="absolute left-1/2 top-1/2 rounded-full border border-sky-400/10"
+              className="absolute left-1/2 top-1/2 rounded-full border border-[#0056B3]/10"
               style={{
                 width: `${60 + i * 25}%`,
                 height: `${60 + i * 25}%`,
                 transform: "translate(-50%, -50%)",
-                boxShadow:
-                  i === 0 ? "0 0 50px rgba(56,189,248,0.25) inset" : "none",
               }}
             />
           ))}
 
           <motion.div
-            aria-hidden="true"
-            initial={
-              prefersReducedMotion ? false : { scale: 0.9, opacity: 0.8 }
-            }
-            animate={
-              prefersReducedMotion
-                ? false
-                : { scale: [0.9, 1.1, 0.9], opacity: [0.8, 0.4, 0.8] }
-            }
-            transition={{
-              duration: 3.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300 shadow-[0_0_40px_rgba(56,189,248,0.6)]"
+            className="absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0056B3] shadow-[0_0_30px_rgba(0,86,179,0.3)]"
           />
         </div>
       </div>
@@ -92,59 +77,56 @@ export default function WhyChooseUs() {
         className={`relative mx-auto max-w-4xl px-6 text-center transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
       >
-        <p className="text-xs uppercase tracking-[0.3em] text-sky-300/70">
+        <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#576574]">
           De ce Noi?
         </p>
 
         <h2
           id="why-choose-us-title"
-          className="relative mt-4 text-4xl sm:text-5xl font-extrabold"
+          className="relative mt-4 text-4xl sm:text-5xl font-extrabold text-[#0056B3]"
         >
-          <span className="text-white">
-            Ce Oferim?
-          </span>
-
-          <span
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-r from-sky-400 via-sky-300 to-cyan-300 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(56,189,248,0.45)]"
-          >
-            Ce Oferim?
-          </span>
+          Ce Oferim?
         </h2>
 
+        <div className="mx-auto mt-4 h-1.5 w-24 bg-[#0056B3]/30 rounded-full" />
 
-        <div className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-sky-400/60 to-transparent" />
-
-        <p className="mt-6 max-w-2xl mx-auto text-lg leading-relaxed text-slate-300">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
-          faucibus sapien vitae pellentesque sem placerat.
+        <p className="mt-6 max-w-2xl mx-auto text-lg leading-relaxed text-[#576574]">
+          Angajamentul nostru este să livrăm excelență prin fiecare vibrație,
+          asigurând un viitor tehnologic sustenabil.
         </p>
       </div>
 
       {/* Cards */}
       <div className="relative mx-auto mt-20 max-w-6xl px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
           {reasons.map((reason, i) => (
             <motion.div
               key={i}
-              initial={
-                prefersReducedMotion ? false : { opacity: 0, y: 24 }
-              }
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
               animate={visible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="relative flex flex-col items-center text-center p-10 rounded-2xl border border-sky-400/20 bg-slate-900/40 shadow-[0_0_40px_rgba(56,189,248,0.15)] backdrop-blur-xl"
+              /* MODIFICARE: Carduri albe cu accent Navy în partea de sus la hover */
+              className="group relative flex flex-col items-center text-center p-10 
+                         rounded-[2rem] bg-white border border-[#D1D9E0] 
+                         shadow-[0_15px_40px_-15px_rgba(0,86,179,0.1)] 
+                         hover:shadow-[0_25px_50px_-12px_rgba(0,86,179,0.15)] 
+                         transition-all duration-300 hover:-translate-y-2"
             >
-              <div className="mb-6 flex items-center justify-center h-20 w-20 rounded-full border border-sky-400/40 bg-slate-900/80 shadow-[0_0_30px_rgba(56,189,248,0.45)]">
+              {/* Icon Container - Stil Clean/Minimalist */}
+              <div className="mb-6 flex items-center justify-center h-20 w-20 rounded-2xl bg-[#EBF0F5] text-[#0056B3] transition-colors group-hover:bg-[#0056B3] group-hover:text-white duration-500">
                 {reason.icon}
               </div>
 
-              <h3 className="text-2xl font-semibold text-sky-300">
+              <h3 className="text-2xl font-bold text-[#1B263B]">
                 {reason.title}
               </h3>
 
-              <p className="mt-4 text-slate-300 text-base leading-relaxed max-w-sm">
+              <p className="mt-4 text-[#576574] text-base leading-relaxed max-w-sm">
                 {reason.desc}
               </p>
+
+              {/* Element decorativ - linie de accent care crește la hover */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 h-1 w-0 bg-[#0056B3] transition-all duration-500 group-hover:w-1/3 rounded-b-full" />
             </motion.div>
           ))}
         </div>
@@ -155,22 +137,18 @@ export default function WhyChooseUs() {
             href="#contacts"
             className="
               inline-flex items-center justify-center
-              min-h-[44px] min-w-[44px]
               rounded-full
-              bg-gradient-to-r from-sky-400 to-violet-500
-              px-10 py-4
-              text-sm font-semibold text-slate-900
-              shadow-lg transition-transform
-              hover:-translate-y-0.5
+              bg-[#0056B3]
+              px-12 py-4
+              text-base font-bold text-white
+              shadow-lg shadow-blue-900/10 transition-all
+              hover:bg-[#004494] hover:-translate-y-1 hover:shadow-blue-900/20
 
-              focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-sky-400
-              focus-visible:ring-offset-2
-              focus-visible:ring-offset-slate-950
+              focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#0056B3]/40 
+              focus-visible:ring-offset-4 focus-visible:ring-offset-[#EBF0F5]
             "
           >
-            Contacteaza-ne
+            Contactează-ne
           </a>
         </div>
       </div>
