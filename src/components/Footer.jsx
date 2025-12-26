@@ -9,97 +9,75 @@ export default function Footer() {
     <footer
       id="contacts"
       aria-labelledby="contacts-title"
-      className="relative isolate overflow-hidden bg-black text-slate-100 py-30"
+      /* MODIFICARE: Fundal unitar Ice Blue și text Navy */
+      className="relative isolate overflow-hidden bg-[#EBF0F5] text-[#1B263B] py-32"
     >
-
-      {/* GRID BACKGROUND */}
-      <div className="pointer-events-none absolute inset-0 -z-20 opacity-[0.65] bg-[linear-gradient(to_right,rgba(56,189,248,0.22)_1px,transparent_1px),linear-gradient(to_bottom,rgba(56,189,248,0.22)_1px,transparent_1px)] bg-[size:50px_50px]" />
-
-      {/* SCANLINE OVERLAY */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:100%_3px] mix-blend-screen" />
-
-      {/* PULSING ENERGY BORDER */}
-      <div className="pointer-events-none absolute inset-0 border border-sky-400/20 rounded-3xl shadow-[0_0_80px_rgba(56,189,248,0.15)]" />
+      {/* Am eliminat Grid Background, Scanlines și Energy Border pentru un aspect profesional */}
 
       {/* HEADER */}
       <div className="text-center max-w-3xl mx-auto mb-20 px-6">
         <h2
           id="contacts-title"
-          className="relative text-4xl md:text-5xl font-extrabold text-white"
+          /* MODIFICARE: Culoare unitară cu restul site-ului */
+          className="relative text-4xl md:text-5xl font-extrabold text-[#0056B3]"
         >
           Contactează-ne
-
-          {/* Gradient decorativ – ignorat de SR */}
-          <span
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-r from-sky-400 via-cyan-300 to-sky-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(56,189,248,0.45)]"
-          >
-            Contactează-ne
-          </span>
         </h2>
 
-        <p className="text-slate-300 text-lg mt-4">
-          Panoul nostru tehnic afișează informațiile principale pentru a lua legătura cu noi.
+        <p className="text-[#576574] text-lg mt-4 font-medium">
+          Suntem aici pentru a răspunde întrebărilor tale legate de tehnologia sonicității.
         </p>
       </div>
 
-      {/* SONIC DASHBOARD PANEL */}
-      <div className="relative mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-3 gap-14">
+      {/* CONTACT CARDS PANEL */}
+      <div className="relative mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
         {[
           {
-            icon: <Mail aria-hidden="true" className="w-10 h-10 text-sky-300" />,
+            icon: <Mail aria-hidden="true" className="w-10 h-10 text-[#0056B3]" />,
             title: "Email",
-            text: "MyEmail@gmail.com",
+            text: "contact@sonictech.com",
           },
           {
-            icon: <Phone aria-hidden="true" className="w-10 h-10 text-sky-300" />,
+            icon: <Phone aria-hidden="true" className="w-10 h-10 text-[#0056B3]" />,
             title: "Telefon",
             text: "+40 123 456 789",
           },
           {
-            icon: <MapPin aria-hidden="true" className="w-10 h-10 text-sky-300" />,
+            icon: <MapPin aria-hidden="true" className="w-10 h-10 text-[#0056B3]" />,
             title: "Adresă",
-            text: "Str. Exemplu 123, București",
+            text: "Str. Inovației 12, București",
           },
-
         ].map((item, i) => (
           <motion.div
             key={i}
             initial={prefersReducedMotion ? false : { opacity: 0, y: 30 }}
             whileInView={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            transition={
-              prefersReducedMotion
-                ? { duration: 0 }
-                : { duration: 0.6, delay: i * 0.15 }
-            } className="relative p-10 rounded-2xl bg-slate-900/40 backdrop-blur-xl border border-sky-400/30 shadow-[0_0_40px_rgba(56,189,248,0.18)]"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: i * 0.15 }}
+            /* MODIFICARE: Carduri albe, rotunjite, cu umbră fină (fără efecte neon) */
+            className="relative p-10 rounded-[2.5rem] bg-white border border-[#D1D9E0] shadow-xl shadow-blue-900/5 text-center group transition-all duration-300 hover:-translate-y-2"
           >
-            {/* PANEL TOP STRIP */}
-            <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-sky-400 via-cyan-300 to-sky-400 rounded-t-2xl" />
+            {/* PANEL TOP STRIP - Accent fin de culoare */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 h-1.5 w-20 bg-[#0056B3] rounded-b-full" />
 
-            {/* ICON */}
+            {/* ICON CONTAINER */}
             <div
               aria-hidden="true"
-              className="flex items-center justify-center h-20 w-20 mx-auto rounded-full bg-black/50 border border-sky-400/40 shadow-[0_0_25px_rgba(56,189,248,0.35)] mb-6"
+              className="flex items-center justify-center h-24 w-24 mx-auto rounded-full bg-[#EBF0F5] border border-[#0056B3]/10 mb-6 transition-colors duration-300 group-hover:bg-[#0056B3] group-hover:text-white"
             >
-              {item.icon}
+              <div className="transition-colors duration-300">
+                {item.icon}
+              </div>
             </div>
 
-
             {/* TEXT */}
-            <h3 className="text-xl font-semibold text-sky-300 mb-2 text-center tracking-wide">
+            <h3 className="text-xl font-bold text-[#1B263B] mb-2 tracking-wide uppercase">
               {item.title}
             </h3>
 
-            <p className="text-slate-200 text-base md:text-lg leading-relaxed text-center">
+            <p className="text-[#576574] text-base md:text-lg font-medium">
               {item.text}
             </p>
-
-
-            {/* SCANLINE ANIMATION */}
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(56,189,248,0.22)_1px,transparent_1px)] bg-[size:100%_8px] animate-pulse opacity-20 rounded-2xl" />
-
-            {/* GLOW OUTLINE */}
-            <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-sky-400/10 shadow-[0_0_25px_rgba(56,189,248,0.2)_inset]" />
           </motion.div>
         ))}
       </div>
@@ -107,36 +85,31 @@ export default function Footer() {
       {/* BIG CTA */}
       <div className="text-center mt-20">
         <a
-          href="mailto:MyEmail@gmail.com"
+          href="mailto:contact@sonictech.com"
           className="
               inline-flex items-center justify-center
-              min-h-[48px] min-w-[48px]
-              px-10 py-4
+              px-12 py-5
               rounded-full
-              bg-gradient-to-r from-sky-400 to-cyan-300
-              text-base font-semibold text-slate-900
-              shadow-lg
-
-              hover:-translate-y-0.5
-              active:scale-95
-              transition-transform
+              bg-[#0056B3]
+              text-lg font-bold text-white
+              shadow-lg shadow-blue-900/20
+              hover:bg-[#004494]
+              hover:-translate-y-1
+              transition-all duration-300
 
               focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-sky-400
-              focus-visible:ring-offset-2
-              focus-visible:ring-offset-black
-                       "
+              focus-visible:ring-4
+              focus-visible:ring-[#0056B3]/40
+              focus-visible:ring-offset-4
+              focus-visible:ring-offset-[#EBF0F5]
+            "
         >
           Trimite-ne un mesaj
         </a>
-
-
-
       </div>
 
       {/* FOOTER BOTTOM */}
-      <div className="border-t border-sky-400/10 mt-20 pt-6 text-center text-sm text-slate-500">
+      <div className="border-t border-[#D1D9E0] mt-24 pt-8 text-center text-sm font-semibold text-[#576574]">
         © {new Date().getFullYear()} Sonic Technology. Toate drepturile rezervate.
       </div>
     </footer>
