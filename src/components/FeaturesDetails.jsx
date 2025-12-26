@@ -1,130 +1,126 @@
-import { useState, useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, BrainCircuit, Cpu } from "lucide-react";
+import { Zap, Droplets, ThermometerSun, ShieldCheck, Sun, Settings2, Sparkles } from "lucide-react";
 
 export default function FeaturesDetail() {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef(null);
   const prefersReducedMotion = useReducedMotion();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.2 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const steps = [
+  const advantages = [
     {
-      icon: <BrainCircuit className="w-10 h-10" aria-hidden="true" />,
-      title: "Pasul 1: Ideea de bază",
-      desc: "Analizăm fundamentul științific și modul în care vibrațiile pot fi convertite eficient.",
+      icon: <Settings2 className="w-6 h-6" />,
+      title: "Compactă și Versatilă",
+      desc: "Dimensiuni similare centralelor pe gaz, înlocuind cu succes vechile sisteme fără a ocupa spațiu extra.",
     },
     {
-      icon: <Cpu className="w-10 h-10" aria-hidden="true" />,
-      title: "Pasul 2: Construirea",
-      desc: "Implementăm circuite de înaltă precizie pentru a controla fluxul energetic sonic.",
+      icon: <ShieldCheck className="w-6 h-6" />,
+      title: "Zero Birocrație",
+      desc: "Nu necesită autorizații speciale ISCIR sau verificări periodice ale instalației de gaz.",
     },
     {
-      icon: <ArrowRight className="w-10 h-10" aria-hidden="true" />,
-      title: "Pasul 3: Eficiență & Practică",
-      desc: "Rezultatul final este un sistem sustenabil, optimizat pentru performanță maximă.",
+      icon: <Zap className="w-6 h-6" />,
+      title: "Instalare Simplificată",
+      desc: "Fără coș de evacuare sau găuri în pereți. Necesită doar o sursă de apă și curent electric.",
+    },
+    {
+      icon: <Sun className="w-6 h-6" />,
+      title: "Eco-Ready",
+      desc: "Consum redus de energie, fiind ideală pentru conectarea directă la panouri fotovoltaice.",
+    },
+    {
+      icon: <ThermometerSun className="w-6 h-6" />,
+      title: "Performanță Extremă",
+      desc: "Spre deosebire de pompele de căldură, eficiența rămâne maximă chiar și sub -8°C.",
+    },
+    {
+      icon: <Sparkles className="w-6 h-6" />,
+      title: "Costuri Reduse",
+      desc: "Mentenanță minimală prin eliminarea verificărilor obligatorii la fiecare 2 ani.",
     },
   ];
 
   return (
-    <section
-      id="features-detail"
-      ref={ref}
-      aria-labelledby="tech-process-title"
-      className="relative py-32 bg-[#EBF0F5] text-[#1B263B] overflow-hidden"
-    >
-      {/* Background Decorativ - aria-hidden pentru că nu conține info utilă */}
-      <div className="absolute inset-0 pointer-events-none opacity-40" aria-hidden="true">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl" />
+    <section id="features-detail" className="relative py-32 bg-[#EBF0F5] text-[#1B263B] overflow-hidden">
+
+      {/* BACKGROUND DECORATIV */}
+      <div className="absolute inset-0 pointer-events-none opacity-30" aria-hidden="true">
+        <div className="absolute top-[-10%] right-[-5%] w-[50rem] h-[50rem] bg-[#0056B3]/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[40rem] h-[40rem] bg-white rounded-full blur-[100px]" />
       </div>
 
-      <div className="relative mx-auto max-w-5xl px-6">
-        {/* Header */}
-        <div className="text-center mb-24">
-          {/* MODIFICARE: text-sm (nu xs) și culoare mai închisă pentru contrast */}
-          <p className="text-sm font-bold uppercase tracking-[0.4em] text-[#37474F] mb-4">
-            Tehnologie
-          </p>
-          <h2 id="tech-process-title" className="text-4xl md:text-5xl font-extrabold text-[#1B263B]">
-            Procesul Nostru <span className="text-[#0056B3]">Tehnic</span>
-          </h2>
-          <div className="mx-auto mt-6 h-1.5 w-20 bg-[#0056B3] rounded-full" />
+      <div className="relative mx-auto max-w-7xl px-6">
+
+        {/* INTRODUCARE & VIZIUNE */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-6"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0056B3]/10 text-[#0056B3] text-sm font-bold uppercase tracking-widest">
+              <Droplets className="w-4 h-4" /> Viitorul ACM & Încălzirii
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
+              O soluție <span className="text-[#0056B3]">revoluționară</span> pentru confortul tău
+            </h2>
+            <p className="text-[#37474F] text-lg leading-relaxed">
+              Viața modernă depinde de apă caldă și căldură. SONIC TECHNOLOGY propune înlocuirea arzătoarelor pe gaz cu un <strong>generator sonic pe bază de curent electric</strong>.
+            </p>
+            <div className="p-6 rounded-2xl bg-white/50 border border-white shadow-sm italic text-[#576574]">
+              "SONIC TECHNOLOGY nu produce centrala finală, ci pune la dispoziție tehnologia noastră oricărui producător interesat."
+            </div>
+          </motion.div>
+
+          {/* ELEMENT VIZUAL CENTRAL */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="relative aspect-square flex items-center justify-center"
+          >
+            <div className="absolute w-full h-full border-[20px] border-white/40 rounded-full animate-[spin_20s_linear_infinite]" />
+            <div className="relative z-10 p-12 bg-white rounded-[3rem] shadow-[20px_20px_60px_#bebebe,-20px_-20px_60px_#ffffff] text-center">
+              <Zap className="w-20 h-20 text-[#0056B3] mx-auto mb-6" />
+              <span className="block text-3xl font-black text-[#1B263B]">GENERATOR</span>
+              <span className="block text-xl font-bold text-[#0056B3]">SONIC</span>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Carduri Stilizate Orizontal */}
-        <div className="flex flex-col gap-10 max-w-5xl mx-auto" role="list">
-          {steps.map((step, i) => (
+        {/* GRILA DE AVANTAJE */}
+        <div className="text-center mb-16">
+          <h3 className="text-3xl font-extrabold mb-4">Avantajele Centralei Sonice</h3>
+          <div className="mx-auto h-1.5 w-20 bg-[#0056B3] rounded-full" />
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {advantages.map((adv, i) => (
             <motion.div
               key={i}
-              role="listitem"
-              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              /* MODIFICARE: Umbre ajustate pentru contrast vizibil (border adăugat pentru definiție) */
-              className="relative flex flex-col md:flex-row items-center p-8 md:p-12 
-                   bg-[#EBF0F5] rounded-[2.5rem] border border-white/50
-                   shadow-[12px_12px_24px_#c8ccd0,-12px_-12px_24px_#ffffff]
-                   group transition-all duration-300"
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="group p-8 bg-white/60 rounded-[2.5rem] border border-white shadow-lg shadow-blue-900/5 hover:bg-white hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-300"
             >
-              {/* ICON CONTAINER */}
-              <div className="flex-shrink-0 mb-6 md:mb-0 md:mr-10">
-                <div className="flex items-center justify-center w-24 h-24 rounded-full
-                        bg-[#EBF0F5]
-                        shadow-[inset_4px_4px_8px_#c8ccd0,inset_-4px_-4px_8px_#ffffff]
-                        relative"
-                >
-                  <div className="text-[#0056B3]">
-                    {step.icon}
-                  </div>
-                </div>
+              <div className="w-14 h-14 rounded-2xl bg-[#EBF0F5] text-[#0056B3] flex items-center justify-center mb-6 group-hover:bg-[#0056B3] group-hover:text-white transition-colors duration-300">
+                {adv.icon}
               </div>
-
-              {/* TEXT */}
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl font-bold text-[#1B263B] mb-3">
-                  {step.title}
-                </h3>
-                {/* MODIFICARE: Culoare text #37474F pentru contrast 4.5:1 și eliminare opacity-80 */}
-                <p className="text-[#37474F] text-lg leading-relaxed font-medium">
-                  {step.desc}
-                </p>
-              </div>
-
-              {/* NUMĂRUL DIN FUNDAL - Mai vizibil și poziționat strategic */}
-              <span
-                className="absolute top-6 right-8 text-6xl font-black text-[#0056B3]/15 select-none hidden lg:block italic"
-                aria-hidden="true"
-              >
-                0{i + 1}
-              </span>
+              <h4 className="text-xl font-bold mb-3 text-[#1B263B]">{adv.title}</h4>
+              <p className="text-[#576574] leading-relaxed">
+                {adv.desc}
+              </p>
             </motion.div>
           ))}
         </div>
 
-        {/* CTA Button */}
-        <div className="mt-20 flex justify-center">
-          <a
+        {/* CTA FINAL */}
+        <div className="mt-24 text-center">
+          <motion.a
             href="#reasons"
-            className="group relative inline-flex items-center justify-center px-12 py-5 
-                       bg-[#0056B3] text-white text-lg font-bold rounded-full overflow-hidden
-                       shadow-lg hover:bg-[#004494]
-                       transition-all duration-300 hover:-translate-y-1
-                       /* MODIFICARE: Focus vizibil clar pentru navigare tastatură */
-                       focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#0056B3]/50 focus-visible:ring-offset-4 focus-visible:ring-offset-[#EBF0F5]"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center justify-center px-12 py-5 bg-[#0056B3] text-white text-lg font-bold rounded-full shadow-xl shadow-blue-900/20 hover:bg-[#004494] transition-all"
           >
-            <span className="relative z-10">De ce să ne alegi?</span>
-            <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" aria-hidden="true" />
-          </a>
+            Descoperă De Ce Să Ne Alegi
+          </motion.a>
         </div>
       </div>
     </section>
