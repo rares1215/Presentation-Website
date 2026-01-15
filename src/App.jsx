@@ -7,6 +7,7 @@ import WhyChooseUs from "./components/WhyUs"
 import WaveSeparator from "./components/WaveSeparator"
 import FeaturesDetail from "./components/FeaturesDetails"
 import HomagePage from "./components/HomagePage"
+import ProjectPresentation from "./components/Prezentare"
 
 function App() {
 
@@ -21,6 +22,8 @@ function App() {
             <HomagePage />
             <WaveSeparator />
             <FeaturesDetail />
+            <WaveSeparator />
+            <ProjectPresentation />
             <WaveSeparator />
             <WhyChooseUs />
             <WaveSeparator />
