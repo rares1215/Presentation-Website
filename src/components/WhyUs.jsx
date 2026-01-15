@@ -20,22 +20,22 @@ export default function WhyChooseUs() {
   const reasons = [
     {
       icon: <Shield className="w-8 h-8" aria-hidden="true" />,
-      title: "Reliability and Trust",
+      title: "Siguranță",
       desc: "Construim soluții bazate pe principii demonstrate, oferind siguranța unei tehnologii verificate în timp.",
     },
     {
       icon: <Star className="w-8 h-8" aria-hidden="true" />,
-      title: "Innovation at Core",
+      title: "Inovație",
       desc: "Reinterpretăm sonicitatea prin prisma nevoilor moderne, aducând inovația în fiecare componentă.",
     },
     {
       icon: <Users className="w-8 h-8" aria-hidden="true" />,
-      title: "Dedicated Team",
+      title: "Echipă deticată",
       desc: "O echipă de experți pasionați de fizică și inginerie, gata să transforme imposibilul în realitate.",
     },
     {
       icon: <Heart className="w-8 h-8" aria-hidden="true" />,
-      title: "Sustainability Focus",
+      title: "Sustenabilitate",
       desc: "Eficiența energetică nu este doar un obiectiv, ci fundamentul pe care dezvoltăm fiecare produs.",
     },
   ];

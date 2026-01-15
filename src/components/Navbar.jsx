@@ -13,11 +13,11 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { label: "About", href: "#about" },
-    { label: "Homage", href: "#gogu-tribute" },
-    { label: "Reasons", href: "#reasons" },
-    { label: "Features", href: "#features-detail" },
-    { label: "Contacts", href: "#contacts" },
+    { label: "Despre Noi", href: "#about" },
+    { label: "Omagiu", href: "#gogu-tribute" },
+    { label: "Detalii Tehnice", href: "#features-detail" },
+    { label: "Motive", href: "#reasons" },
+    { label: "Contacte", href: "#contacts" },
   ];
 
   return (
