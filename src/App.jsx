@@ -5,8 +5,9 @@ import About from "./components/About"
 import Footer from "./components/Footer"
 import WhyChooseUs from "./components/WhyUs"
 import WaveSeparator from "./components/WaveSeparator"
-    import FeaturesDetail from "./components/FeaturesDetails"
-    import HomagePage from "./components/HomagePage"
+import FeaturesDetail from "./components/FeaturesDetails"
+import HomagePage from "./components/HomagePage"
+import VideoShowcase from "./components/Video"
 
     function App() {
 
@@ -17,6 +18,8 @@ import WaveSeparator from "./components/WaveSeparator"
                 <Hero />
                 <WaveSeparator />
                 <About />
+                <WaveSeparator />
+                <VideoShowcase />
                 <WaveSeparator />
                 <HomagePage />
                 <WaveSeparator />
