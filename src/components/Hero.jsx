@@ -3,7 +3,51 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Play, Pause } from "lucide-react";
 
-export default function Hero() {
+// DICȚIONARUL DE TRADUCERI HERO
+const heroTranslations = {
+  ro: {
+    badge: "Eficiență prin Sonicitate",
+    titleMain: "Sonic",
+    titleAccent: "Technology",
+    quote: "„Cunoscutul este finit, necunoscutul este infinit; din punct de vedere intelectual ne aflăm pe o mică insulă în mijlocul unui ocean ilimitabil al inexplicabilității.”",
+    contactBtn: "Contactează-ne",
+    discoverBtn: "Descoperă",
+    videoPause: "Oprește video",
+    videoPlay: "Pornește video"
+  },
+  en: {
+    badge: "Efficiency through Sonics",
+    titleMain: "Sonic",
+    titleAccent: "Technology",
+    quote: "“The known is finite, the unknown infinite; intellectually we stand on a small island in the midst of an illimitable ocean of inexplicability.”",
+    contactBtn: "Contact Us",
+    discoverBtn: "Discover",
+    videoPause: "Pause video",
+    videoPlay: "Play video"
+  },
+  fr: {
+    badge: "Efficacité par la Sonicité",
+    titleMain: "Sonic",
+    titleAccent: "Technology",
+    quote: "« Le connu est fini, l'inconnu est infini ; intellectuellement, nous nous tenons sur une petite île au milieu d'un océan illimité d'inexplicabilité. »",
+    contactBtn: "Contactez-nous",
+    discoverBtn: "Découvrir",
+    videoPause: "Arrêter la vidéo",
+    videoPlay: "Lire la vidéo"
+  },
+  es: {
+    badge: "Eficiencia a través de la Sónica",
+    titleMain: "Sonic",
+    titleAccent: "Technology",
+    quote: "“Lo conocido es finito, lo desconocido es infinito; intelectualmente estamos en una pequeña isla en medio de un océano ilimitado de inexplicabilidad.”",
+    contactBtn: "Contáctanos",
+    discoverBtn: "Descubrir",
+    videoPause: "Pausar video",
+    videoPlay: "Reproducir video"
+  }
+};
+
+export default function Hero({ lang = "ro" }) {
   const [loaded, setLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef(null);
@@ -11,7 +55,9 @@ export default function Hero() {
   const [inView, setInView] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
-  // Monitorizăm dacă secțiunea este în ecran pentru a opri video-ul când nu e vizibil (performanță)
+  // Selectăm traducerile
+  const t = heroTranslations[lang] || heroTranslations["ro"];
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
@@ -21,7 +67,6 @@ export default function Hero() {
     return () => obs.disconnect();
   }, []);
 
-  // Controlul redării video
   useEffect(() => {
     if (!videoRef.current) return;
     if (inView && isPlaying && !prefersReducedMotion) {
@@ -45,31 +90,24 @@ export default function Hero() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative isolate min-h-[90vh] md:min-h-screen overflow-hidden bg-[#EBF0F5]" 
-      aria-label="Sonic Technology – Inovație în tehnologia sonicității"
+      className="relative isolate min-h-[90vh] md:min-h-screen overflow-hidden bg-[#EBF0F5]"
+      aria-label="Sonic Technology"
     >
-      {/* VIDEO DE FUNDAL - Mix-blend și opacitate redusă pentru aspect de "imprimeu" pe fundalul Ice Blue */}
       <video
         ref={videoRef}
         aria-hidden="true"
-        className={`absolute inset-0 -z-30 h-full w-full object-cover mix-blend-multiply transition-opacity duration-1000 ${
-          loaded ? "opacity-25" : "opacity-0"
-        }`}
+        className={`absolute inset-0 -z-30 h-full w-full object-cover mix-blend-multiply transition-opacity duration-1000 ${loaded ? "opacity-25" : "opacity-0"
+          }`}
         playsInline muted loop preload="auto" poster="/heroimg.png"
         onCanPlayThrough={() => setLoaded(true)}
       >
         <source src="/Background1-optimized.mp4" type="video/mp4" />
       </video>
 
-      {/* OVERLAY PENTRU LIZIBILITATE MAXIMĂ */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-20 bg-gradient-to-r from-[#EBF0F5] via-[#EBF0F5]/70 to-transparent"
-      />
+      <div aria-hidden="true" className="absolute inset-0 -z-20 bg-gradient-to-r from-[#EBF0F5] via-[#EBF0F5]/70 to-transparent" />
 
       <div className="relative mx-auto flex min-h-[90vh] md:min-h-screen max-w-7xl flex-col items-center justify-center gap-10 px-6 py-20 lg:grid lg:grid-cols-12 lg:px-10 lg:text-left text-center">
-        
-        {/* CONȚINUT TEXT (Stânga) */}
+
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, x: -25 }}
           animate={{ opacity: 1, x: 0 }}
@@ -78,29 +116,27 @@ export default function Hero() {
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-[#0056B3]/20 bg-[#0056B3]/5 px-3 py-1 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-[#0056B3]">
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[#0056B3] animate-pulse" />
-            Eficiență prin Sonicitate
+            {t.badge}
           </div>
 
-          {/* Titlu în Navy (#1B263B) pentru contrast ridicat conform WCAG */}
           <h1 className="mt-6 font-extrabold tracking-tight text-[#1B263B] text-4xl sm:text-5xl md:text-6xl xl:text-7xl leading-[1.1]">
-            Sonic <span className="text-[#0056B3]">Technology</span>
+            {t.titleMain} <span className="text-[#0056B3]">{t.titleAccent}</span>
           </h1>
 
-          <p className="mt-6 max-w-xl leading-relaxed text-[#37474F] text-base md:text-lg font-semibold">
-            „Cunoscutul este finit, necunoscutul este infinit; din punct de vedere intelectual ne aflăm pe o mică insulă în mijlocul unui ocean ilimitabil al inexplicabilității.”
+          <p className="mt-6 max-w-xl leading-relaxed text-[#37474F] text-base md:text-lg font-semibold italic">
+            {t.quote}
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <a
               href="#contacts"
-              className="h-12 px-10 bg-[#0056B3] text-white text-sm font-bold rounded-full shadow-md hover:bg-[#004494] hover:-translate-y-0.5 transition-all flex items-center justify-center focus-visible:ring-4 focus-visible:ring-[#0056B3]/50 focus-visible:ring-offset-2"
+              className="h-12 px-10 bg-[#0056B3] text-white text-sm font-bold rounded-full shadow-md hover:bg-[#004494] hover:-translate-y-0.5 transition-all flex items-center justify-center focus-visible:ring-4 focus-visible:ring-[#0056B3]/50"
             >
-              Contactează-ne
+              {t.contactBtn}
             </a>
           </div>
         </motion.div>
 
-        {/* ELEMENT VIZUAL (Dreapta) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -108,7 +144,6 @@ export default function Hero() {
           className="lg:col-span-5 flex flex-col items-center justify-center"
         >
           <div className="relative flex items-center justify-center w-64 h-64 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px]">
-            {/* Inele sonice subtile */}
             {[...Array(3)].map((_, i) => (
               <div
                 key={i}
@@ -121,42 +156,27 @@ export default function Hero() {
                 }}
               />
             ))}
-            
-            {/* Buton DESCOPERĂ - Glassmorphism minimalist */}
+
             <a
               href="#about"
-              className="
-                relative z-10 flex items-center justify-center 
-                w-28 h-28 md:w-32 md:h-32 
-                rounded-full 
-                bg-white shadow-lg shadow-blue-900/10
-                border border-[#0056B3]/10
-                text-[#1B263B] transition-all duration-500
-                hover:shadow-xl hover:scale-105 hover:border-[#0056B3]/30
-                group focus:outline-none focus:ring-2 focus:ring-[#0056B3]
-              "
+              className="relative z-10 flex items-center justify-center w-28 h-28 md:w-32 md:h-32 rounded-full bg-white shadow-lg border border-[#0056B3]/10 text-[#1B263B] transition-all duration-500 hover:scale-105 group"
             >
               <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-[#0056B3]">
-                Descoperă
+                {t.discoverBtn}
               </span>
             </a>
           </div>
         </motion.div>
       </div>
 
-      {/* FOOTER - CONTROL ȘI INDICATOR SCROLL */}
       <div className="absolute bottom-8 w-full px-10 flex justify-between items-end">
-        {/* Buton Pauză Subtil */}
         <button
           onClick={toggleVideo}
-          aria-label={isPlaying ? "Oprește video" : "Pornește video"}
-          className="p-3 bg-white/50 backdrop-blur-md border border-[#0056B3]/10 rounded-lg text-[#0056B3]/50 hover:text-[#0056B3] hover:bg-white transition-all focus:ring-2 focus:ring-[#0056B3]"
+          aria-label={isPlaying ? t.videoPause : t.videoPlay}
+          className="p-3 bg-white/50 backdrop-blur-md border border-[#0056B3]/10 rounded-lg text-[#0056B3]/50 hover:text-[#0056B3] transition-all"
         >
           {isPlaying ? <Pause size={16} /> : <Play size={16} />}
         </button>
-        
-        {/* Spațiere pentru echilibru */}
-        <div className="w-10 hidden md:block" />
       </div>
     </section>
   );
