@@ -1,11 +1,19 @@
 /* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
 import { Play, Pause, Volume2, VolumeX, Maximize } from "lucide-react";
-import { useRef, useState } from "react";
-import videoRo from "../assets/video_ro.mp4";
+import { useRef, useState, useEffect } from "react";
+
+// 1. IMPORTĂ TOATE VARIANTELE VIDEO (Asigură-te că numele fișierelor sunt corecte)
+import videoRo from "../assets/romana.mp4";
+import videoEn from "../assets/Engleza.mp4";
+import videoFr from "../assets/Franceza.mp4";
+import videoEs from "../assets/Spaniola.mp4";
+import videoDe from "../assets/Germana.mp4";
+import videoIt from "../assets/Italiana.mp4";
 
 const videoTranslations = {
   ro: {
+    src: videoRo,
     badge: "Showcase Tehnologic",
     title: "Sonicitate:",
     titleAccent: "Demonstrația Completă",
@@ -21,6 +29,7 @@ const videoTranslations = {
     ariaFull: "Ecran complet"
   },
   en: {
+    src: videoEn,
     badge: "Technological Showcase",
     title: "Sonics:",
     titleAccent: "The Complete Demonstration",
@@ -36,6 +45,7 @@ const videoTranslations = {
     ariaFull: "Full screen"
   },
   fr: {
+    src: videoFr,
     badge: "Vitrine Technologique",
     title: "Sonicité :",
     titleAccent: "La Démonstration Complète",
@@ -51,6 +61,7 @@ const videoTranslations = {
     ariaFull: "Plein écran"
   },
   es: {
+    src: videoEs,
     badge: "Escaparate Tecnológico",
     title: "Sónica:",
     titleAccent: "La Demostración Completa",
@@ -64,6 +75,38 @@ const videoTranslations = {
     ariaPause: "Pausa",
     ariaMute: "Sonido",
     ariaFull: "Pantalla completa"
+  },
+  de: {
+    src: videoDe,
+    badge: "Technologische Präsentation",
+    title: "Sonik:",
+    titleAccent: "Die vollständige Demonstration",
+    description: "Ein detaillierter Einblick in die Innovation hinter unseren Systemen. Sehen Sie sich unsere offizielle Präsentation an, um das bahnbrechende Potenzial dieser Technologie zu verstehen.",
+    videoLabel: "Sonic Technology | Offizielle Präsentation",
+    fallbackText: "Ihr Browser unterstützt die Videowiedergabe nicht.",
+    duration: "Videodauer",
+    resolution: "Auflösung",
+    update: "Technisches Update",
+    ariaPlay: "Videopräsentation abspielen",
+    ariaPause: "Pause",
+    ariaMute: "Stummschalten/Ton an",
+    ariaFull: "Vollbild"
+  },
+  it: {
+    src: videoIt,
+    badge: "Vetrina Tecnologica",
+    title: "Sonica:",
+    titleAccent: "La Dimostrazione Completa",
+    description: "Un approfondimento dettagliato sull'innovazione alla base dei nostri sistemi. Guarda la nostra presentazione ufficiale per comprendere il potenziale dirompente di questa tecnologia.",
+    videoLabel: "Sonic Technology | Presentazione Ufficiale",
+    fallbackText: "Il tuo browser non supporta la riproduzione video.",
+    duration: "Durata Video",
+    resolution: "Risoluzione",
+    update: "Aggiornamento Tecnico",
+    ariaPlay: "Riproduci presentazione video",
+    ariaPause: "Pausa",
+    ariaMute: "Audio",
+    ariaFull: "Schermo intero"
   }
 };
 
@@ -73,6 +116,14 @@ export default function VideoShowcase({ lang = "ro" }) {
   const [isMuted, setIsMuted] = useState(false);
 
   const t = videoTranslations[lang] || videoTranslations["ro"];
+
+  // 2. LOGICĂ REÎNCĂRCARE: Când se schimbă limba, video-ul trebuie reîncărcat pentru a prelua noua sursă
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+      setIsPlaying(false); // Resetăm starea la pauză când se schimbă limba
+    }
+  }, [lang]);
 
   const togglePlay = () => {
     if (videoRef.current.paused) {
@@ -121,13 +172,14 @@ export default function VideoShowcase({ lang = "ro" }) {
           className="relative group rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_32px_64px_-12px_rgba(0,86,179,0.2)] bg-black border-[6px] border-white"
         >
           <video
+            key={t.src} // Folosim cheia pentru a forța React să remonteze elementul video când sursa se schimbă
             ref={videoRef}
             className="w-full h-auto aspect-video object-cover cursor-pointer"
             poster="/assets/video-thumbnail.png"
             preload="metadata"
             onClick={togglePlay}
           >
-            <source src={videoRo} type="video/mp4" />
+            <source src={t.src} type="video/mp4" />
             {t.fallbackText}
           </video>
 
@@ -173,7 +225,7 @@ export default function VideoShowcase({ lang = "ro" }) {
           </div>
         </motion.div>
 
-        {/* FOOTER SECȚIUNE */}
+        {/* FOOTER SECȚIUNE INDICATORI */}
         <div className="mt-16 flex flex-wrap justify-center gap-12 border-t border-[#D1D9E0] pt-12">
           <div className="text-center">
             <span className="block text-2xl font-black text-[#1B263B]">3:00</span>

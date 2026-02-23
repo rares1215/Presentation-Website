@@ -86,6 +86,48 @@ const featuresTranslations = {
       { title: "Rendimiento Extremo", desc: "A diferencia de las bombas de calor, la eficiencia se mantiene al máximo incluso por debajo de -8°C." },
       { title: "Costes Reducidos", desc: "Mantenimiento mínimo al eliminar las revisiones obligatorias cada 2 años." },
     ]
+  },
+  de: {
+    badge: "Die Zukunft von Brauchwarmwasser & Heizung",
+    title: "Eine",
+    titleAccent: "revolutionäre",
+    titleEnd: "Lösung für Ihren Komfort",
+    para1: "Das moderne Leben ist eng mit zwei grundlegenden Bedürfnissen für Komfort und Hygiene verbunden: <strong>Brauchwarmwasser (BWW)</strong> und <strong>Wohnraumbeheizung</strong>. Von den täglichen Ritualen der Körperpflege bis hin zum lebensnotwendigen Wärmekomfort in der kalten Jahreszeit sind dies kein Luxus, sondern Säulen der Lebensqualität.",
+    para2: "SONIC TECHNOLOGY schlägt einen visionären Ansatz vor, indem Gasbrenner durch einen <strong>elektrisch betriebenen Schallgenerator</strong> ersetzt werden und so die BWW- und Wärmeerzeugung an die Effizienz- und Nachhaltigkeitsstandards der Zukunft angepasst wird.",
+    quote: "SONIC TECHNOLOGY stellt nicht den fertigen Heizkessel her, sondern stellt unsere Technologie jedem interessierten Hersteller zur Verfügung.",
+    generatorLabel: "GENERATOR",
+    sonicLabel: "SCHALL",
+    advantagesTitle: "Vorteile des Schall-Heizkessels",
+    ctaBtn: "Entdecken Sie, warum Sie uns wählen sollten",
+    advantages: [
+      { title: "Kompakt & Vielseitig", desc: "Ähnliche Abmessungen wie Gasthermen, ersetzt erfolgreich alte Systeme, ohne zusätzlichen Platz zu beanspruchen." },
+      { title: "Null Bürokratie", desc: "Erfordert keine speziellen Genehmigungen oder regelmäßige Überprüfungen der Gasinstallation." },
+      { title: "Vereinfachte Installation", desc: "Kein Schornstein oder Wanddurchbrüche erforderlich. Benötigt nur eine Wasserquelle und Stromanschluss." },
+      { title: "Eco-Ready", desc: "Geringer Energieverbrauch, ideal für den direkten Anschluss an Photovoltaikanlagen." },
+      { title: "Extreme Leistung", desc: "Im Gegensatz zu Wärmepumpen bleibt der Wirkungsgrad auch unter -8°C maximal." },
+      { title: "Reduzierte Kosten", desc: "Minimaler Wartungsaufwand durch Wegfall der obligatorischen Überprüfungen alle 2 Jahre." },
+    ]
+  },
+  it: {
+    badge: "Il Futuro dell'ACS e del Riscaldamento",
+    title: "Una soluzione",
+    titleAccent: "rivoluzionaria",
+    titleEnd: "per il tuo comfort",
+    para1: "La vita moderna è intimamente legata a due necessità fondamentali per il comfort e l'igiene: <strong>l'acqua calda sanitaria (ACS)</strong> e <strong>il riscaldamento delle abitazioni</strong>. Dai rituali quotidiani di igiene personale al comfort termico essenziale nelle stagioni fredde, questi non sono un lusso, ma pilari della qualità della vita.",
+    para2: "SONIC TECHNOLOGY propone un approccio visionario sostituendo i bruciatori a gas con un <strong>generatore sonico alimentato a corrente elettrica</strong>, adattando la produzione di ACS e calore agli standard di efficienza e sostenibilità del futuro.",
+    quote: "SONIC TECHNOLOGY non produce la caldaia finale, ma mette la nostra tecnologia a disposizione di qualsiasi produttore interessato.",
+    generatorLabel: "GENERATORE",
+    sonicLabel: "SONICO",
+    advantagesTitle: "Vantaggi della Caldaia Sonica",
+    ctaBtn: "Scopri Perché Sceglierci",
+    advantages: [
+      { title: "Compatta e Versatile", desc: "Dimensioni simili alle caldaie a gas, sostituendo con successo i vecchi sistemi senza occupare spazio extra." },
+      { title: "Zero Burocrazia", desc: "Non richiede autorizzazioni speciali o controlli periodici dell'impianto a gas." },
+      { title: "Installazione Semplificata", desc: "Senza canna fumaria o fori nei muri. Richiede solo una fonte d'acqua e corrente elettrica." },
+      { title: "Eco-Ready", desc: "Basso consumo energetico, ideale per il collegamento diretto ai pannelli fotovoltaici." },
+      { title: "Prestazioni Estreme", desc: "A differenza delle pompe di calore, l'efficienza rimane massima anche sotto i -8°C." },
+      { title: "Costi Ridotti", desc: "Manutenzione minima eliminando i controlli obbligatori ogni 2 anni." },
+    ]
   }
 };
 

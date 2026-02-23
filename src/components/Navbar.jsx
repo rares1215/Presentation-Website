@@ -14,18 +14,23 @@ export default function Navbar({ lang, setLang }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Configurație Limbi: Adăugat DE și IT
   const langData = [
     { id: "ro", label: "RO", flag: "🇷🇴" },
     { id: "en", label: "EN", flag: "🇬🇧" },
     { id: "fr", label: "FR", flag: "🇫🇷" },
-    { id: "es", label: "ES", flag: "🇪🇸" }
+    { id: "es", label: "ES", flag: "🇪🇸" },
+    { id: "de", label: "DE", flag: "🇩🇪" },
+    { id: "it", label: "IT", flag: "🇮🇹" }
   ];
 
   const translations = {
     ro: { about: "Despre Noi", homage: "Omagiu", features: "Detalii Tehnice", reasons: "Motive", contacts: "Contacte" },
     en: { about: "About Us", homage: "Homage", features: "Technical Details", reasons: "Reasons", contacts: "Contacts" },
     fr: { about: "À Propos", homage: "Hommage", features: "Détails Techniques", reasons: "Raisons", contacts: "Contacts" },
-    es: { about: "Nosotros", homage: "Homenaje", features: "Detalles Técnicos", reasons: "Motivos", contacts: "Contactos" }
+    es: { about: "Nosotros", homage: "Homenaje", features: "Detalles Técnicos", reasons: "Motivos", contacts: "Contactos" },
+    de: { about: "Über Uns", homage: "Hommage", features: "Technische Details", reasons: "Gründe", contacts: "Kontakt" },
+    it: { about: "Chi Siamo", homage: "Omaggio", features: "Dettagli Tecnici", reasons: "Motivi", contacts: "Contatti" }
   };
 
   const currentLang = langData.find((l) => l.id === lang) || langData[0];
@@ -96,25 +101,28 @@ export default function Navbar({ lang, setLang }) {
                   exit={{ opacity: 0, scale: 0.95, y: 10 }}
                   className="absolute right-0 mt-3 w-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-[#D1D9E0] overflow-hidden p-1.5"
                 >
-                  {langData.map((l) => (
-                    <button
-                      key={l.id}
-                      onClick={() => {
-                        setLang(l.id); // Modifică limba global
-                        setShowLangMenu(false);
-                      }}
-                      className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm font-bold transition-all ${lang === l.id
+                  {/* Am adăugat max-h și overflow-y pentru a acomoda mai multe limbi în dropdown */}
+                  <div className="max-h-80 overflow-y-auto">
+                    {langData.map((l) => (
+                      <button
+                        key={l.id}
+                        onClick={() => {
+                          setLang(l.id);
+                          setShowLangMenu(false);
+                        }}
+                        className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm font-bold transition-all ${lang === l.id
                           ? "bg-[#0056B3] text-white shadow-md shadow-blue-900/20"
                           : "text-[#1B263B] hover:bg-[#EBF0F5]"
-                        }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="text-xl">{l.flag}</span>
-                        <span className="uppercase">{l.id}</span>
-                      </div>
-                      {lang === l.id && <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
-                    </button>
-                  ))}
+                          }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="text-xl">{l.flag}</span>
+                          <span className="uppercase">{l.id}</span>
+                        </div>
+                        {lang === l.id && <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
+                      </button>
+                    ))}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -152,8 +160,8 @@ export default function Navbar({ lang, setLang }) {
                 </li>
               ))}
 
-              {/* Mobile Lang Selector */}
-              <li className="flex gap-4 pt-6 border-t border-[#EBF0F5] w-full justify-center mt-2">
+              {/* Mobile Lang Selector: Adaptat pentru mai multe limbi (flex-wrap) */}
+              <li className="flex flex-wrap gap-4 pt-6 border-t border-[#EBF0F5] w-full justify-center mt-2 px-4">
                 {langData.map((l) => (
                   <button
                     key={l.id}

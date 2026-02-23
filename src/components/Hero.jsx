@@ -29,7 +29,7 @@ const heroTranslations = {
     badge: "Efficacité par la Sonicité",
     titleMain: "Sonic",
     titleAccent: "Technology",
-    quote: "« Le connu est fini, l'inconnu est infini ; intellectuellement, nous nous tenons sur une petite île au milieu d'un océan illimité d'inexplicabilité. »",
+    quote: "« Le connu est fini, l'unconnu est infini ; intellectuellement, nous nous tenons sur une petite île au milieu d'un océan illimité d'inexplicabilité. »",
     contactBtn: "Contactez-nous",
     discoverBtn: "Découvrir",
     videoPause: "Arrêter la vidéo",
@@ -44,6 +44,26 @@ const heroTranslations = {
     discoverBtn: "Descubrir",
     videoPause: "Pausar video",
     videoPlay: "Reproducir video"
+  },
+  de: {
+    badge: "Effizienz durch Sonik",
+    titleMain: "Sonic",
+    titleAccent: "Technology",
+    quote: "„Das Bekannte ist endlich, das Unbekannte unendlich; intellektuell stehen wir auf einer kleinen Insel inmitten eines unermesslichen Ozeans der Unerklärlichkeit.“",
+    contactBtn: "Kontaktieren Sie uns",
+    discoverBtn: "Entdecken",
+    videoPause: "Video anhalten",
+    videoPlay: "Video abspielen"
+  },
+  it: {
+    badge: "Efficienza attraverso la Sonica",
+    titleMain: "Sonic",
+    titleAccent: "Technology",
+    quote: "“Il conosciuto è finito, l'ignoto è infinito; intellettualmente ci troviamo su una piccola isola in mezzo a un oceano illimitato di inesplicabilità.”",
+    contactBtn: "Contattaci",
+    discoverBtn: "Scopri",
+    videoPause: "Ferma video",
+    videoPlay: "Riproduci video"
   }
 };
 

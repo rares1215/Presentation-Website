@@ -50,6 +50,30 @@ const footerTranslations = {
       { title: "Teléfono" },
       { title: "Dirección" }
     ]
+  },
+  de: {
+    title: "Kontaktieren Sie uns",
+    description: "Wir sind hier, um Ihre Fragen zur Schalltechnologie (Sonik) zu beantworten.",
+    ctaBtn: "Schicken Sie uns eine Nachricht",
+    copyright: "Sonic Technology. Alle Rechte vorbehalten.",
+    addressText: "Innovationsstraße 12, Bukarest",
+    contacts: [
+      { title: "E-Mail" },
+      { title: "Telefon" },
+      { title: "Adresse" }
+    ]
+  },
+  it: {
+    title: "Contattaci",
+    description: "Siamo qui per rispondere alle tue domande sulla tecnologia sonica.",
+    ctaBtn: "Inviaci un messaggio",
+    copyright: "Sonic Technology. Tutti i diritti riservati.",
+    addressText: "Via dell'Innovazione 12, Bucarest",
+    contacts: [
+      { title: "Email" },
+      { title: "Telefono" },
+      { title: "Indirizzo" }
+    ]
   }
 };
 

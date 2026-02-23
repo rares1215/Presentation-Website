@@ -99,6 +99,54 @@ const whyTranslations = {
         desc: "La eficiencia energética no es solo un objetivo, sino la base sobre la cual desarrollamos cada producto.",
       },
     ]
+  },
+  de: {
+    badge: "Warum wir?",
+    title: "Was wir bieten?",
+    description: "Unser Versprechen ist es, durch jede Vibration Spitzenleistungen zu erbringen und eine nachhaltige technologische Zukunft zu sichern.",
+    ctaBtn: "Kontaktieren Sie uns",
+    reasons: [
+      {
+        title: "Sicherheit",
+        desc: "Wir bauen Lösungen auf der Grundlage bewährter Prinzipien und bieten die Sicherheit einer praxiserprobten Technologie.",
+      },
+      {
+        title: "Innovation",
+        desc: "Wir interpretieren die Sonik unter dem Aspekt moderner Bedürfnisse neu und bringen Innovation in jede Komponente.",
+      },
+      {
+        title: "Engagiertes Team",
+        desc: "Ein Team von Experten, die sich leidenschaftlich für Physik und Ingenieurwesen einsetzen und bereit sind, das Unmögliche in die Realität umzusetzen.",
+      },
+      {
+        title: "Nachhaltigkeit",
+        desc: "Energieeffizienz ist nicht nur ein Ziel, sondern das Fundament, auf dem wir jedes Produkt entwickeln.",
+      },
+    ]
+  },
+  it: {
+    badge: "Perché noi?",
+    title: "Cosa offriamo?",
+    description: "Il nostro impegno è offrire l'eccellenza attraverso ogni vibrazione, garantendo un futuro tecnologico sostenibile.",
+    ctaBtn: "Contattaci",
+    reasons: [
+      {
+        title: "Sicurezza",
+        desc: "Costruiamo soluzioni basate su principi dimostrati, offrendo la sicurezza di una tecnologia verificata nel tempo.",
+      },
+      {
+        title: "Innovazione",
+        desc: "Reinterpretiamo la sonica attraverso il prisma delle esigenze moderne, portando l'innovazione in ogni componente.",
+      },
+      {
+        title: "Team dedicato",
+        desc: "Un team di esperti appassionati di fisica e ingegneria, pronti a trasformare l'impossibile in realtà.",
+      },
+      {
+        title: "Sostenibilità",
+        desc: "L'efficienza energetica non è solo un obiettivo, ma il fondamento su cui sviluppiamo ogni prodotto.",
+      },
+    ]
   }
 };
 

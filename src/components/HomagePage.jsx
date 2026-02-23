@@ -50,6 +50,30 @@ const translations = {
         secondaryText: "Nada de lo que hemos logrado hasta ahora, ni lo que lograremos en el futuro, habría sido posible sin George (Gogu) Constantinescu. Fue un gran científico del que se habló demasiado poco y que, al igual que otros como él, estuvo muy adelantado a los tiempos en los que vivió. Dejó como legado una nueva ciencia, la sónica, de la cual surgieron algunos inventos, muy pocos en comparación con su potencial. Por este motivo, como homenaje más de un siglo después de la aparición de la sónica, intentaremos sacarla de nuevo a la luz porque todavía tiene mucho que ofrecer al mundo.",
         featuresInfo: "Conozca más sobre cómo lo implementamos y cómo funciona nuestro producto",
         featuresBtn: "Ver el Proceso Técnico"
+    },
+    de: {
+        title: "Über Gogu Constantinescu",
+        subtitle: "Die Inspiration und der Grund, warum wir heute hier sind.",
+        altText: "Porträt von George «Gogu» Constantinescu, dem Erfinder der Sonik",
+        quote1: "In Wirklichkeit sind Töne nichts anderes als eine Form von Energie, und die Übertragung von Schall ist un spezieller Fall der Energieübertragung.",
+        quote2: "Diese Übertragung erfolgt durch Schallwellen, und so stellte ich mir die Frage: Wenn kleinste Energiemengen durch Vibrationen über Distanz übertragen werden können, könnten diese Vibrationen dann nicht in mechanische Energie umgewandelt werden?",
+        author: "George \"Gogu\" Constantinescu",
+        bioBtn: "Vollständige Biografie lesen",
+        secondaryText: "Nichts von dem, was wir bisher erreicht haben oder in Zukunft erreichen werden, wäre ohne George (Gogu) Constantinescu möglich gewesen. Er war ein großer Wissenschaftler, über den zu wenig gesprochen wurde und der, wie andere seiner Art, seiner Zeit weit voraus war. Er hinterließ eine neue Wissenschaft, die Sonik (Lehre der Schwingungen), aus der einige Erfindungen hervorgingen – viel zu wenige im Vergleich zu ihrem Potenzial. Aus diesem Grund werden wir versuchen, sie als Hommage, mehr als ein Jahrhundert nach dem Erscheinen der Sonik, wieder ins Rampenlicht zu rücken, da sie der Welt noch viel zu bieten hat.",
+        featuresInfo: "Erfahren Sie mehr über unsere Implementierung und die Funktionsweise unseres Produkts",
+        featuresBtn: "Technischen Prozess ansehen"
+    },
+    it: {
+        title: "Su Gogu Constantinescu",
+        subtitle: "L'ispirazione e il motivo per cui siamo qui oggi.",
+        altText: "Ritratto di George «Gogu» Constantinescu, l'inventore della sonica",
+        quote1: "In realtà i suoni non sono altro che una forma di energia e la trasmissione del suono è un caso particolare della trasmissione di energia.",
+        quote2: "Questa trasmissione avviene attraverso onde sonore e allora mi sono posto il problema: se quantità molto piccole di energia possono essere trasmesse a distanza attraverso le vibrazioni, non si potrebbero trasformare queste vibrazioni in energia meccanica?",
+        author: "George \"Gogu\" Constantinescu",
+        bioBtn: "Leggi la biografia completa",
+        secondaryText: "Nulla di ciò che abbiamo realizzato finora, o che realizzeremo in futuro, sarebbe stato possibile senza George (Gogu) Constantinescu. È stato un grande scienziato di cui si è parlato troppo poco e che, come altri simili a lui, era molto in anticipo sui tempi in cui viveva. Ha lasciato in eredità una nuova scienza, la sonica, dalla quale sono nate alcune invenzioni, troppo poche rispetto al suo potenziale. E per questo motivo, come omaggio a oltre un secolo dalla nascita della sonica, cercheremo di riportarla alla luce perché ha ancora molto da offrire al mondo.",
+        featuresInfo: "Scopri di più su come abbiamo implementato e come funziona il nostro prodotto",
+        featuresBtn: "Vedi il Processo Tecnologico"
     }
 };
 

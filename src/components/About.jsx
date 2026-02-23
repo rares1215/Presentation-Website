@@ -86,6 +86,48 @@ const aboutTranslations = {
     ctaBtn: "Sobre Gogu Constantinescu",
     ariaOpen: "Cerrar el libro",
     ariaClosed: "Abrir la descripción de Sonic Technology"
+  },
+  de: {
+    badge: "Unsere Geschichte",
+    title: "Entdecken Sie Sonic Technology",
+    clickHint: "Klicken Sie auf das Buch, um unsere Vision kennenzulernen",
+    bookCover: "Über Uns",
+    bookHint: "Zum Blättern klicken",
+    bookTitle: "Über Uns Beschreibung",
+    mainText: "Wir sind ein Unternehmen, das aus Leidenschaft und dem Wunsch heraus gegründet wurde, eine bessere Welt zu hinterlassen, als wir sie vorgefunden haben. Alles begann mit einem Buch, das eine überraschende Theorie über ein Gebiet der Physik im Zusammenhang mit Flüssigkeiten vorstellte. Obwohl die Theorie etwa 100 Jahre alt war, öffnete sie die Tür zu vielen Anwendungen und fesselte unsere Aufmerksamkeit.<br /><br />Am Anfang war es eher ein Spiel, aber wir spürten, dass dort etwas war, das eine Veränderung bewirken konnte, und beschlossen, mit dem Studium zu beginnen. Allmählich begannen wir, bestimmte Dinge zu verstehen, Experimente durchzuführen, die das Prinzip hinter unserem ersten Produkt bestätigten, und uns den Mut gaben, weiterzumachen.",
+    sonicTitle: "Was repräsentiert SONIC TECHNOLOGY?",
+    details: [
+      { letter: "S", title: "implizität", desc: "ein System aus wenigen und einfachen Teilen, sehr effizient." },
+      { letter: "O", title: "riginalität", desc: "wir verwenden eine originelle Technologie, die über 100 Jahre alt ist." },
+      { letter: "N", title: "eutralität", desc: "keine Umweltbelastung durch geringen Energieverbrauch, der problemlos durch grüne Energie gedeckt werden kann, sowie durch weltweit verfügbare Materialien." },
+      { letter: "I", title: "nnovation", desc: "eine Technologie, die viele Bereiche innovieren wird." },
+      { letter: "C", title: "omfort", desc: "dank der Zuverlässigkeit der Produkte und der Tatsache, dass keine Genehmigungen oder regelmäßigen Wartungen erforderlich sind. Die erzeugte Energie wird zu den derzeit niedrigsten Kosten verfügbar sein." },
+    ],
+    ctaHint: "Erfahren Sie mehr über unsere Inspirationsquelle und den Grund, warum wir uns für dieses Projekt entschieden haben.",
+    ctaBtn: "Über Gogu Constantinescu",
+    ariaOpen: "Buch schließen",
+    ariaClosed: "Beschreibung über Sonic Technology öffnen"
+  },
+  it: {
+    badge: "La Nostra Storia",
+    title: "Scopri Sonic Technology",
+    clickHint: "Clicca sul libro per conoscere la nostra visione",
+    bookCover: "Chi Siamo",
+    bookHint: "Clicca per sfogliare",
+    bookTitle: "Descrizione Chi Siamo",
+    mainText: "Siamo un'azienda fondata sulla passione e sul desiderio di lasciare un mondo migliore di quello in cui siamo nati. Tutto è iniziato con un libro che presentava una teoria sorprendente riguardante un campo della fisica legato ai liquidi. Sebbene avesse circa 100 anni, la teoria apriva la porta a molte applicazioni e ha catturato la nostra attenzione.<br /><br />All'inizio era più un gioco, ma sentivamo che c'era qualcosa che poteva produrre un cambiamento e abbiamo deciso di iniziare a studiare. Gradualmente abbiamo iniziato a capire certe cose, a condurre esperimenti che hanno convalidato il principio alla base del nostro primo prodotto e ci hanno dato il coraggio di andare avanti.",
+    sonicTitle: "Cosa rappresenta SONIC TECHNOLOGY?",
+    details: [
+      { letter: "S", title: "emplicità", desc: "un sistema composto da pochi e semplici pezzi, molto efficiente." },
+      { letter: "O", title: "riginalità", desc: "utilizziamo una tecnologia originale, vecchia di oltre 100 anni." },
+      { letter: "N", title: "eutralità", desc: "nessun impatto ambientale grazie al basso consumo energetico, facilmente supportato dall'energia verde, e grazie ai materiali utilizzati reperibili in tutto il mondo." },
+      { letter: "I", title: "nnovazione", desc: "tecnologia che innoverà molti campi" },
+      { letter: "C", title: "omfort", desc: "grazie all'affidabilità dei prodotti e al fatto che non saranno necessari permessi o revisioni periodiche. L'energia prodotta sarà al costo più basso possibile attualmente esistente." },
+    ],
+    ctaHint: "Scopri di più sulla nostra fonte d'ispirazione e sul motivo per cui abbiamo scelto questo progetto.",
+    ctaBtn: "Su Gogu Constantinescu",
+    ariaOpen: "Chiudi il libro",
+    ariaClosed: "Apri la descrizione di Sonic Technology"
   }
 };
 
