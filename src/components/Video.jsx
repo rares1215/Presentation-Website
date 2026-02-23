@@ -4,10 +4,75 @@ import { Play, Pause, Volume2, VolumeX, Maximize } from "lucide-react";
 import { useRef, useState } from "react";
 import videoRo from "../assets/video_ro.mp4";
 
-export default function VideoShowcase() {
+const videoTranslations = {
+  ro: {
+    badge: "Showcase Tehnologic",
+    title: "Sonicitate:",
+    titleAccent: "Demonstrația Completă",
+    description: "O incursiune detaliată în inovația care stă la baza sistemelor noastre. Vizionați prezentarea noastră oficială pentru a înțelege potențialul disruptiv al acestei tehnologii.",
+    videoLabel: "Sonic Technology | Prezentare Oficială",
+    fallbackText: "Browserul dumneavoastră nu suportă redarea video.",
+    duration: "Durată Video",
+    resolution: "Rezoluție",
+    update: "Update Tehnic",
+    ariaPlay: "Redare prezentare video",
+    ariaPause: "Pauză",
+    ariaMute: "Sunet",
+    ariaFull: "Ecran complet"
+  },
+  en: {
+    badge: "Technological Showcase",
+    title: "Sonics:",
+    titleAccent: "The Complete Demonstration",
+    description: "A detailed insight into the innovation behind our systems. Watch our official presentation to understand the disruptive potential of this technology.",
+    videoLabel: "Sonic Technology | Official Presentation",
+    fallbackText: "Your browser does not support video playback.",
+    duration: "Video Duration",
+    resolution: "Resolution",
+    update: "Technical Update",
+    ariaPlay: "Play video presentation",
+    ariaPause: "Pause",
+    ariaMute: "Mute/Unmute",
+    ariaFull: "Full screen"
+  },
+  fr: {
+    badge: "Vitrine Technologique",
+    title: "Sonicité :",
+    titleAccent: "La Démonstration Complète",
+    description: "Un aperçu détaillé de l'innovation derrière nos systèmes. Regardez notre présentation officielle pour comprendre le potentiel disruptif de cette technologie.",
+    videoLabel: "Sonic Technology | Présentation Officielle",
+    fallbackText: "Votre navigateur ne prend pas en charge la lecture vidéo.",
+    duration: "Durée Vidéo",
+    resolution: "Résolution",
+    update: "Mise à jour Technique",
+    ariaPlay: "Lire la présentation vidéo",
+    ariaPause: "Pause",
+    ariaMute: "Son",
+    ariaFull: "Plein écran"
+  },
+  es: {
+    badge: "Escaparate Tecnológico",
+    title: "Sónica:",
+    titleAccent: "La Demostración Completa",
+    description: "Una visión detallada de la innovación detrás de nuestros sistemas. Vea nuestra presentación oficial para comprender el potencial disruptivo de esta tecnología.",
+    videoLabel: "Sonic Technology | Presentación Oficial",
+    fallbackText: "Su navegador no soporta la reproducción de video.",
+    duration: "Duración del Video",
+    resolution: "Resolución",
+    update: "Actualización Técnica",
+    ariaPlay: "Reproducir presentación de video",
+    ariaPause: "Pausa",
+    ariaMute: "Sonido",
+    ariaFull: "Pantalla completa"
+  }
+};
+
+export default function VideoShowcase({ lang = "ro" }) {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+
+  const t = videoTranslations[lang] || videoTranslations["ro"];
 
   const togglePlay = () => {
     if (videoRef.current.paused) {
@@ -33,23 +98,22 @@ export default function VideoShowcase() {
   return (
     <section className="relative py-24 bg-[#EBF0F5] overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
-        
-        {/* HEADER SECȚIUNE - Aliniat cu lățimea mare a video-ului */}
+
+        {/* HEADER SECȚIUNE */}
         <div className="max-w-2xl mb-16">
           <p className="text-sm font-bold uppercase tracking-[0.25em] text-[#0056B3] mb-4">
-            Showcase Tehnologic
+            {t.badge}
           </p>
           <h2 className="text-3xl md:text-5xl font-black text-[#1B263B] leading-tight">
-            Sonicitate: <span className="text-[#0056B3]">Demonstrația Completă</span>
+            {t.title} <span className="text-[#0056B3]">{t.titleAccent}</span>
           </h2>
           <p className="mt-6 text-[#455361] text-lg font-medium leading-relaxed">
-            O incursiune detaliată în inovația care stă la baza sistemelor noastre. 
-            Vizionați prezentarea noastră oficială pentru a înțelege potențialul disruptiv al acestei tehnologii.
+            {t.description}
           </p>
         </div>
 
-        {/* PLAYER VIDEO - VERSION WIDE & CINEMATIC */}
-        <motion.div 
+        {/* PLAYER VIDEO */}
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -59,26 +123,24 @@ export default function VideoShowcase() {
           <video
             ref={videoRef}
             className="w-full h-auto aspect-video object-cover cursor-pointer"
-            poster="/assets/video-thumbnail.png" 
+            poster="/assets/video-thumbnail.png"
             preload="metadata"
             onClick={togglePlay}
           >
             <source src={videoRo} type="video/mp4" />
-            Browserul dumneavoastră nu suportă redarea video.
+            {t.fallbackText}
           </video>
 
-          {/* OVERLAY CENTRAL - Buton Play Mare */}
-          <div 
-            className={`absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-500 ${
-              isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'
-            }`}
+          {/* OVERLAY CENTRAL */}
+          <div
+            className={`absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-500 ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'
+              }`}
           >
             <button
               onClick={togglePlay}
               className="group/btn relative flex items-center justify-center"
-              aria-label={isPlaying ? "Pauză" : "Redare prezentare video"}
+              aria-label={isPlaying ? t.ariaPause : t.ariaPlay}
             >
-              {/* Inele animate în jurul butonului de play (ca tema sonic) */}
               {!isPlaying && (
                 <div className="absolute inset-0 rounded-full border-2 border-white/30 animate-ping scale-150" />
               )}
@@ -92,39 +154,39 @@ export default function VideoShowcase() {
             </button>
           </div>
 
-          {/* CONTROALE BARĂ JOS (Subtile) */}
+          {/* CONTROALE BARĂ JOS */}
           <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-between items-center">
             <div className="flex items-center gap-6">
-               <button onClick={toggleMute} className="text-white hover:text-sky-400 transition" aria-label="Sunet">
-                  {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
-               </button>
-               <span className="text-white/80 text-xs font-bold tracking-widest uppercase">Sonic Technology | Prezentare Oficială</span>
+              <button onClick={toggleMute} className="text-white hover:text-sky-400 transition" aria-label={t.ariaMute}>
+                {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+              </button>
+              <span className="text-white/80 text-xs font-bold tracking-widest uppercase">{t.videoLabel}</span>
             </div>
-            
-            <button 
+
+            <button
               onClick={handleFullscreen}
               className="text-white hover:text-sky-400 transition"
-              aria-label="Ecran complet"
+              aria-label={t.ariaFull}
             >
               <Maximize size={24} />
             </button>
           </div>
         </motion.div>
 
-        {/* FOOTER SECȚIUNE - Indicatori Tehnici */}
+        {/* FOOTER SECȚIUNE */}
         <div className="mt-16 flex flex-wrap justify-center gap-12 border-t border-[#D1D9E0] pt-12">
-            <div className="text-center">
-              <span className="block text-2xl font-black text-[#1B263B]">3:00</span>
-              <span className="text-xs uppercase tracking-widest text-[#0056B3] font-bold">Durată Video</span>
-            </div>
-            <div className="text-center">
-              <span className="block text-2xl font-black text-[#1B263B]">4K</span>
-              <span className="text-xs uppercase tracking-widest text-[#0056B3] font-bold">Rezoluție</span>
-            </div>
-            <div className="text-center">
-              <span className="block text-2xl font-black text-[#1B263B]">2026</span>
-              <span className="text-xs uppercase tracking-widest text-[#0056B3] font-bold">Update Tehnic</span>
-            </div>
+          <div className="text-center">
+            <span className="block text-2xl font-black text-[#1B263B]">3:00</span>
+            <span className="text-xs uppercase tracking-widest text-[#0056B3] font-bold">{t.duration}</span>
+          </div>
+          <div className="text-center">
+            <span className="block text-2xl font-black text-[#1B263B]">4K</span>
+            <span className="text-xs uppercase tracking-widest text-[#0056B3] font-bold">{t.resolution}</span>
+          </div>
+          <div className="text-center">
+            <span className="block text-2xl font-black text-[#1B263B]">2026</span>
+            <span className="text-xs uppercase tracking-widest text-[#0056B3] font-bold">{t.update}</span>
+          </div>
         </div>
       </div>
     </section>

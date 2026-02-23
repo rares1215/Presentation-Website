@@ -3,10 +3,111 @@ import { useEffect, useRef, useState } from "react";
 import { Shield, Star, Users, Heart } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
-export default function WhyChooseUs() {
+const whyTranslations = {
+  ro: {
+    badge: "De ce Noi?",
+    title: "Ce Oferim?",
+    description: "Angajamentul nostru este să livrăm excelență prin fiecare vibrație, asigurând un viitor tehnologic sustenabil.",
+    ctaBtn: "Contactează-ne",
+    reasons: [
+      {
+        title: "Siguranță",
+        desc: "Construim soluții bazate pe principii demonstrate, oferind siguranța unei tehnologii verificate în timp.",
+      },
+      {
+        title: "Inovație",
+        desc: "Reinterpretăm sonicitatea prin prisma nevoilor moderne, aducând inovația în fiecare componentă.",
+      },
+      {
+        title: "Echipă dedicată",
+        desc: "O echipă de experți pasionați de fizică și inginerie, gata să transforme imposibilul în realitate.",
+      },
+      {
+        title: "Sustenabilitate",
+        desc: "Eficiența energetică nu este doar un obiectiv, ci fundamentul pe care dezvoltăm fiecare produs.",
+      },
+    ]
+  },
+  en: {
+    badge: "Why Us?",
+    title: "What We Offer?",
+    description: "Our commitment is to deliver excellence through every vibration, ensuring a sustainable technological future.",
+    ctaBtn: "Contact Us",
+    reasons: [
+      {
+        title: "Reliability",
+        desc: "We build solutions based on proven principles, offering the safety of a time-tested technology.",
+      },
+      {
+        title: "Innovation",
+        desc: "We reinterpret sonics through the lens of modern needs, bringing innovation to every component.",
+      },
+      {
+        title: "Dedicated Team",
+        desc: "A team of experts passionate about physics and engineering, ready to turn the impossible into reality.",
+      },
+      {
+        title: "Sustainability",
+        desc: "Energy efficiency is not just a goal, but the foundation upon which we develop every product.",
+      },
+    ]
+  },
+  fr: {
+    badge: "Pourquoi Nous ?",
+    title: "Ce que nous offrons ?",
+    description: "Notre engagement est de livrer l'excellence à travers chaque vibration, assurant un avenir technologique durable.",
+    ctaBtn: "Contactez-nous",
+    reasons: [
+      {
+        title: "Sécurité",
+        desc: "Nous construisons des solutions basées sur des principes prouvés, offrant la sécurité d'une technologie éprouvée.",
+      },
+      {
+        title: "Innovation",
+        desc: "Nous réinterprétons la sonicité à travers le prisme des besoins modernes, apportant l'innovation à chaque composant.",
+      },
+      {
+        title: "Équipe Dédiée",
+        desc: "Une équipe d'experts passionnés par la physique et l'ingénierie, prête à transformer l'impossible en réalité.",
+      },
+      {
+        title: "Durabilité",
+        desc: "L'efficacité énergétique n'est pas seulement un objectif, mais le fondement sur lequel nous développons chaque produit.",
+      },
+    ]
+  },
+  es: {
+    badge: "¿Por qué nosotros?",
+    title: "¿Qué ofrecemos?",
+    description: "Nuestro compromiso es ofrecer excelencia a través de cada vibración, asegurando un futuro tecnológico sostenible.",
+    ctaBtn: "Contáctanos",
+    reasons: [
+      {
+        title: "Seguridad",
+        desc: "Construimos soluciones basadas en principios probados, ofreciendo la seguridad de una tecnología verificada por el tiempo.",
+      },
+      {
+        title: "Innovación",
+        desc: "Reinterpretamos la sónica a través del prisma de las necesidades modernas, aportando innovación a cada componente.",
+      },
+      {
+        title: "Equipo Dedicado",
+        desc: "Un equipo de expertos apasionados por la física y la ingeniería, listos para convertir lo imposible en realidad.",
+      },
+      {
+        title: "Sostenibilidad",
+        desc: "La eficiencia energética no es solo un objetivo, sino la base sobre la cual desarrollamos cada producto.",
+      },
+    ]
+  }
+};
+
+export default function WhyChooseUs({ lang = "ro" }) {
   const [visible, setVisible] = useState(false);
   const ref = useRef(null);
   const prefersReducedMotion = useReducedMotion();
+
+  const t = whyTranslations[lang] || whyTranslations["ro"];
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -17,27 +118,11 @@ export default function WhyChooseUs() {
     return () => obs.disconnect();
   }, []);
 
-  const reasons = [
-    {
-      icon: <Shield className="w-8 h-8" aria-hidden="true" />,
-      title: "Siguranță",
-      desc: "Construim soluții bazate pe principii demonstrate, oferind siguranța unei tehnologii verificate în timp.",
-    },
-    {
-      icon: <Star className="w-8 h-8" aria-hidden="true" />,
-      title: "Inovație",
-      desc: "Reinterpretăm sonicitatea prin prisma nevoilor moderne, aducând inovația în fiecare componentă.",
-    },
-    {
-      icon: <Users className="w-8 h-8" aria-hidden="true" />,
-      title: "Echipă deticată",
-      desc: "O echipă de experți pasionați de fizică și inginerie, gata să transforme imposibilul în realitate.",
-    },
-    {
-      icon: <Heart className="w-8 h-8" aria-hidden="true" />,
-      title: "Sustenabilitate",
-      desc: "Eficiența energetică nu este doar un obiectiv, ci fundamentul pe care dezvoltăm fiecare produs.",
-    },
+  const icons = [
+    <Shield className="w-8 h-8" aria-hidden="true" />,
+    <Star className="w-8 h-8" aria-hidden="true" />,
+    <Users className="w-8 h-8" aria-hidden="true" />,
+    <Heart className="w-8 h-8" aria-hidden="true" />,
   ];
 
   return (
@@ -76,35 +161,31 @@ export default function WhyChooseUs() {
 
       {/* Header */}
       <div
-        className={`relative mx-auto max-w-4xl px-6 text-center transition-all duration-1000 ${
-          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-        }`}
+        className={`relative mx-auto max-w-4xl px-6 text-center transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
       >
-        {/* MODIFICARE: text-sm pentru lizibilitate și culoare #37474F pentru contrast */}
         <p className="text-sm font-bold uppercase tracking-[0.3em] text-[#37474F]">
-          De ce Noi?
+          {t.badge}
         </p>
 
         <h2
           id="why-choose-us-title"
           className="relative mt-4 text-4xl sm:text-5xl font-extrabold text-[#0056B3]"
         >
-          Ce Oferim?
+          {t.title}
         </h2>
 
         <div className="mx-auto mt-4 h-1.5 w-24 bg-[#0056B3]/30 rounded-full" />
 
-        {/* MODIFICARE: Culoare text #37474F pentru conformitate WCAG AA */}
         <p className="mt-6 max-w-2xl mx-auto text-lg leading-relaxed text-[#37474F] font-medium">
-          Angajamentul nostru este să livrăm excelență prin fiecare vibrație,
-          asigurând un viitor tehnologic sustenabil.
+          {t.description}
         </p>
       </div>
 
       {/* Cards */}
       <div className="relative mx-auto mt-20 max-w-6xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12" role="list">
-          {reasons.map((reason, i) => (
+          {t.reasons.map((reason, i) => (
             <motion.div
               key={i}
               role="listitem"
@@ -119,14 +200,13 @@ export default function WhyChooseUs() {
             >
               {/* Icon Container */}
               <div className="mb-6 flex items-center justify-center h-20 w-20 rounded-2xl bg-[#EBF0F5] text-[#0056B3] transition-colors group-hover:bg-[#0056B3] group-hover:text-white duration-500">
-                {reason.icon}
+                {icons[i]}
               </div>
 
               <h3 className="text-2xl font-bold text-[#1B263B]">
                 {reason.title}
               </h3>
 
-              {/* MODIFICARE: Culoare text #37474F (Contrast 4.5:1) */}
               <p className="mt-4 text-[#37474F] text-base leading-relaxed max-w-sm font-medium">
                 {reason.desc}
               </p>
@@ -154,7 +234,7 @@ export default function WhyChooseUs() {
               focus-visible:ring-offset-4 focus-visible:ring-offset-[#EBF0F5]
             "
           >
-            Contactează-ne
+            {t.ctaBtn}
           </a>
         </div>
       </div>

@@ -2,27 +2,79 @@
 import { Mail, Phone, MapPin } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
-export default function Footer() {
+const footerTranslations = {
+  ro: {
+    title: "Contactează-ne",
+    description: "Suntem aici pentru a răspunde întrebărilor tale legate de tehnologia sonicității.",
+    ctaBtn: "Trimite-ne un mesaj",
+    copyright: "Sonic Technology. Toate drepturile rezervate.",
+    addressText: "Str. Inovației 12, București",
+    contacts: [
+      { title: "Email" },
+      { title: "Telefon" },
+      { title: "Adresă" }
+    ]
+  },
+  en: {
+    title: "Contact Us",
+    description: "We are here to answer your questions regarding sonic technology.",
+    ctaBtn: "Send us a message",
+    copyright: "Sonic Technology. All rights reserved.",
+    addressText: "12 Innovation St., Bucharest",
+    contacts: [
+      { title: "Email" },
+      { title: "Phone" },
+      { title: "Address" }
+    ]
+  },
+  fr: {
+    title: "Contactez-nous",
+    description: "Nous sommes ici pour répondre à vos questions concernant la technologie sonique.",
+    ctaBtn: "Envoyez-nous un message",
+    copyright: "Sonic Technology. Tous droits réservés.",
+    addressText: "12 Rue de l'Innovation, Bucarest",
+    contacts: [
+      { title: "E-mail" },
+      { title: "Téléphone" },
+      { title: "Adresse" }
+    ]
+  },
+  es: {
+    title: "Contáctanos",
+    description: "Estamos aquí para responder a sus preguntas sobre la tecnología sónica.",
+    ctaBtn: "Envíenos un mensaje",
+    copyright: "Sonic Technology. Todos los derechos reservados.",
+    addressText: "Calle de la Innovación 12, Bucarest",
+    contacts: [
+      { title: "Correo" },
+      { title: "Teléfono" },
+      { title: "Dirección" }
+    ]
+  }
+};
+
+export default function Footer({ lang = "ro" }) {
   const prefersReducedMotion = useReducedMotion();
+  const t = footerTranslations[lang] || footerTranslations["ro"];
 
   const contactData = [
     {
       icon: <Mail aria-hidden="true" className="w-10 h-10" />,
-      title: "Email",
+      title: t.contacts[0].title,
       text: "contact@sonictech.com",
       link: "mailto:contact@sonictech.com",
     },
     {
       icon: <Phone aria-hidden="true" className="w-10 h-10" />,
-      title: "Telefon",
+      title: t.contacts[1].title,
       text: "+40 123 456 789",
       link: "tel:+40123456789",
     },
     {
       icon: <MapPin aria-hidden="true" className="w-10 h-10" />,
-      title: "Adresă",
-      text: "Str. Inovației 12, București",
-      link: "https://maps.google.com/?q=Str.+Inovației+12,+București",
+      title: t.contacts[2].title,
+      text: t.addressText,
+      link: "https://maps.google.com",
     },
   ];
 
@@ -38,12 +90,11 @@ export default function Footer() {
           id="contacts-title"
           className="relative text-4xl md:text-5xl font-extrabold text-[#0056B3]"
         >
-          Contactează-ne
+          {t.title}
         </h2>
 
-        {/* MODIFICARE: Contrast crescut la #37474F */}
         <p className="text-[#37474F] text-lg mt-4 font-semibold">
-          Suntem aici pentru a răspunde întrebărilor tale legate de tehnologia sonicității.
+          {t.description}
         </p>
       </div>
 
@@ -74,8 +125,7 @@ export default function Footer() {
               {item.title}
             </h3>
 
-            {/* MODIFICARE: Datele de contact sunt acum link-uri pentru accesibilitate motorie */}
-            <a 
+            <a
               href={item.link}
               className="inline-block text-[#37474F] text-base md:text-lg font-bold hover:text-[#0056B3] transition-colors min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0056B3] focus-visible:rounded-lg px-2"
             >
@@ -100,7 +150,6 @@ export default function Footer() {
               hover:bg-[#004494]
               hover:-translate-y-1
               transition-all duration-300
-
               focus-visible:outline-none
               focus-visible:ring-4
               focus-visible:ring-[#0056B3]/40
@@ -108,14 +157,13 @@ export default function Footer() {
               focus-visible:ring-offset-[#EBF0F5]
             "
         >
-          Trimite-ne un mesaj
+          {t.ctaBtn}
         </a>
       </div>
 
       {/* FOOTER BOTTOM */}
-      {/* MODIFICARE: Contrast crescut pentru textul de copyright */}
       <div className="border-t border-[#D1D9E0] mt-24 pt-8 text-center text-sm font-bold text-[#37474F]">
-        © {new Date().getFullYear()} Sonic Technology. Toate drepturile rezervate.
+        © {new Date().getFullYear()} {t.copyright}
       </div>
     </footer>
   );
