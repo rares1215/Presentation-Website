@@ -1,0 +1,33 @@
+name: Deploy Website to Romarg
+
+on:
+  push:
+    branches:
+      - main # Workflow-ul pornește doar când dai push pe main (producție)
+
+jobs:
+  web-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Install dependencies & Build
+        run: |
+          npm install
+          npm run build
+
+      - name: 📂 Sync files to Romarg
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/ # Folderul generat de build
+          server-dir: ./public_html/ # Folderul destinație pe Romarg
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/videos/** # Excludem videourile ca să nu le re-urce la fiecare modificare de cod
