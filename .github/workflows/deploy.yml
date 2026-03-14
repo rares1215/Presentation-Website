@@ -3,7 +3,7 @@ name: Deploy Website to Romarg
 on:
   push:
     branches:
-      - main # Workflow-ul pornește doar când dai push pe main (producție)
+      - main
 
 jobs:
   web-deploy:
@@ -30,4 +30,4 @@ jobs:
             **/.git*
             **/.git*/**
             **/node_modules/**
-            **/videos/** 
+            **/videos/**
