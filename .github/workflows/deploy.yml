@@ -24,11 +24,10 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/ # Folderul generat de build
-          server-dir: ./public_html/ # Folderul destinație pe Romarg
+          local-dir: ./dist/
+          server-dir: ./public_html/
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
             **/videos/** 
-            # Excludem videourile ca să nu le re-urce la fiecare modificare de cod
