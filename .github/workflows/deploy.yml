@@ -30,6 +30,11 @@ jobs:
             **/.git*
             **/.git*/**
             **/node_modules/**
-            **/videos/**
+            **/assets/**/*.mp4
+            **/assets/**/*.mov
+            **/assets/**/*.png
+            **/assets/**/*.jpg
+            **/assets/**/*.jpeg
+            **/assets/**/*.svg
 
             # Fara videori
