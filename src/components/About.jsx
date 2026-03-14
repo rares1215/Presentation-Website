@@ -161,14 +161,23 @@ export default function About({ lang = "ro" }) {
               {t.sonicTitle.split("SONIC TECHNOLOGY")[0]}
               <span className="text-[#0056B3]">SONIC TECHNOLOGY?</span>
             </h3>
-            <div className="space-y-5">
+            <div className="space-y-4">
               {t.details.map((item, index) => (
-                <div key={index} className="flex items-start gap-4">
-                  <span className="text-3xl md:text-4xl font-black text-[#D32F2F] leading-none shrink-0">{item.letter}</span>
-                  <div>
-                    <h4 className="text-base md:text-lg font-bold text-[#1B263B]">{item.title}:</h4>
-                    <p className="text-[#37474F] text-sm md:text-base font-medium leading-snug">{item.desc}</p>
+                <div key={index} className="flex flex-col">
+                  <div className="flex items-baseline">
+                    {/* Initiala Rosie - acum fara gap, aliniata la baza textului */}
+                    <span className="text-3xl md:text-4xl font-black text-[#D32F2F] leading-none">
+                      {item.letter}
+                    </span>
+                    {/* Restul titlului - lipit de initiala */}
+                    <h4 className="text-base md:text-lg font-bold text-[#1B263B]">
+                      {item.title}:
+                    </h4>
                   </div>
+                  {/* Descrierea pe randul urmator pentru claritate */}
+                  <p className="text-[#37474F] text-sm md:text-base font-medium leading-snug mt-1">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
