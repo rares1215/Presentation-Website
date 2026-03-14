@@ -30,4 +30,5 @@ jobs:
             **/.git*
             **/.git*/**
             **/node_modules/**
-            **/videos/** # Excludem videourile ca să nu le re-urce la fiecare modificare de cod
+            **/videos/** 
+            # Excludem videourile ca să nu le re-urce la fiecare modificare de cod
