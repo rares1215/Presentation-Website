@@ -14,13 +14,14 @@ export default function Navbar({ lang, setLang }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Configurație Limbi cu URL-uri directe (CDN) pentru a evita erorile 404 în producție
   const langData = [
-    { id: "ro", label: "RO", flagClass: "fi-ro" },
-    { id: "en", label: "EN", flagClass: "fi-gb" },
-    { id: "fr", label: "FR", flagClass: "fi-fr" },
-    { id: "es", label: "ES", flagClass: "fi-es" },
-    { id: "de", label: "DE", flagClass: "fi-de" },
-    { id: "it", label: "IT", flagClass: "fi-it" }
+    { id: "ro", label: "RO", flagUrl: "https://flagcdn.com/ro.svg" },
+    { id: "en", label: "EN", flagUrl: "https://flagcdn.com/gb.svg" },
+    { id: "fr", label: "FR", flagUrl: "https://flagcdn.com/fr.svg" },
+    { id: "es", label: "ES", flagUrl: "https://flagcdn.com/es.svg" },
+    { id: "de", label: "DE", flagUrl: "https://flagcdn.com/de.svg" },
+    { id: "it", label: "IT", flagUrl: "https://flagcdn.com/it.svg" }
   ];
 
   const translations = {
@@ -45,7 +46,8 @@ export default function Navbar({ lang, setLang }) {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 backdrop-blur-md ${scrolled ? "bg-white/80 shadow-lg shadow-blue-900/5" : "bg-transparent"}`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 backdrop-blur-md ${scrolled ? "bg-white/80 shadow-lg shadow-blue-900/5" : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between relative">
 
@@ -86,8 +88,7 @@ export default function Navbar({ lang, setLang }) {
               onClick={() => setShowLangMenu(!showLangMenu)}
               className="flex items-center gap-3 px-4 py-2 rounded-full border border-[#D1D9E0] bg-white/60 text-[#1B263B] font-bold text-sm hover:bg-white transition-all shadow-sm group"
             >
-              {/* MODIFICAT AICI: Steagul pentru limba curentă */}
-              <span className={`fi ${currentLang.flagClass} rounded-sm shadow-sm w-5 h-4`}></span>
+              <img src={currentLang.flagUrl} alt={currentLang.id} className="w-5 h-4 rounded-sm shadow-sm object-cover" />
               <span className="uppercase tracking-wider">{currentLang.id}</span>
               <ChevronDown className={`w-4 h-4 text-[#0056B3] transition-transform duration-300 ${showLangMenu ? "rotate-180" : ""}`} />
             </button>
@@ -108,9 +109,10 @@ export default function Navbar({ lang, setLang }) {
                           setLang(l.id);
                           setShowLangMenu(false);
                         }}
-                        className={`flex items-center gap-2 px-3 py-2 w-full rounded-lg transition-all duration-200 ${lang === l.id ? "bg-blue-50 text-[#0056B3]" : "hover:bg-gray-100"}`}
+                        className={`flex items-center gap-3 px-3 py-2 w-full rounded-lg transition-all duration-200 ${lang === l.id ? "bg-blue-50 text-[#0056B3]" : "hover:bg-gray-100"
+                          }`}
                       >
-                        <span className={`fi ${l.flagClass} rounded-sm shadow-sm w-5 h-4`}></span>
+                        <img src={l.flagUrl} alt={l.id} className="w-5 h-4 rounded-sm shadow-sm object-cover" />
                         <span className="font-bold text-sm tracking-tighter">{l.label}</span>
                       </button>
                     ))}
@@ -152,7 +154,6 @@ export default function Navbar({ lang, setLang }) {
                 </li>
               ))}
 
-              {/* MODIFICAT AICI: Mobile Lang Selector cu noile steaguri */}
               <li className="flex flex-wrap gap-4 pt-6 border-t border-[#EBF0F5] w-full justify-center mt-2 px-4">
                 {langData.map((l) => (
                   <button
@@ -161,9 +162,10 @@ export default function Navbar({ lang, setLang }) {
                       setLang(l.id);
                       setMenuOpen(false);
                     }}
-                    className={`flex flex-col items-center gap-1 p-3 rounded-2xl transition-all ${lang === l.id ? "bg-[#0056B3]/10 ring-2 ring-[#0056B3]" : "bg-gray-50 opacity-60"}`}
+                    className={`flex flex-col items-center gap-2 p-3 rounded-2xl transition-all ${lang === l.id ? "bg-[#0056B3]/10 ring-2 ring-[#0056B3]" : "bg-gray-50 opacity-60"
+                      }`}
                   >
-                    <span className={`fi ${l.flagClass} rounded-sm shadow-sm w-8 h-6`}></span>
+                    <img src={l.flagUrl} alt={l.id} className="w-8 h-6 rounded-sm shadow-sm object-cover" />
                     <span className="text-[10px] font-black uppercase">{l.id}</span>
                   </button>
                 ))}
