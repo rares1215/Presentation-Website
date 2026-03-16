@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowUp } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 const footerTranslations = {
@@ -9,6 +9,7 @@ const footerTranslations = {
     ctaBtn: "Trimite-ne un mesaj",
     copyright: "Sonic Technology. Toate drepturile rezervate.",
     addressText: "Str. Inovației 12, București",
+    backToTop: "Înapoi sus",
     contacts: [
       { title: "Email" },
       { title: "Telefon" },
@@ -21,6 +22,7 @@ const footerTranslations = {
     ctaBtn: "Send us a message",
     copyright: "Sonic Technology. All rights reserved.",
     addressText: "12 Innovation St., Bucharest",
+    backToTop: "Back to top",
     contacts: [
       { title: "Email" },
       { title: "Phone" },
@@ -33,6 +35,7 @@ const footerTranslations = {
     ctaBtn: "Envoyez-nous un message",
     copyright: "Sonic Technology. Tous droits réservés.",
     addressText: "12 Rue de l'Innovation, Bucarest",
+    backToTop: "Retour en haut",
     contacts: [
       { title: "E-mail" },
       { title: "Téléphone" },
@@ -45,6 +48,7 @@ const footerTranslations = {
     ctaBtn: "Envíenos un mensaje",
     copyright: "Sonic Technology. Todos los derechos reservados.",
     addressText: "Calle de la Innovación 12, Bucarest",
+    backToTop: "Volver arriba",
     contacts: [
       { title: "Correo" },
       { title: "Teléfono" },
@@ -57,6 +61,7 @@ const footerTranslations = {
     ctaBtn: "Schicken Sie uns eine Nachricht",
     copyright: "Sonic Technology. Alle Rechte vorbehalten.",
     addressText: "Innovationsstraße 12, Bukarest",
+    backToTop: "Nach oben",
     contacts: [
       { title: "E-Mail" },
       { title: "Telefon" },
@@ -69,6 +74,7 @@ const footerTranslations = {
     ctaBtn: "Inviaci un messaggio",
     copyright: "Sonic Technology. Tutti i diritti riservati.",
     addressText: "Via dell'Innovazione 12, Bucarest",
+    backToTop: "Torna su",
     contacts: [
       { title: "Email" },
       { title: "Telefono" },
@@ -80,6 +86,16 @@ const footerTranslations = {
 export default function Footer({ lang = "ro" }) {
   const prefersReducedMotion = useReducedMotion();
   const t = footerTranslations[lang] || footerTranslations["ro"];
+
+  const scrollToTop = () => {
+    // Încearcă să găsească secțiunea Hero după ID, altfel face scroll la 0
+    const heroSection = document.getElementById("hero");
+    if (heroSection) {
+      heroSection.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   const contactData = [
     {
@@ -116,13 +132,12 @@ export default function Footer({ lang = "ro" }) {
         >
           {t.title}
         </h2>
-
         <p className="text-[#37474F] text-lg mt-4 font-semibold">
           {t.description}
         </p>
       </div>
 
-      {/* CONTACT CARDS PANEL */}
+      {/* CONTACT CARDS */}
       <div className="relative mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-3 gap-10" role="list">
         {contactData.map((item, i) => (
           <motion.div
@@ -135,23 +150,17 @@ export default function Footer({ lang = "ro" }) {
             className="relative p-10 rounded-[2.5rem] bg-white border border-[#D1D9E0] shadow-xl shadow-blue-900/5 text-center group transition-all duration-300"
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 h-1.5 w-20 bg-[#0056B3] rounded-b-full" />
-
-            {/* ICON CONTAINER */}
-            <div
-              className="flex items-center justify-center h-24 w-24 mx-auto rounded-full bg-[#EBF0F5] border border-[#0056B3]/10 mb-6 transition-colors duration-300 group-hover:bg-[#0056B3] group-hover:text-white"
-            >
+            <div className="flex items-center justify-center h-24 w-24 mx-auto rounded-full bg-[#EBF0F5] border border-[#0056B3]/10 mb-6 transition-colors duration-300 group-hover:bg-[#0056B3] group-hover:text-white">
               <div className="text-[#0056B3] group-hover:text-white transition-colors duration-300">
                 {item.icon}
               </div>
             </div>
-
             <h3 className="text-xl font-bold text-[#1B263B] mb-2 tracking-wide uppercase">
               {item.title}
             </h3>
-
             <a
               href={item.link}
-              className="inline-block text-[#37474F] text-base md:text-lg font-bold hover:text-[#0056B3] transition-colors min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0056B3] focus-visible:rounded-lg px-2"
+              className="inline-block text-[#37474F] text-base md:text-lg font-bold hover:text-[#0056B3] transition-colors min-h-[48px] px-2"
             >
               {item.text}
             </a>
@@ -163,31 +172,28 @@ export default function Footer({ lang = "ro" }) {
       <div className="text-center mt-20">
         <a
           href="mailto:contact@sonictech.com"
-          className="
-              inline-flex items-center justify-center
-              px-12 py-5
-              min-h-[48px]
-              rounded-full
-              bg-[#0056B3]
-              text-lg font-bold text-white
-              shadow-lg shadow-blue-900/20
-              hover:bg-[#004494]
-              hover:-translate-y-1
-              transition-all duration-300
-              focus-visible:outline-none
-              focus-visible:ring-4
-              focus-visible:ring-[#0056B3]/40
-              focus-visible:ring-offset-4
-              focus-visible:ring-offset-[#EBF0F5]
-            "
+          className="inline-flex items-center justify-center px-12 py-5 min-h-[48px] rounded-full bg-[#0056B3] text-lg font-bold text-white shadow-lg shadow-blue-900/20 hover:bg-[#004494] hover:-translate-y-1 transition-all duration-300"
         >
           {t.ctaBtn}
         </a>
       </div>
 
       {/* FOOTER BOTTOM */}
-      <div className="border-t border-[#D1D9E0] mt-24 pt-8 text-center text-sm font-bold text-[#37474F]">
-        © {new Date().getFullYear()} {t.copyright}
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="border-t border-[#D1D9E0] mt-24 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-sm font-bold text-[#37474F]">
+            © {new Date().getFullYear()} {t.copyright}
+          </p>
+
+          {/* BACK TO TOP BUTTON */}
+          <button
+            onClick={scrollToTop}
+            className="group flex items-center gap-2 px-6 py-3 bg-white border border-[#D1D9E0] rounded-full text-[#0056B3] font-bold text-sm shadow-sm hover:shadow-md hover:border-[#0056B3] transition-all duration-300"
+          >
+            {t.backToTop}
+            <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform duration-300" />
+          </button>
+        </div>
       </div>
     </footer>
   );

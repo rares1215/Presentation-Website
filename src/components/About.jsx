@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 const aboutTranslations = {
@@ -52,7 +52,7 @@ const aboutTranslations = {
     bookCover: "À Propos",
     bookHint: "Appuyez pour feuilleter",
     bookTitle: "Description De Nous",
-    mainText: "Nous sommes une entreprise fondée sur la passion et le désir de laisser derrière nous un monde meilleur que celui dans lequel nous sommes nés. Tout a commencé par un livre qui présentait une théorie surprenante concernant un domaine de la physique lié aux liquides. Bien qu'elle ait environ 100 ans, la théorie ouvrait la porte à de nombreuses applications et a capté notre attention.<br /><br />Au début, c'était plutôt un jeu, mais nous avons senti qu'il y avait là quelque chose qui pouvait produire un changement et nous avons décidé de commencer à étudier. Progressivement, nous avons commencé à comprendre certaines choses, à mener des expériences qui ont validé le principe à la base de notre premier produit et nous ont donné le courage d'aller de l'avant.",
+    mainText: "Nous sommes une entreprise fondée sur la passion et le désir de laisser derrière nous un monde meilleur que celui dans lequel nous sommes nés. Tout a commencé par un livre qui présentait une théorie surprenante concernant un domaine de la physique lié aux liquides. Bien qu'elle ait environ 100 ans, la théorie ouvrait la porte à de nombreuses applications et a capté notre attention.<br /><br />Au début, c'était plutôt un jeu, mas nous avons senti qu'il y avait là quelque chose qui pouvait produire un changement et nous avons décidé de commencer à étudier. Progressivement, nous avons commencé à comprendre certaines choses, à mener des expériences qui ont validé le principe à la base de notre premier produit et nous ont donné le courage d'aller de l'avant.",
     sonicTitle: "Que représente SONIC TECHNOLOGY ?",
     details: [
       { letter: "S", title: "implicité", desc: "un système composé de pièces peu nombreuses et simples, très efficace." },
@@ -98,7 +98,7 @@ const aboutTranslations = {
     sonicTitle: "Was repräsentiert SONIC TECHNOLOGY?",
     details: [
       { letter: "S", title: "implizität", desc: "ein System aus wenigen und einfachen Teilen, sehr effizient." },
-      { letter: "O", title: "riginalität", desc: "wir verwenden eine originelle Technologie, die über 100 Jahre alt ist." },
+      { letter: "O", title: "riginalität", desc: "wir verwenden eine originelle Technologie, die über 100 ist." },
       { letter: "N", title: "eutralität", desc: "keine Umweltbelastung durch geringen Energieverbrauch, der problemlos durch grüne Energie gedeckt werden kann, sowie durch weltweit verfügbare Materialien." },
       { letter: "I", title: "nnovation", desc: "eine Technologie, die viele Bereiche innovieren wird." },
       { letter: "C", title: "omfort", desc: "dank der Zuverlässigkeit der Produkte und der Tatsache, dass keine Genehmigungen oder regelmäßigen Wartungen erforderlich sind. Die erzeugte Energie wird zu den derzeit niedrigsten Kosten verfügbar sein." },
@@ -115,7 +115,7 @@ const aboutTranslations = {
     bookCover: "Chi Siamo",
     bookHint: "Clicca per sfogliare",
     bookTitle: "Descrizione Chi Siamo",
-    mainText: "Siamo un'azienda fondata sulla passione e sul desiderio di lasciare un mondo migliore di quello in cui siamo nati. Tutto è iniziato con un libro che presentava una teoria sorprendente riguardante un campo della fisica legato ai liquidi. Sebbene avesse circa 100 anni, la teoria apriva la porta a molte applicazioni e ha catturato la nostra attenzione.<br /><br />All'inizio era più un gioco, ma sentivamo che c'era qualcosa che poteva produrre un cambiamento e abbiamo deciso di iniziare a studiare. Gradualmente abbiamo iniziato a capire certe cose, a condurre esperimenti che hanno convalidato il principio alla base del nostro primo prodotto e ci hanno dato il coraggio di andare avanti.",
+    mainText: "Siamo un'azienda fondata sulla passione e sul desiderio di lasciare un mondo migliore di quello in cui siamo nati. Tutto è iniziato con un libro che presentava una teoria sorprendente riguardante un campo della fisica legato ai liquidi. Sebbene avesse circa 100 anni, la teoria apriva la porta a molte applicazioni e ha catturato la nostra attenzione.<br /><br />All'inizio era più un gioco, ma sentivamo che c'era qualcosa che poteva produrre un cambiamento e abbiamo deciso di iniziare a studiare. Gradualmente abbiamo iniziato a capire certe cose, a condurre esperimenti che hanno convalidato il principio alla base del nostru primo prodotto e ci hanno dato il coraggio di andare avanti.",
     sonicTitle: "Cosa rappresenta SONIC TECHNOLOGY?",
     details: [
       { letter: "S", title: "emplicità", desc: "un sistema composto da pochi e semplici pezzi, molto efficiente." },
@@ -133,118 +133,139 @@ const aboutTranslations = {
 
 export default function About({ lang = "ro" }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const t = aboutTranslations[lang];
+
+  // Verificăm dimensiunea ecranului pentru a decide dacă afișăm cartea
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1200);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   const toggleBook = () => setIsOpen(!isOpen);
 
   return (
-    <section
-      id="about"
-      className="relative bg-[#EBF0F5] py-32 overflow-hidden"
-    >
+    <section id="about" className="relative bg-[#EBF0F5] py-20 md:py-32 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
 
         {/* HEADER */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#455361]">{t.badge}</p>
           <h2 className="mt-4 text-3xl md:text-5xl font-extrabold text-[#0056B3]">{t.title}</h2>
-          <p className="mt-4 text-[#455361] font-medium italic">{t.clickHint}</p>
+          {isLargeScreen && (
+            <p className="mt-4 text-[#455361] font-medium italic">{t.clickHint}</p>
+          )}
         </div>
 
-        {/* CONTAINER CARTE */}
-        <div className="relative perspective-2000 w-full max-w-6xl mx-auto h-[700px] md:h-[650px]">
-
-          {/* PAGINA DREAPTA (Fixă - SONIC Acronim) */}
-          <div className="absolute top-0 right-0 w-full md:w-1/2 h-full bg-white shadow-xl rounded-r-3xl border border-[#D1D9E0] p-8 md:p-12 flex flex-col justify-center">
-            <h3 className="text-xl md:text-2xl font-black text-[#1B263B] mb-8">
-              {t.sonicTitle.split("SONIC TECHNOLOGY")[0]}
-              <span className="text-[#0056B3]">SONIC TECHNOLOGY?</span>
-            </h3>
-            <div className="space-y-4">
-              {t.details.map((item, index) => (
-                <div key={index} className="flex flex-col">
-                  <div className="flex items-baseline">
-                    {/* Initiala Rosie - acum fara gap, aliniata la baza textului */}
-                    <span className="text-3xl md:text-4xl font-black text-[#D32F2F] leading-none">
-                      {item.letter}
-                    </span>
-                    {/* Restul titlului - lipit de initiala */}
-                    <h4 className="text-base md:text-lg font-bold text-[#1B263B]">
-                      {item.title}:
-                    </h4>
-                  </div>
-                  {/* Descrierea pe randul urmator pentru claritate */}
-                  <p className="text-[#37474F] text-sm md:text-base font-medium leading-snug mt-1">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* PAGINA STÂNGA / COPERTA (Elementul rotativ) */}
-          <motion.button
-            onClick={toggleBook}
-            aria-expanded={isOpen}
-            aria-label={isOpen ? t.ariaOpen : t.ariaClosed}
-            animate={{ rotateY: isOpen ? -180 : 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            style={{
-              transformStyle: "preserve-3d",
-              transformOrigin: "left"
-            }}
-            className="absolute top-0 left-0 md:left-1/2 w-full md:w-1/2 h-full z-20 cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#0056B3]/50 rounded-3xl md:rounded-r-3xl md:rounded-l-none"
-          >
-            {/* FAȚA COPERȚII */}
-            <div className="absolute inset-0 bg-[#0056B3] rounded-3xl md:rounded-r-3xl md:rounded-l-none shadow-2xl flex flex-col items-center justify-center text-white p-12 backface-hidden border-r-4 border-white/20">
-              <div className="w-20 h-20 border-2 border-white/50 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <span className="text-3xl font-black">ST</span>
-              </div>
-              <h3 className="text-3xl md:text-4xl font-black uppercase tracking-widest">{t.bookCover}</h3>
-              <div className="mt-10 flex flex-col items-center gap-3">
-                <span className="text-xs font-bold uppercase tracking-[0.25em] opacity-80">{t.bookHint}</span>
-                <motion.div animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.5 }} className="text-2xl">➜</motion.div>
-              </div>
-            </div>
-
-            {/* INTERIORUL COPERȚII */}
-            <div
-              className="absolute inset-0 bg-white rounded-3xl md:rounded-l-3xl md:rounded-r-none border-l border-[#D1D9E0] shadow-inner p-8 md:p-10 flex flex-col justify-center text-left backface-hidden"
-              style={{ transform: "rotateY(180deg)" }}
-            >
-              <h3 className="text-2xl sm:text-3xl font-semibold text-[#1B263B]">
-                {t.bookTitle}
+        {isLargeScreen ? (
+          /* VARIANTĂ CARTE (DOAR PENTRU > 1200px) */
+          <div className="relative perspective-2000 w-full max-w-6xl mx-auto h-[650px]">
+            {/* PAGINA DREAPTA (Fixă - SONIC Acronim) */}
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-white shadow-xl rounded-r-3xl border border-[#D1D9E0] p-12 flex flex-col justify-center">
+              <h3 className="text-2xl font-black text-[#1B263B] mb-8">
+                {t.sonicTitle.split("SONIC TECHNOLOGY")[0]}
+                <span className="text-[#0056B3]">SONIC TECHNOLOGY?</span>
               </h3>
-              <p
-                className="mt-6 text-base sm:text-lg leading-relaxed sm:leading-loose text-[#1B263B]"
-                dangerouslySetInnerHTML={{ __html: t.mainText }}
-              />
+              <div className="space-y-4">
+                {t.details.map((item, index) => (
+                  <div key={index} className="flex flex-col">
+                    <div className="flex items-baseline">
+                      <span className="text-4xl font-black text-[#D32F2F] leading-none">{item.letter}</span>
+                      <h4 className="text-lg font-bold text-[#1B263B]">{item.title}:</h4>
+                    </div>
+                    <p className="text-[#37474F] text-base font-medium leading-snug mt-1">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </motion.button>
-        </div>
+
+            {/* PAGINA STÂNGA / COPERTA (Rotativă) */}
+            <motion.button
+              onClick={toggleBook}
+              animate={{ rotateY: isOpen ? -180 : 0 }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              style={{ transformStyle: "preserve-3d", transformOrigin: "left" }}
+              className="absolute top-0 left-1/2 w-1/2 h-full z-20 cursor-pointer focus:outline-none"
+            >
+              {/* FAȚA COPERȚII */}
+              <div className="absolute inset-0 bg-[#0056B3] rounded-r-3xl shadow-2xl flex flex-col items-center justify-center text-white p-12 backface-hidden border-r-4 border-white/20">
+                <div className="w-20 h-20 border-2 border-white/50 rounded-full flex items-center justify-center mb-6">
+                  <span className="text-3xl font-black">ST</span>
+                </div>
+                <h3 className="text-4xl font-black uppercase tracking-widest">{t.bookCover}</h3>
+                <div className="mt-10 flex flex-col items-center gap-3">
+                  <span className="text-xs font-bold uppercase tracking-[0.25em] opacity-80">{t.bookHint}</span>
+                  <motion.div animate={{ x: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 1.5 }} className="text-2xl">➜</motion.div>
+                </div>
+              </div>
+
+              {/* INTERIORUL COPERȚII */}
+              <div className="absolute inset-0 bg-white rounded-l-3xl border-l border-[#D1D9E0] shadow-inner p-10 flex flex-col justify-center text-left backface-hidden" style={{ transform: "rotateY(180deg)" }}>
+                <h3 className="text-3xl font-semibold text-[#1B263B]">{t.bookTitle}</h3>
+                <p className="mt-6 text-lg leading-loose text-[#1B263B]" dangerouslySetInnerHTML={{ __html: t.mainText }} />
+              </div>
+            </motion.button>
+          </div>
+        ) : (
+          /* VARIANTĂ STACKED (MOBILE & TABLET < 1200px) */
+          <div className="flex flex-col gap-8 max-w-3xl mx-auto">
+            {/* Card Despre Noi */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white p-8 rounded-3xl shadow-lg border border-[#D1D9E0]"
+            >
+              <h3 className="text-2xl font-bold text-[#0056B3] mb-4">{t.bookTitle}</h3>
+              <p className="text-[#1B263B] leading-relaxed" dangerouslySetInnerHTML={{ __html: t.mainText }} />
+            </motion.div>
+
+            {/* Card Acronim SONIC */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white p-8 rounded-3xl shadow-lg border border-[#D1D9E0]"
+            >
+              <h3 className="text-xl font-black text-[#1B263B] mb-6">
+                {t.sonicTitle.split("SONIC TECHNOLOGY")[0]}
+                <span className="text-[#0056B3]">SONIC TECHNOLOGY?</span>
+              </h3>
+              <div className="space-y-6">
+                {t.details.map((item, index) => (
+                  <div key={index} className="flex flex-col">
+                    <div className="flex items-baseline">
+                      <span className="text-3xl font-black text-[#D32F2F] leading-none">{item.letter}</span>
+                      <h4 className="text-base font-bold text-[#1B263B]">{item.title}:</h4>
+                    </div>
+                    <p className="text-[#37474F] text-sm font-medium leading-snug mt-1">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        )}
 
         {/* CTA BUTTON */}
-        <div className="mt-16 flex justify-center">
+        <div className="mt-16 flex justify-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="mt-8 mb-4 text-[#455361] text-sm font-medium max-w-md">
+            <p className="mt-8 mb-4 text-[#455361] text-sm font-medium max-w-md mx-auto">
               {t.ctaHint}
             </p>
             <a
               href="#gogu-tribute"
-              className="
-                  inline-flex items-center justify-center rounded-full
-                  min-h-[48px] px-12 py-4
-                  bg-[#0056B3] text-lg font-bold text-white
-                  shadow-xl shadow-blue-900/20 transition-all
-                  hover:bg-[#004494] hover:-translate-y-1
-                  focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#0056B3]/50 focus-visible:ring-offset-2
-                "
+              className="inline-flex items-center justify-center rounded-full min-h-[48px] px-12 py-4 bg-[#0056B3] text-lg font-bold text-white shadow-xl hover:bg-[#004494] hover:-translate-y-1 transition-all"
             >
               {t.ctaBtn}
             </a>
