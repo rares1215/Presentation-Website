@@ -14,14 +14,13 @@ export default function Navbar({ lang, setLang }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Configurație Limbi: Adăugat DE și IT
   const langData = [
-    { id: "ro", label: "RO", flag: "🇷🇴" },
-    { id: "en", label: "EN", flag: "🇬🇧" },
-    { id: "fr", label: "FR", flag: "🇫🇷" },
-    { id: "es", label: "ES", flag: "🇪🇸" },
-    { id: "de", label: "DE", flag: "🇩🇪" },
-    { id: "it", label: "IT", flag: "🇮🇹" }
+    { id: "ro", label: "RO", flagClass: "fi-ro" },
+    { id: "en", label: "EN", flagClass: "fi-gb" },
+    { id: "fr", label: "FR", flagClass: "fi-fr" },
+    { id: "es", label: "ES", flagClass: "fi-es" },
+    { id: "de", label: "DE", flagClass: "fi-de" },
+    { id: "it", label: "IT", flagClass: "fi-it" }
   ];
 
   const translations = {
@@ -46,8 +45,7 @@ export default function Navbar({ lang, setLang }) {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 backdrop-blur-md ${scrolled ? "bg-white/80 shadow-lg shadow-blue-900/5" : "bg-transparent"
-        }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 backdrop-blur-md ${scrolled ? "bg-white/80 shadow-lg shadow-blue-900/5" : "bg-transparent"}`}
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between relative">
 
@@ -88,7 +86,8 @@ export default function Navbar({ lang, setLang }) {
               onClick={() => setShowLangMenu(!showLangMenu)}
               className="flex items-center gap-3 px-4 py-2 rounded-full border border-[#D1D9E0] bg-white/60 text-[#1B263B] font-bold text-sm hover:bg-white transition-all shadow-sm group"
             >
-              <span className="text-xl leading-none">{currentLang.flag}</span>
+              {/* MODIFICAT AICI: Steagul pentru limba curentă */}
+              <span className={`fi ${currentLang.flagClass} rounded-sm shadow-sm w-5 h-4`}></span>
               <span className="uppercase tracking-wider">{currentLang.id}</span>
               <ChevronDown className={`w-4 h-4 text-[#0056B3] transition-transform duration-300 ${showLangMenu ? "rotate-180" : ""}`} />
             </button>
@@ -101,7 +100,6 @@ export default function Navbar({ lang, setLang }) {
                   exit={{ opacity: 0, scale: 0.95, y: 10 }}
                   className="absolute right-0 mt-3 w-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-[#D1D9E0] overflow-hidden p-1.5"
                 >
-                  {/* Am adăugat max-h și overflow-y pentru a acomoda mai multe limbi în dropdown */}
                   <div className="max-h-80 overflow-y-auto">
                     {langData.map((l) => (
                       <button
@@ -110,16 +108,10 @@ export default function Navbar({ lang, setLang }) {
                           setLang(l.id);
                           setShowLangMenu(false);
                         }}
-                        className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm font-bold transition-all ${lang === l.id
-                          ? "bg-[#0056B3] text-white shadow-md shadow-blue-900/20"
-                          : "text-[#1B263B] hover:bg-[#EBF0F5]"
-                          }`}
+                        className={`flex items-center gap-2 px-3 py-2 w-full rounded-lg transition-all duration-200 ${lang === l.id ? "bg-blue-50 text-[#0056B3]" : "hover:bg-gray-100"}`}
                       >
-                        <div className="flex items-center gap-3">
-                          <span className="text-xl">{l.flag}</span>
-                          <span className="uppercase">{l.id}</span>
-                        </div>
-                        {lang === l.id && <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
+                        <span className={`fi ${l.flagClass} rounded-sm shadow-sm w-5 h-4`}></span>
+                        <span className="font-bold text-sm tracking-tighter">{l.label}</span>
                       </button>
                     ))}
                   </div>
@@ -160,7 +152,7 @@ export default function Navbar({ lang, setLang }) {
                 </li>
               ))}
 
-              {/* Mobile Lang Selector: Adaptat pentru mai multe limbi (flex-wrap) */}
+              {/* MODIFICAT AICI: Mobile Lang Selector cu noile steaguri */}
               <li className="flex flex-wrap gap-4 pt-6 border-t border-[#EBF0F5] w-full justify-center mt-2 px-4">
                 {langData.map((l) => (
                   <button
@@ -169,10 +161,9 @@ export default function Navbar({ lang, setLang }) {
                       setLang(l.id);
                       setMenuOpen(false);
                     }}
-                    className={`flex flex-col items-center gap-1 p-3 rounded-2xl transition-all ${lang === l.id ? "bg-[#0056B3]/10 ring-2 ring-[#0056B3]" : "bg-gray-50 opacity-60"
-                      }`}
+                    className={`flex flex-col items-center gap-1 p-3 rounded-2xl transition-all ${lang === l.id ? "bg-[#0056B3]/10 ring-2 ring-[#0056B3]" : "bg-gray-50 opacity-60"}`}
                   >
-                    <span className="text-3xl">{l.flag}</span>
+                    <span className={`fi ${l.flagClass} rounded-sm shadow-sm w-8 h-6`}></span>
                     <span className="text-[10px] font-black uppercase">{l.id}</span>
                   </button>
                 ))}
